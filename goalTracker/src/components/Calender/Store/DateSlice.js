@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { configureStore } from "@reduxjs/toolkit";
+
 const date = createSlice({
   name: "date",
   initialState: { year: 2025, month: 1 },
@@ -13,5 +14,18 @@ const date = createSlice({
   }
 });
 
+const changeComponent = createSlice({
+  name: "changeComponent",
+  initialState: { componentPage: "selectDay" },
+  reducers: {
+    changeComponentPage(state, action) {
+      state.componentPage = action.payload;
+    }
+  }
+});
+
 export const dateAction = date.actions;
-export const dateStore = configureStore({ reducer: { date: date.reducer } });
+export const changeComponentAction = changeComponent.actions;
+export const dateStore = configureStore({
+  reducer: { date: date.reducer, changeComponent: changeComponent.reducer }
+});

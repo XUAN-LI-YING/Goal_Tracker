@@ -3,28 +3,27 @@ import { format, isToday } from "date-fns";
 import "./MultiYearCalendar.css";
 import { generateMultiYearCalendar } from "./CalendarGenerate";
 
+// redux
+import { useSelector } from "react-redux";
+
 const MultiYearCalendar = () => {
+  // 生成 2024 到 2074 的所有月份數據
   const startYear = 2024;
   const endYear = 2074;
-
-  // 生成 2024 到 2034 的所有月份數據
   const calendarData = generateMultiYearCalendar(startYear, endYear);
 
-  // const [selectedYear, setSelectedYear] = useState(startYear);
-  // const [selectedMonth, setSelectedMonth] = useState(1);
-
-  // const handleYearChange = (year) => setSelectedYear(year);
-  // const handleMonthChange = (month) => setSelectedMonth(month);
   console.log("calendarData", calendarData);
+
+  // 獲取狀態，需顯示哪年哪月的日曆
+  const year = useSelector((state) => state.date.year);
+  const month = useSelector((state) => state.date.month);
+
+  // 獲取該年該月的日曆
   const currentMonthData =
-    calendarData[selectedYear]?.find((m) => m.month === selectedMonth) || {};
+    calendarData[year]?.find((m) => m.month === month) || {};
 
   return (
     <div className="calendar-container">
-      {/* <h1>
-        {selectedYear} 年 {selectedMonth} 月
-      </h1> */}
-
       {/* 日曆顯示 */}
       <div className="calendar-grid">
         {["日", "一", "二", "三", "四", "五", "六"].map((day) => (
