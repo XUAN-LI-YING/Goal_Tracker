@@ -1,48 +1,20 @@
-import data from "@emoji-mart/data";
-import Picker from "@emoji-mart/react";
-
-const custom = [
-  {
-    id: "github",
-    name: "GitHub",
-    emojis: [
-      {
-        id: "octocat",
-        name: "Octocat",
-        keywords: ["github"],
-        skins: [{ src: "./octocat.png" }]
-      },
-      {
-        id: "shipit",
-        name: "Squirrel",
-        keywords: ["github"],
-        skins: [
-          { src: "./shipit-1.png" },
-          { src: "./shipit-2.png" },
-          { src: "./shipit-3.png" },
-          { src: "./shipit-4.png" },
-          { src: "./shipit-5.png" },
-          { src: "./shipit-6.png" }
-        ]
-      }
-    ]
-  },
-  {
-    id: "gifs",
-    name: "GIFs",
-    emojis: [
-      {
-        id: "party_parrot",
-        name: "Party Parrot",
-        keywords: ["dance", "dancing"],
-        skins: [{ src: "./party_parrot.gif" }]
-      }
-    ]
-  }
-];
-
+import Calendar from "../components/Calendar";
+import MultiYearCalendar from "../components/Calender/MultiYearCalendar";
+import { startOfMonth } from "date-fns";
+import SetCalenderYear from "../components/Calender/SetCalendarYear";
+import SetCalenderMonth from "../components/Calender/SetCalendarMonth";
+import { dateStore } from "../components/Calender/Store/DateSlice";
+import { Provider } from "react-redux";
 export default function Home() {
-  // return <Picker data={data} onEmojiSelect={console.log} />;
+  // return <Calendar year={2025} month={1} />;
+  // const result = startOfMonth(new Date(2024, 11, 0, 0, 0, 0));
+  // console.log(result);
+  // return <MultiYearCalendar />;
 
-  return <Picker data={data} custom={custom} />;
+  return (
+    <Provider store={dateStore}>
+      <SetCalenderYear />
+      <SetCalenderMonth />
+    </Provider>
+  );
 }
