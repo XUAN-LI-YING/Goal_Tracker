@@ -1,11 +1,11 @@
 //Component and Css
 import classes from "./RightPanel.module.css";
-import MultiYearCalendar from "../Calender/MultiYearCalendar";
-import SetCalenderMonth from "../Calender/SetCalendarMonth";
-import SetCalenderYear from "../Calender/SetCalendarYear";
+import MultiYearCalendar from "../DailyCalender/MultiYearCalendar";
+import SetCalenderMonth from "../DailyCalender/SetCalendarMonth";
+import SetCalenderYear from "../DailyCalender/SetCalendarYear";
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
-import { changeComponentAction } from "../Calender/Store/DateSlice";
+import { changeComponentAction } from "../DailyCalender/Store/DateSlice";
 
 export default function RightPanel() {
   // REDUX Date

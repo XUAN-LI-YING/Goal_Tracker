@@ -4,7 +4,7 @@ import "./MultiYearCalendar.css";
 // Redux
 import { dateAction } from "./Store/DateSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { changeComponentAction } from "../Calender/Store/DateSlice";
+import { changeComponentAction } from "../DailyCalender/Store/DateSlice";
 
 export default function SetCalenderYear() {
   // Redux
@@ -21,7 +21,7 @@ export default function SetCalenderYear() {
 
   return (
     <div className="year-selector">
-      {Array.from({ length: 30 }, (_, i) => 2025 + i).map((year) => (
+      {Array.from({ length: 50 }, (_, i) => 2025 + i).map((year) => (
         <button
           key={year}
           onClick={() => handleYearChange(Number(year))}

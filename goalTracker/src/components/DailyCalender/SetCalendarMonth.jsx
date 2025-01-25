@@ -4,7 +4,7 @@ import "./MultiYearCalendar.css";
 //REDUX
 import { dateAction } from "./Store/DateSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { changeComponentAction } from "../Calender/Store/DateSlice";
+import { changeComponentAction } from "../DailyCalender/Store/DateSlice";
 export default function SetCalenderMonth() {
   // REDUX Date
   const month = useSelector((state) => {

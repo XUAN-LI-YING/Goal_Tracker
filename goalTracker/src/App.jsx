@@ -2,10 +2,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // import page
-import Goals from "./pages/goals";
 import Root from "./Pages/Root";
 import Home from "./pages/home";
 import Personal from "./Pages/personal";
+import Goals from "./Pages/Goals";
 
 // import
 
