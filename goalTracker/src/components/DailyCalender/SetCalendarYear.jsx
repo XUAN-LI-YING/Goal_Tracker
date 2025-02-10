@@ -16,7 +16,7 @@ export default function SetCalenderYear() {
 
   const handleYearChange = (year) => {
     dispatch(dateAction.switchYear(year));
-    dispatch(changeComponentAction.changeComponentPage("selectDay"));
+    dispatch(changeComponentAction.changeComponentPage("selectMonth"));
   };
 
   return (

@@ -1,9 +1,11 @@
 //Component
 import ModalUI from "../../UI/ModalUI";
 import { AddGoalForm } from "../../AddGoal/AddGoalForm";
-import CreateTag from "../../CreateTag/CreateTag";
+import { EditTagForm } from "../../EditTag/EditTagForm";
+
 //Redux
 import { useSelector } from "react-redux";
+import { MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 
 export default function AddGoalModal() {
   // openGoalModalState
@@ -14,7 +16,11 @@ export default function AddGoalModal() {
 
   return (
     <ModalUI>
-      {displayElement == "addGoal" ? <AddGoalForm /> : <CreateTag />}
+      {displayElement === MODAL_CONTENT_ELEMENT.ADD_GOAL ? (
+        <AddGoalForm />
+      ) : (
+        <EditTagForm />
+      )}
     </ModalUI>
   );
 }

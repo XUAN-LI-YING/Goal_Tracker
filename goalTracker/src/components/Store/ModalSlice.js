@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { configureStore } from "@reduxjs/toolkit";
+
+export const MODAL_CONTENT_ELEMENT = {
+  ADD_GOAL: "addGoal",
+  EDIT_TAG: "editTag"
+};
+
 const ModalSlice = createSlice({
   name: "ModalSlice",
   initialState: {

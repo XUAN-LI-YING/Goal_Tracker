@@ -4,6 +4,7 @@ import { useState } from "react";
 //Redux
 import { ModalAction } from "../Store/ModalSlice";
 import { useDispatch } from "react-redux";
+import { MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
 
 export default function MainContent() {
   //DetailGoalMModal
@@ -26,7 +27,7 @@ export default function MainContent() {
   const dispatch = useDispatch();
   function openModal() {
     dispatch(ModalAction.openModal());
-    dispatch(ModalAction.displayElement("addGoal"));
+    dispatch(ModalAction.displayElement(MODAL_CONTENT_ELEMENT.ADD_GOAL));
   }
   return (
     <div className={classes.mainContent}>

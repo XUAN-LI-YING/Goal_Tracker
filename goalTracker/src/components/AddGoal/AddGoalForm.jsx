@@ -1,7 +1,17 @@
 import { useState } from "react";
 import { useEffect } from "react";
+//REDUX
+import { ModalAction } from "../Store/ModalSlice";
+import { useDispatch } from "react-redux";
+import { MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
 
 export function AddGoalForm() {
+  //redux ,change modal element
+  const dispatch = useDispatch();
+  function goEditPage() {
+    dispatch(ModalAction.displayElement(MODAL_CONTENT_ELEMENT.EDIT_TAG));
+  }
+
   // Input goal text
   const [text, setText] = useState("");
   const maxLength = 30;
@@ -25,37 +35,21 @@ export function AddGoalForm() {
     "👉娛樂"
   ];
   useEffect(() => {
-    document.activeElement?.blur(); // 讓當前按鈕失去焦點
     console.log("🎯 selectedTags 更新了:", selectedTags);
   }, [selectedTags]);
 
   const handleTagSelect = (event) => {
-    console.log("我輩呼叫了");
     const selectedValue = event.target.value;
-    const selectedIndex = event.target.Index;
 
-    console.log("event.target", event.target);
-    console.log(" selectedIndex", selectedIndex);
-    console.log("selectedValue", selectedValue);
     if (selectedValue && !selectedTags.includes(selectedValue)) {
       setSelectedTags([...selectedTags, selectedValue]);
     }
   };
 
   const handleRemoveTag = (tagToRemove) => {
-    console.log("我輩呼叫了tagremove");
-    console.log("tagToRemove", tagToRemove);
-    console.log(
-      "afterRemove",
-      selectedTags.filter((tag) => tag !== tagToRemove)
-    );
-    // setSelectedTags(selectedTags.filter((tag) => tag !== tagToRemove));
-    setTimeout(() => {
-      setSelectedTags((prevTags) =>
-        prevTags.filter((tag) => tag !== tagToRemove)
-      );
-    }, 0);
+    setSelectedTags(selectedTags.filter((tag) => tag !== tagToRemove));
   };
+
   return (
     <div>
       <p>新增目標至2025/06/12</p>
@@ -82,26 +76,27 @@ export function AddGoalForm() {
 
       <div>
         {/* Selected tag list */}
-        <label>新增標籤：</label>
         <div>
-          {selectedTags.map((tag, index) => (
-            <div key={`${tag}-${index}-${selectedTags.length}`}>
-              <span>{tag}</span>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.target.blur();
-                  console.log("🚀 按下刪除按鈕:", tag);
-                  handleRemoveTag(tag);
-                }}
-              >
-                ❌
-              </button>
-            </div>
-          ))}
+          <label>選擇標籤：</label>
+          <div>
+            {selectedTags.map((tag, index) => (
+              <div key={tag}>
+                <span>{tag}</span>
+                <button
+                  onClick={(e) => {
+                    console.log("🚀 按下刪除按鈕:", tag);
+                    handleRemoveTag(tag);
+                  }}
+                >
+                  ❌
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div>
+          <button onClick={goEditPage}>編輯</button>
           {availableTags.map((tag) => (
             <button key={tag} value={tag} onClick={handleTagSelect}>
               {tag}
