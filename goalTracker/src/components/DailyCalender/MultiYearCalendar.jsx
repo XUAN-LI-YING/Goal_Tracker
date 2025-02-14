@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { format, isToday } from "date-fns";
+import { format, isToday, isSameDay } from "date-fns";
 
 // Component & Css
 import "./MultiYearCalendar.css";
@@ -7,22 +7,33 @@ import { generateMultiYearCalendar } from "./CalendarGenerate";
 
 // Redux
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { dateAction } from "../Store/DateSlice";
 
 const MultiYearCalendar = () => {
-  // 生成 2024 到 2074 的所有月份數據
+  // Generate calendar from 2025 to 2075
   const startYear = 2025;
   const endYear = 2075;
   const calendarData = generateMultiYearCalendar(startYear, endYear);
 
   console.log("calendarData", calendarData);
 
-  // 獲取狀態，需顯示哪年哪月的日曆
-  const year = useSelector((state) => state.date.year);
-  const month = useSelector((state) => state.date.month);
+  // Get select day
+  const { year, month, day } = useSelector((state) => state.Date);
+  const selectDay = new Date(year, month - 1, day);
 
-  // 獲取該年該月的日曆
+  //Get the calendar from some yaer and some month
   const currentMonthData =
     calendarData[year]?.find((m) => m.month === month) || {};
+
+  //select day to change goal page
+  const dispatch = useDispatch();
+  function navigateToDate(e) {
+    const newDay = new Date(e.target.value);
+    dispatch(dateAction.switchYear(newDay.getFullYear()));
+    dispatch(dateAction.switchMonth(newDay.getMonth() + 1));
+    dispatch(dateAction.switchDay(newDay.getDate()));
+  }
 
   return (
     <div className="calendar-container">
@@ -34,14 +45,16 @@ const MultiYearCalendar = () => {
           </div>
         ))}
         {currentMonthData.days?.map(({ date, formatted, isCurrentMonth }) => (
-          <div
+          <button
             key={formatted}
             className={`calendar-day ${isCurrentMonth ? "" : "outside-month"} ${
               isToday(formatted) ? "today" : ""
-            } `}
+            } ${isSameDay(selectDay, date) ? "selectDay" : ""} `}
+            value={date}
+            onClick={navigateToDate}
           >
             {format(date, "d")}
-          </div>
+          </button>
         ))}
       </div>
     </div>

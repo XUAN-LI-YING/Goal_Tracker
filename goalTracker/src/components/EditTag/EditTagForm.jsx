@@ -2,26 +2,36 @@ import CreateTag from "./CreateTag";
 
 import { useEffect, useState } from "react";
 
-export function EditTagForm() {
-  const availableTags = [
-    "🍎重要",
-    "🍌急件",
-    "🍒讀書",
-    "🍇運動",
-    "🚀工作",
-    "👉娛樂"
-  ];
+//Redux
+import { useDispatch } from "react-redux";
+import { getTagsAction } from "../Store/GetTagsSlice";
 
+//Firebase Database
+import { db } from "../../FireBase/FireBaseConfig";
+import { deleteDoc, doc } from "firebase/firestore";
+
+export function EditTagForm({ availableTags }) {
   //show input to create tag
-
   const [showInput, setShowInput] = useState(false);
   function createTag() {
     setShowInput(!showInput);
   }
 
-  useEffect(() => {
-    console.log(showInput);
-  }, [showInput]);
+  //Remove tag from dataBase
+  const dispatch = useDispatch();
+  function removeTagFromDataBase(e) {
+    const deleteTag = e.target.value;
+    dispatch(getTagsAction.removeTag(deleteTag));
+
+    deleteDoc(doc(db, "users", "userxuan", "tags", deleteTag))
+      .then(() => {
+        alert("刪除成功!");
+      })
+      .catch((error) => {
+        console.error("刪除失敗", error);
+      });
+  }
+
   return (
     <div>
       <p>Tag</p>
@@ -30,7 +40,9 @@ export function EditTagForm() {
       {availableTags.map((tag) => (
         <div key={tag}>
           <span>{tag}</span>
-          <button>X</button>
+          <button value={tag} onClick={removeTagFromDataBase}>
+            X
+          </button>
         </div>
       ))}
     </div>

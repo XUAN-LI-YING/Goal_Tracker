@@ -1,16 +1,19 @@
 import { useState } from "react";
-import { useEffect } from "react";
+
 //REDUX
-import { ModalAction } from "../Store/ModalSlice";
+import { modalAction } from "../Store/ModalSlice";
 import { useDispatch } from "react-redux";
 import { MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
 
-export function AddGoalForm() {
+export function AddGoalForm({ availableTags }) {
   //redux ,change modal element
   const dispatch = useDispatch();
   function goEditPage() {
-    dispatch(ModalAction.displayElement(MODAL_CONTENT_ELEMENT.EDIT_TAG));
+    dispatch(modalAction.displayElement(MODAL_CONTENT_ELEMENT.EDIT_TAG));
   }
+
+  //Form value useState
+  const [formValue, setFormValue] = useState({});
 
   // Input goal text
   const [text, setText] = useState("");
@@ -26,17 +29,6 @@ export function AddGoalForm() {
   // Tags handling
   //store selected tags
   const [selectedTags, setSelectedTags] = useState([]);
-  const availableTags = [
-    "🍎重要",
-    "🍌急件",
-    "🍒讀書",
-    "🍇運動",
-    "🚀工作",
-    "👉娛樂"
-  ];
-  useEffect(() => {
-    console.log("🎯 selectedTags 更新了:", selectedTags);
-  }, [selectedTags]);
 
   const handleTagSelect = (event) => {
     const selectedValue = event.target.value;
@@ -50,8 +42,11 @@ export function AddGoalForm() {
     setSelectedTags(selectedTags.filter((tag) => tag !== tagToRemove));
   };
 
+  //Confirm to add new goal
+  function addNewGoal() {}
+
   return (
-    <div>
+    <form onSubmit={addNewGoal}>
       <p>新增目標至2025/06/12</p>
       <label>
         目標完成時間： <input type="time" defaultValue="08:00" required />
@@ -79,7 +74,7 @@ export function AddGoalForm() {
         <div>
           <label>選擇標籤：</label>
           <div>
-            {selectedTags.map((tag, index) => (
+            {selectedTags.map((tag) => (
               <div key={tag}>
                 <span>{tag}</span>
                 <button
@@ -98,12 +93,18 @@ export function AddGoalForm() {
         <div>
           <button onClick={goEditPage}>編輯</button>
           {availableTags.map((tag) => (
-            <button key={tag} value={tag} onClick={handleTagSelect}>
+            <button
+              type="button"
+              key={tag}
+              value={tag}
+              onClick={handleTagSelect}
+            >
               {tag}
             </button>
           ))}
         </div>
       </div>
-    </div>
+      <button type="submit">確定</button>
+    </form>
   );
 }

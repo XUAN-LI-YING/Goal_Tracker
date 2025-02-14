@@ -2,21 +2,21 @@
 import "./MultiYearCalendar.css";
 
 //REDUX
-import { dateAction } from "./Store/DateSlice";
+import { dateAction } from "../Store/DateSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { changeComponentAction } from "../DailyCalender/Store/DateSlice";
+import { setCalendarAction } from "../Store/DateSlice";
 export default function SetCalenderMonth() {
   // REDUX Date
   const month = useSelector((state) => {
     console.log("monthSlice");
-    return state.date.month;
+    return state.Date.month;
   });
   const dispatch = useDispatch();
 
   // REDUX Change component & Date
   const handleMonthChange = (month) => {
     dispatch(dateAction.switchMonth(month));
-    dispatch(changeComponentAction.changeComponentPage("selectDay"));
+    dispatch(setCalendarAction.changeComponentPage("selectDay"));
   };
 
   return (

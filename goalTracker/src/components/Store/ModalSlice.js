@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { configureStore } from "@reduxjs/toolkit";
 
 export const MODAL_CONTENT_ELEMENT = {
   ADD_GOAL: "addGoal",
   EDIT_TAG: "editTag"
 };
 
-const ModalSlice = createSlice({
-  name: "ModalSlice",
+const modalSlice = createSlice({
+  name: "modalSlice",
   initialState: {
     isOpen: false,
     displayElement: ""
@@ -25,9 +24,5 @@ const ModalSlice = createSlice({
   }
 });
 
-export const ModalAction = ModalSlice.actions;
-export const ModalStore = configureStore({
-  reducer: {
-    Modal: ModalSlice.reducer
-  }
-});
+export const modalAction = modalSlice.actions;
+export const modalSliceReducer = modalSlice.reducer;

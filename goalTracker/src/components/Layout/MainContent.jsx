@@ -1,22 +1,29 @@
 import classes from "./MainContent.module.css";
 import { useState } from "react";
+import { format, addDays } from "date-fns";
 
 //Redux
-import { ModalAction } from "../Store/ModalSlice";
-import { useDispatch } from "react-redux";
+import { modalAction } from "../Store/ModalSlice";
+import { dateAction } from "../Store/DateSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
 
 export default function MainContent() {
+  const dispatch = useDispatch();
+
+  //Get day to display
+  const { year, month, day } = useSelector((state) => state.Date);
+  const selectDay = new Date(year, month - 1, day);
+  const displayDay = format(selectDay, "	yyyy MMMM dd ");
+
   //DetailGoalMModal
   const [showPopup, setShowPopup] = useState(false);
 
   const handleOuterClick = (e) => {
-    // if (e.target.tagName !== "INPUT") {
+    // if (e.target.tagName !== "INPUT")
     if (showPopup !== true) {
       setShowPopup(true);
     }
-
-    // }
   };
   console.log("rerender");
   const closePopup = () => {
@@ -24,10 +31,27 @@ export default function MainContent() {
   };
 
   // AddGoalModal Redux
-  const dispatch = useDispatch();
+
   function openModal() {
-    dispatch(ModalAction.openModal());
-    dispatch(ModalAction.displayElement(MODAL_CONTENT_ELEMENT.ADD_GOAL));
+    dispatch(modalAction.openModal());
+    dispatch(modalAction.displayElement(MODAL_CONTENT_ELEMENT.ADD_GOAL));
+  }
+
+  // Go pre or next day
+  function goPreDay() {
+    const previousDay = addDays(selectDay, -1);
+    upDateDay(previousDay);
+  }
+
+  function goNextDay() {
+    const nextDay = addDays(selectDay, +1);
+    upDateDay(nextDay);
+  }
+
+  function upDateDay(newDay) {
+    dispatch(dateAction.switchYear(newDay.getFullYear()));
+    dispatch(dateAction.switchMonth(newDay.getMonth() + 1));
+    dispatch(dateAction.switchDay(newDay.getDate()));
   }
   return (
     <div className={classes.mainContent}>
@@ -40,9 +64,9 @@ export default function MainContent() {
 
       <h1>Daily Goals</h1>
       <div>
-        <h2>2025 08 March</h2>
-        <button>&lt;</button>
-        <button>&gt;</button>
+        <h2>{displayDay}</h2>
+        <button onClick={goPreDay}>&lt;</button>
+        <button onClick={goNextDay}>&gt;</button>
       </div>
 
       <div className={classes.goalLists}>

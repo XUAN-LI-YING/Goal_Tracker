@@ -84,3 +84,7 @@ h1 {
 .today.outside-month {
   background-color: #f8bf9e;
 }
+
+.selectDay {
+  border: 2px solid#f38181;
+}

@@ -5,27 +5,25 @@ import SetCalenderMonth from "../DailyCalender/SetCalendarMonth";
 import SetCalenderYear from "../DailyCalender/SetCalendarYear";
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
-import { changeComponentAction } from "../DailyCalender/Store/DateSlice";
+import { setCalendarAction } from "../Store/DateSlice";
 
 export default function RightPanel() {
   // REDUX Date
-  const year = useSelector((state) => state.date.year);
+  const year = useSelector((state) => state.Date.year);
 
-  const month = useSelector((state) => state.date.month);
+  const month = useSelector((state) => state.Date.month);
 
   // REDUX Change component
-  const componentPage = useSelector(
-    (state) => state.changeComponent.componentPage
-  );
+  const componentPage = useSelector((state) => state.SetCalendar.componentPage);
 
   const dispatch = useDispatch();
 
   function selectMonth() {
-    dispatch(changeComponentAction.changeComponentPage("selectMonth"));
+    dispatch(setCalendarAction.changeComponentPage("selectMonth"));
   }
 
   function selectYear() {
-    dispatch(changeComponentAction.changeComponentPage("selectYear"));
+    dispatch(setCalendarAction.changeComponentPage("selectYear"));
   }
 
   return (

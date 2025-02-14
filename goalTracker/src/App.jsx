@@ -7,14 +7,18 @@ import Home from "./pages/home";
 import Personal from "./Pages/personal";
 import Goals from "./Pages/Goals";
 
-// import
+//Redux store
+import { Provider } from "react-redux";
+import { store } from "./components/Store/store";
+// import loader function
+import { getAllTags as getAllTagsLoader } from "./FireBase/GetAllTags";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
-      { index: true, element: <Goals /> },
+      { index: true, element: <Goals />, loader: getAllTagsLoader },
       { path: "personal", element: <Personal /> }
     ]
   },
@@ -22,7 +26,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  );
 }
 
 export default App;
