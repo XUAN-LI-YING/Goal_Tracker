@@ -1,5 +1,5 @@
 import classes from "./MainContent.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format, addDays } from "date-fns";
 
 //Redux
@@ -7,6 +7,7 @@ import { modalAction } from "../Store/ModalSlice";
 import { dateAction } from "../Store/DateSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
+import { getGoalThunk } from "../Store/GetGoalSlice";
 
 export default function MainContent() {
   const dispatch = useDispatch();
@@ -16,16 +17,30 @@ export default function MainContent() {
   const selectDay = new Date(year, month - 1, day);
   const displayDay = format(selectDay, "	yyyy MMMM dd ");
 
+  //display goal of the day
+  useEffect(() => {
+    dispatch(getGoalThunk({ year, month, day }));
+  }, [year, month, day]);
+
+  const allGoals = useSelector((state) => state.DailyGoalsReducer.dailyGoals);
+  const settingTimeGoal = allGoals.filter((goal) => goal.isSetTime === "yes");
+  const noTimeGoal = allGoals.filter((goal) => goal.isSetTime === "no");
+  const sortGoalTime = settingTimeGoal.sort((goal1, goal2) => {
+    const time1 = new Date("1970-01-01 " + goal1.goalTime);
+
+    const time2 = new Date("1970-01-01 " + goal2.goalTime);
+    return time1 - time2;
+  });
+
   //DetailGoalMModal
   const [showPopup, setShowPopup] = useState(false);
 
   const handleOuterClick = (e) => {
-    // if (e.target.tagName !== "INPUT")
     if (showPopup !== true) {
       setShowPopup(true);
     }
   };
-  console.log("rerender");
+
   const closePopup = () => {
     setShowPopup(false);
   };
@@ -53,6 +68,7 @@ export default function MainContent() {
     dispatch(dateAction.switchMonth(newDay.getMonth() + 1));
     dispatch(dateAction.switchDay(newDay.getDate()));
   }
+
   return (
     <div className={classes.mainContent}>
       <select>
@@ -68,23 +84,51 @@ export default function MainContent() {
         <button onClick={goPreDay}>&lt;</button>
         <button onClick={goNextDay}>&gt;</button>
       </div>
+      <p>時間表</p>
 
       <div className={classes.goalLists}>
-        {/* MAP */}
-        <button onClick={handleOuterClick} className={classes.goal}>
+        {sortGoalTime.map((goal) => (
+          <button
+            key={goal.id}
+            onClick={handleOuterClick}
+            className={classes.goal}
+          >
+            <input type="checkbox" onClick={(e) => e.stopPropagation()} />
+            <p>{goal.goalTime}</p>
+
+            <p>{goal.goalText}</p>
+
+            <div className={classes.tagList}>
+              {goal.selectedTags.map((tag) => (
+                <p key={tag}>{tag}</p>
+              ))}
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <p>其他代辦事項</p>
+      {noTimeGoal.map((goal) => (
+        <button
+          key={goal.id}
+          onClick={handleOuterClick}
+          className={classes.goal}
+        >
           <input type="checkbox" onClick={(e) => e.stopPropagation()} />
-          <p>這是一串文字</p>
-          <div>
-            <p>區塊 1 文字</p>
-          </div>
-          <div>
-            <p>區塊 2 文字</p>
+          <p>{goal.goalTime}</p>
+
+          <p>{goal.goalText}</p>
+
+          <div className={classes.tagList}>
+            {goal.selectedTags.map((tag) => (
+              <p key={tag}>{tag}</p>
+            ))}
           </div>
         </button>
+      ))}
 
-        {showPopup && <button onClick={closePopup}>關閉</button>}
-        <button onClick={openModal}>+</button>
-      </div>
+      {showPopup && <button onClick={closePopup}>關閉</button>}
+      <button onClick={openModal}>+</button>
     </div>
   );
 }

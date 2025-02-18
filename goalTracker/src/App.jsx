@@ -11,14 +11,13 @@ import Goals from "./Pages/Goals";
 import { Provider } from "react-redux";
 import { store } from "./components/Store/store";
 // import loader function
-import { getAllTags as getAllTagsLoader } from "./FireBase/GetAllTags";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
-      { index: true, element: <Goals />, loader: getAllTagsLoader },
+      { index: true, element: <Goals /> },
       { path: "personal", element: <Personal /> }
     ]
   },

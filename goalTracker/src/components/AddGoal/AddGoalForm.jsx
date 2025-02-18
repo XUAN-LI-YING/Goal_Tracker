@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 //REDUX
-import { modalAction } from "../Store/ModalSlice";
-import { useDispatch } from "react-redux";
-import { MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
+import { modalAction, MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { dailyGoalsAction, postGoalThunk } from "../Store/GetGoalSlice";
 
 export function AddGoalForm({ availableTags }) {
   //redux ,change modal element
@@ -12,18 +12,27 @@ export function AddGoalForm({ availableTags }) {
     dispatch(modalAction.displayElement(MODAL_CONTENT_ELEMENT.EDIT_TAG));
   }
 
-  //Form value useState
-  const [formValue, setFormValue] = useState({});
+  //get day
+  const editDate = useSelector((state) => state.Date);
+  const { year, month, day } = editDate;
 
-  // Input goal text
-  const [text, setText] = useState("");
+  //Form value useState
+  const [formValue, setFormValue] = useState({
+    isSetTime: "",
+    goalTime: "",
+    goalText: "",
+    goalDetail: ""
+  });
+
+  const { isSetTime, goalTime, goalText, goalDetail } = formValue;
+  console.log("formValue", formValue);
+
   const maxLength = 30;
 
   const handleChange = (e) => {
-    const newText = e.target.value;
-    if (newText.length <= maxLength) {
-      setText(newText);
-    }
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormValue({ ...formValue, [name]: value });
   };
 
   // Tags handling
@@ -43,32 +52,101 @@ export function AddGoalForm({ availableTags }) {
   };
 
   //Confirm to add new goal
-  function addNewGoal() {}
+  async function addNewGoal(e) {
+    e.preventDefault();
+    //generate docID first in order to  store on redux state immediately
+    let newGoal = {
+      year,
+      month,
+      day,
+      isSetTime,
+      goalTime,
+      goalText,
+      goalDetail,
+      selectedTags,
+      isComplete: false
+    };
+
+    dispatch(postGoalThunk({ year, month, day, newGoal }));
+
+    //以後可以根據post 資料庫狀態使用extraReducers來選擇是否要reset
+    setFormValue({
+      isSetTime: "",
+      goalTime: "",
+      goalText: "",
+      goalDetail: ""
+    });
+    setSelectedTags([]);
+  }
 
   return (
     <form onSubmit={addNewGoal}>
-      <p>新增目標至2025/06/12</p>
+      <p>
+        Added target to {year}/{month}/{day}
+      </p>
       <label>
-        目標完成時間： <input type="time" defaultValue="08:00" required />
+        是否設定時間
+        <label>
+          <input
+            type="radio"
+            name="isSetTime"
+            value="yes"
+            checked={isSetTime === "yes"}
+            onChange={handleChange}
+            required
+          />
+          YES
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="isSetTime"
+            value="no"
+            checked={isSetTime === "no"}
+            onChange={handleChange}
+          />
+          NO
+        </label>
+      </label>
+
+      <label>
+        目標完成時間：{" "}
+        <input
+          type="time"
+          name="goalTime"
+          value={goalTime}
+          required
+          onChange={handleChange}
+          disabled={isSetTime === "yes" ? false : true}
+        />
       </label>
 
       <div>
         <label>
           輸入目標（最多 {maxLength} 個字）：{" "}
-          <input type="text" value={text} onChange={handleChange} />
+          <input
+            type="text"
+            name="goalText"
+            value={goalText}
+            onChange={handleChange}
+            maxLength={30}
+            required
+          />
         </label>
-        {text.length >= maxLength && <p>已達字數上限！</p>}
+        {goalText.length === maxLength && <p>已達字數上限！</p>}
       </div>
       <label>
         備註：{" "}
         <textarea
-          name="textarea"
+          name="goalDetail"
           rows="5"
           cols="30"
           placeholder="有關該目標的詳細內容或注意事項"
+          required
+          onChange={handleChange}
+          value={goalDetail}
         ></textarea>
       </label>
-
       <div>
         {/* Selected tag list */}
         <div>
@@ -91,7 +169,9 @@ export function AddGoalForm({ availableTags }) {
         </div>
 
         <div>
-          <button onClick={goEditPage}>編輯</button>
+          <button type="button" onClick={goEditPage}>
+            編輯
+          </button>
           {availableTags.map((tag) => (
             <button
               type="button"

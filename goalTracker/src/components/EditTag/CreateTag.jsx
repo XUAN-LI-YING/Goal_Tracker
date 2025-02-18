@@ -1,12 +1,11 @@
 import { useState } from "react";
 import Picker from "@emoji-mart/react";
 
-//Database
-import { db } from "../../FireBase/FireBaseConfig";
-import { setDoc, doc } from "firebase/firestore";
+//Redux
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getTagsAction } from "../Store/GetTagsSlice";
+import { postTagThunk } from "../Store/GetTagsSlice";
 
 export default function CreateTag() {
   const [inputText, setInputText] = useState("");
@@ -43,22 +42,13 @@ export default function CreateTag() {
       return;
     }
 
-    try {
-      dispatch(getTagsAction.addTag(`${selectedEmoji}${inputText}`));
+    dispatch(getTagsAction.addTag(`${selectedEmoji}${inputText}`));
+    dispatch(postTagThunk(`${selectedEmoji}${inputText}`));
 
-      const docRef = await setDoc(
-        doc(db, "users", "userxuan", "tags", `${selectedEmoji}${inputText}`),
-        {
-          tag: `${selectedEmoji}${inputText}`
-        }
-      );
-      // console.log(docRef.id);
-      setInputText("");
-      setSelectedEmoji(defaultSelectedEmoji);
-      setHasSubmitted(false);
-    } catch (error) {
-      console.error("Firestore 錯誤:", error.message);
-    }
+    //可以根據thunk extraReducers狀態改變ui，當狀態是fullfill才清空記憶
+    setInputText("");
+    setSelectedEmoji(defaultSelectedEmoji);
+    setHasSubmitted(false);
   }
 
   return (

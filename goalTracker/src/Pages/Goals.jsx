@@ -6,15 +6,15 @@ import Modal from "../components/Layout/Modal/Modal";
 import classes from "./Goal.module.css";
 // REDUX
 import { useDispatch } from "react-redux";
-import { getTagsAction } from "../components/Store/GetTagsSlice";
-//React router
-import { useLoaderData } from "react-router-dom";
-
+import { getAllTagsThunk } from "../components/Store/GetTagsSlice";
+//REACT
+import { useEffect } from "react";
 export default function Goals() {
-  //get alls database tags by loader function and store in redux.The tags will use in Modal component.
+  //get alls database tags by redux thunk and store in redux.The tags will use in Modal component.
   const dispatch = useDispatch();
-  const allTagsArray = useLoaderData();
-  dispatch(getTagsAction.setTags(allTagsArray));
+  useEffect(() => {
+    dispatch(getAllTagsThunk());
+  }, []);
 
   return (
     <div className={classes.container}>

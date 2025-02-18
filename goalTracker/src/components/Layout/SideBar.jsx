@@ -1,8 +1,20 @@
 import classes from "./SideBar.module.css";
 // React Router
 import { Link } from "react-router-dom";
+//Redux
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function SideBar() {
+  const allGoalForTheDay = useSelector(
+    (state) => state.DailyGoalsReducer.dailyGoals
+  );
+
+  useEffect(() => {
+    const allGoalTagArray = allGoalForTheDay.map((goal) => goal.selectedTags);
+    console.log("allGoalTagArray", allGoalTagArray);
+  }, [allGoalForTheDay]);
+
   return (
     <div className={classes.leftSidebar}>
       <Link to="/home">

@@ -1,16 +1,19 @@
 import CreateTag from "./CreateTag";
-
+import classes from "./EditTagForm.module.css";
 import { useEffect, useState } from "react";
+
+//Img
+import prePageImage from "../../assets/prePage.png";
 
 //Redux
 import { useDispatch } from "react-redux";
-import { getTagsAction } from "../Store/GetTagsSlice";
-
-//Firebase Database
-import { db } from "../../FireBase/FireBaseConfig";
-import { deleteDoc, doc } from "firebase/firestore";
+import { getTagsAction, deleteTagThunk } from "../Store/GetTagsSlice";
+import { MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
+import { modalAction } from "../Store/ModalSlice";
 
 export function EditTagForm({ availableTags }) {
+  const dispatch = useDispatch();
+
   //show input to create tag
   const [showInput, setShowInput] = useState(false);
   function createTag() {
@@ -18,33 +21,35 @@ export function EditTagForm({ availableTags }) {
   }
 
   //Remove tag from dataBase
-  const dispatch = useDispatch();
   function removeTagFromDataBase(e) {
     const deleteTag = e.target.value;
     dispatch(getTagsAction.removeTag(deleteTag));
+    dispatch(deleteTagThunk(deleteTag));
+  }
 
-    deleteDoc(doc(db, "users", "userxuan", "tags", deleteTag))
-      .then(() => {
-        alert("刪除成功!");
-      })
-      .catch((error) => {
-        console.error("刪除失敗", error);
-      });
+  //Go previous page(addGoalPage)
+  function goPrePage() {
+    dispatch(modalAction.displayElement(MODAL_CONTENT_ELEMENT.ADD_GOAL));
   }
 
   return (
-    <div>
-      <p>Tag</p>
-      <button onClick={createTag}>+</button>
-      {showInput && <CreateTag />}
-      {availableTags.map((tag) => (
-        <div key={tag}>
-          <span>{tag}</span>
-          <button value={tag} onClick={removeTagFromDataBase}>
-            X
-          </button>
-        </div>
-      ))}
+    <div className={classes.editContainer}>
+      <button onClick={goPrePage} className={classes.prePageBtn}>
+        &lt;
+      </button>
+      <div className={classes.editForm}>
+        <p>Tag</p>
+        <button onClick={createTag}>+</button>
+        {showInput && <CreateTag />}
+        {availableTags.map((tag) => (
+          <div key={tag}>
+            <span>{tag}</span>
+            <button value={tag} onClick={removeTagFromDataBase}>
+              X
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
