@@ -1,0 +1,16 @@
+.goalLists {
+  display: flex;
+  flex-direction: column;
+}
+
+.goal {
+  background-color: #ffffff;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+}
+
+.goalTagList {
+  display: flex;
+  flex-direction: row;
+}

@@ -18,11 +18,9 @@ export default function Goals() {
 
   return (
     <div className={classes.container}>
-      {/* <Provider store={store}> */}
       <MainContent />
       <Modal />
       <RightPanel />
-      {/* </Provider> */}
     </div>
   );
 }

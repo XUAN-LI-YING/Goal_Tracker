@@ -6,7 +6,11 @@ import { setDoc, doc, collection, getDocs } from "firebase/firestore";
 
 const dailyGoalsSlice = createSlice({
   name: "dailyGoalsSlice",
-  initialState: { dailyGoals: [] },
+  initialState: {
+    dailyGoals: [],
+    noTimeGoal: [],
+    sortGoalTime: []
+  },
   reducers: {
     setGoalForTheDay: (state, action) => {
       state.dailyGoals = action.payload;
@@ -28,6 +32,12 @@ const dailyGoalsSlice = createSlice({
       } else {
         alert("找不到該目標，因此無法修改該目標");
       }
+    },
+    setNoTimeGoal: (state, action) => {
+      state.noTimeGoal = action.payload;
+    },
+    setSortGoalTime: (state, action) => {
+      state.sortGoalTime = action.payload;
     }
   }
 });

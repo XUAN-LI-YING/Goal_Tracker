@@ -4,6 +4,7 @@ import { getTagsReducer } from "./GetTagsSlice";
 import { dateReducer } from "./DateSlice";
 import { setCalendarReducer } from "./DateSlice";
 import { dailyGoalsReducer } from "./GetGoalSlice";
+import { selectTagReducer } from "./SelectTagSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     GetTags: getTagsReducer,
     Date: dateReducer,
     SetCalendar: setCalendarReducer,
-    DailyGoalsReducer: dailyGoalsReducer
+    DailyGoalsReducer: dailyGoalsReducer,
+    DelectTagReducer: selectTagReducer
   }
 });
