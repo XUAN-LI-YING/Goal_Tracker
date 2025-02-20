@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const selectTagSlice = createSlice({
   name: "selectTagSlice",
-  initialState: { selectedGoalTag: [], originDiplayTag: [] },
+  initialState: { selectedGoalTag: [], originDisplayTag: [] },
   reducers: {
     addSelectedGoalTag: (state, action) => {
       state.selectedGoalTag.push(action.payload);
@@ -20,8 +20,8 @@ const selectTagSlice = createSlice({
     addSelectedGoalTags: (state, action) => {
       state.selectedGoalTag = [...state.selectedGoalTag, ...action.payload];
     },
-    setOriginDiplayTag: (state, action) => {
-      state.originDiplayTag = action.payload;
+    setOriginDisplayTag: (state, action) => {
+      state.originDisplayTag = action.payload;
     }
   }
 });

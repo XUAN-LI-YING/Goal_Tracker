@@ -7,12 +7,3 @@
   flex-direction: column;
   align-items: center;
 }
-
-.tagSection {
-  display: flex;
-  flex-direction: column;
-}
-
-.tagSection li {
-  list-style-type: none;
-}

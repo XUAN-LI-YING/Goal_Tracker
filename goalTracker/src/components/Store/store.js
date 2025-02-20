@@ -13,6 +13,6 @@ export const store = configureStore({
     Date: dateReducer,
     SetCalendar: setCalendarReducer,
     DailyGoalsReducer: dailyGoalsReducer,
-    DelectTagReducer: selectTagReducer
+    SelectTagReducer: selectTagReducer
   }
 });
