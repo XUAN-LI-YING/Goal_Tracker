@@ -7,9 +7,9 @@ import prePageImage from "../../assets/prePage.png";
 
 //Redux
 import { useDispatch } from "react-redux";
-import { getTagsAction, deleteTagThunk } from "../Store/GetTagsSlice";
-import { MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
-import { modalAction } from "../Store/ModalSlice";
+import { getTagsAction, deleteTagThunk } from "../../Store/GetTagsSlice";
+import { MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
+import { modalAction } from "../../Store/ModalSlice";
 
 export function EditTagForm({ availableTags }) {
   const dispatch = useDispatch();

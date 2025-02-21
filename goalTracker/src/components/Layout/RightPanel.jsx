@@ -5,7 +5,7 @@ import SetCalenderMonth from "../DailyCalender/SetCalendarMonth";
 import SetCalenderYear from "../DailyCalender/SetCalendarYear";
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
-import { setCalendarAction } from "../Store/DateSlice";
+import { setCalendarAction } from "../../Store/DateSlice";
 
 export default function RightPanel() {
   // REDUX Date

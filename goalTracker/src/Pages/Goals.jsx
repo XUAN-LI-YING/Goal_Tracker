@@ -2,11 +2,12 @@
 import MainContent from "../components/Layout/MainContent";
 import RightPanel from "../components/Layout/RightPanel";
 import Modal from "../components/Layout/Modal/Modal";
+import { GoalDetailModal } from "../components/Layout/Modal/GoalDetailModal";
 // CSS
 import classes from "./Goal.module.css";
 // REDUX
 import { useDispatch } from "react-redux";
-import { getAllTagsThunk } from "../components/Store/GetTagsSlice";
+import { getAllTagsThunk } from "../Store/GetTagsSlice";
 //REACT
 import { useEffect } from "react";
 export default function Goals() {
@@ -20,6 +21,7 @@ export default function Goals() {
     <div className={classes.container}>
       <MainContent />
       <Modal />
+      <GoalDetailModal />
       <RightPanel />
     </div>
   );

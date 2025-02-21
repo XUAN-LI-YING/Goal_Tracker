@@ -2,9 +2,9 @@
 import "./MultiYearCalendar.css";
 
 // Redux
-import { dateAction } from "../Store/DateSlice";
+import { dateAction } from "../../Store/DateSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { setCalendarAction } from "../Store/DateSlice";
+import { setCalendarAction } from "../../Store/DateSlice";
 
 export default function SetCalenderYear() {
   // Redux

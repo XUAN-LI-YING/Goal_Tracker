@@ -5,7 +5,7 @@ import { EditTagForm } from "../../EditTag/EditTagForm";
 
 //Redux
 import { useSelector } from "react-redux";
-import { MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
+import { MODAL_CONTENT_ELEMENT } from "../../../Store/ModalSlice";
 
 export default function AddGoalModal() {
   // openGoalModalState

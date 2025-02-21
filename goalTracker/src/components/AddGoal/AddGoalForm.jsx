@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 //REDUX
-import { modalAction, MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
+import { modalAction, MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { dailyGoalsAction, postGoalThunk } from "../Store/GetGoalSlice";
+import { dailyGoalsAction, postGoalThunk } from "../../Store/GetGoalSlice";
 
 export function AddGoalForm({ availableTags }) {
   //redux ,change modal element
@@ -16,8 +16,8 @@ export function AddGoalForm({ availableTags }) {
   const editDate = useSelector((state) => state.Date);
   const { year, month, day } = editDate;
 
-  //Form value useState
-  const [formValue, setFormValue] = useState({
+  //Form value
+  const { formValue, maxLength, handleChange } = useGoalFormHook({
     isSetTime: "",
     goalTime: "",
     goalText: "",
@@ -26,14 +26,6 @@ export function AddGoalForm({ availableTags }) {
 
   const { isSetTime, goalTime, goalText, goalDetail } = formValue;
   console.log("formValue", formValue);
-
-  const maxLength = 30;
-
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setFormValue({ ...formValue, [name]: value });
-  };
 
   // Tags handling
   //store selected tags
@@ -132,17 +124,16 @@ export function AddGoalForm({ availableTags }) {
             maxLength={30}
             required
           />
+          {goalText.length === maxLength && <p>已達字數上限！</p>}
         </label>
-        {goalText.length === maxLength && <p>已達字數上限！</p>}
       </div>
       <label>
-        備註：{" "}
+        目標詳情：{" "}
         <textarea
           name="goalDetail"
           rows="5"
           cols="30"
-          placeholder="有關該目標的詳細內容或注意事項"
-          required
+          placeholder="有關該目標的詳細內容或注意事項(可不填)"
           onChange={handleChange}
           value={goalDetail}
         ></textarea>

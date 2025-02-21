@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //Firebase
-import { db } from "../../FireBase/FireBaseConfig";
+import { db } from "../FireBase/FireBaseConfig";
 import { setDoc, doc, collection, getDocs } from "firebase/firestore";
 
 const dailyGoalsSlice = createSlice({

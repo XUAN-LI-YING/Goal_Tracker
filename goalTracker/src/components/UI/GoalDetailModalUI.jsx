@@ -1,9 +1,9 @@
 //Redux
 import { useDispatch } from "react-redux";
-import { modalAction } from "../../Store/ModalSlice";
+import { goalDetailModalAction } from "../../Store/GoalDetailModalSlice";
 
-import classes from "./ModalUI.module.css";
-export default function Modal({ children }) {
+import classes from "./GoalDetailModalUI.module.css";
+export default function GoalDetailModalUI({ children }) {
   // openGoalModalState
 
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export default function Modal({ children }) {
   return (
     <div
       className={classes.modalOverlay}
-      onClick={() => dispatch(modalAction.closeModal())}
+      onClick={() => dispatch(goalDetailModalAction.closeDetailModal())}
     >
       <div
         className={classes.modalContent}
@@ -19,7 +19,7 @@ export default function Modal({ children }) {
       >
         <button
           className={classes.closeButton}
-          onClick={() => dispatch(modalAction.closeModal())}
+          onClick={() => dispatch(goalDetailModalAction.closeDetailModal())}
         >
           &times;
         </button>

@@ -8,7 +8,7 @@ import { generateMultiYearCalendar } from "./CalendarGenerate";
 // Redux
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { dateAction } from "../Store/DateSlice";
+import { dateAction } from "../../Store/DateSlice";
 
 const MultiYearCalendar = () => {
   // Generate calendar from 2025 to 2075

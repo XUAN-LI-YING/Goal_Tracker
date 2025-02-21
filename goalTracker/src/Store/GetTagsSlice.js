@@ -8,7 +8,7 @@ import {
   doc,
   deleteDoc
 } from "firebase/firestore";
-import { db } from "../../FireBase/FireBaseConfig";
+import { db } from "../FireBase/FireBaseConfig";
 
 const getTagsSlice = createSlice({
   name: "getTagsSlice",

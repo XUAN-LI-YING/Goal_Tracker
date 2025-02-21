@@ -5,6 +5,7 @@ import { dateReducer } from "./DateSlice";
 import { setCalendarReducer } from "./DateSlice";
 import { dailyGoalsReducer } from "./GetGoalSlice";
 import { selectTagReducer } from "./SelectTagSlice";
+import { goalDetailModalReducer } from "./GoalDetailModalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     Date: dateReducer,
     SetCalendar: setCalendarReducer,
     DailyGoalsReducer: dailyGoalsReducer,
-    SelectTagReducer: selectTagReducer
+    SelectTagReducer: selectTagReducer,
+    GoalDetailModalReducer: goalDetailModalReducer
   }
 });

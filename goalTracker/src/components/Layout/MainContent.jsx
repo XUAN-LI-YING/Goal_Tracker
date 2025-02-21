@@ -3,10 +3,10 @@ import { useState } from "react";
 import { format, addDays } from "date-fns";
 import GoalItem from "../Goal/GoalItem";
 //Redux
-import { modalAction } from "../Store/ModalSlice";
-import { dateAction } from "../Store/DateSlice";
+import { modalAction } from "../../Store/ModalSlice";
+import { dateAction } from "../../Store/DateSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { MODAL_CONTENT_ELEMENT } from "../Store/ModalSlice";
+import { MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 
 export default function MainContent() {
   const dispatch = useDispatch();

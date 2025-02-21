@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import classes from "./SelectDisplayTag.module.css";
 //Redux
-import { selectTagAction } from "../Store/SelectTagSlice";
+import { selectTagAction } from "../../Store/SelectTagSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 export function SelectDisplayTag({ displayTag }) {

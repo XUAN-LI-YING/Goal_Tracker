@@ -4,8 +4,8 @@ import Picker from "@emoji-mart/react";
 //Redux
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getTagsAction } from "../Store/GetTagsSlice";
-import { postTagThunk } from "../Store/GetTagsSlice";
+import { getTagsAction } from "../../Store/GetTagsSlice";
+import { postTagThunk } from "../../Store/GetTagsSlice";
 
 export default function CreateTag() {
   const [inputText, setInputText] = useState("");

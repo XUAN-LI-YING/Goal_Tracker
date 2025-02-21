@@ -9,7 +9,7 @@ import Goals from "./Pages/Goals";
 
 //Redux store
 import { Provider } from "react-redux";
-import { store } from "./components/Store/store";
+import { store } from "./Store/store";
 // import loader function
 
 const router = createBrowserRouter([

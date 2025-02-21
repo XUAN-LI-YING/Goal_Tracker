@@ -2,8 +2,10 @@ import { useEffect, useState, useMemo } from "react";
 import classes from "./GoalItem.module.css";
 
 //Redux
-import { dailyGoalsAction, getGoalThunk } from "../Store/GetGoalSlice";
+
+import { dailyGoalsAction, getGoalThunk } from "../../Store/GetGoalSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { goalDetailModalAction } from "../../Store/GoalDetailModalSlice";
 
 export default function GoalItem({ date: { year, month, day } }) {
   const dispatch = useDispatch();
@@ -61,46 +63,68 @@ export default function GoalItem({ date: { year, month, day } }) {
     return { displayNoTimeGoal, displaySortGoalTime };
   }, [allGoals, displaySelectedTag]);
 
-  //If there have no any goal,display "no goal "text
-  let noTimeGoalEmpty = true;
-  let sortGoalTimeEmpty = true;
-  if (displayNoTimeGoal.length === 0) {
-    noTimeGoalEmpty = true;
-  } else {
-    noTimeGoalEmpty = false;
-  }
-  if (displaySortGoalTime.length === 0) {
-    sortGoalTimeEmpty = true;
-  } else {
-    sortGoalTimeEmpty = false;
-  }
+  //DetailGoalMModal open or not
+  const showDetail = useSelector(
+    (state) => state.GoalDetailModalReducer.isOpen
+  );
 
-  //DetailGoalMModal
-  const [showPopup, setShowPopup] = useState(false);
-
-  const handleOuterClick = (e) => {
-    if (showPopup !== true) {
-      setShowPopup(true);
+  function handleShowDetail(goal) {
+    if (showDetail === false) {
+      dispatch(goalDetailModalAction.openDetailModal(goal));
+    } else {
+      dispatch(goalDetailModalAction.closeDetailModal());
     }
-  };
+  }
 
-  const closePopup = () => {
-    setShowPopup(false);
-  };
+  //Remember the goal is check or not
+  function handleCompleteChange() {}
 
   return (
     <div>
       <p>時間表</p>
-      {sortGoalTimeEmpty ? "時標表目前沒有排任何行程" : ""}
+      {displaySortGoalTime.length === 0 ? "時標表目前沒有排任何行程" : ""}
 
       <div className={classes.goalLists}>
         {displaySortGoalTime.map((goal) => (
-          <button
-            key={goal.id}
-            onClick={handleOuterClick}
-            className={classes.goal}
-          >
-            <input type="checkbox" onClick={(e) => e.stopPropagation()} />
+          <div key={goal.id} className={classes.goal}>
+            <label className={classes.goalContent}>
+              <input
+                type="checkbox"
+                checked={goal.isComplete}
+                onChange={handleCompleteChange}
+              />
+              <p>{goal.goalTime}</p>
+
+              <p>{goal.goalText}</p>
+
+              <div className={classes.goalTagList}>
+                {goal.selectedTags.map((tag) => (
+                  <p key={tag}>{tag}</p>
+                ))}
+              </div>
+            </label>
+            <button
+              type="button"
+              onClick={() => {
+                handleShowDetail(goal);
+              }}
+            >
+              詳情
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <p>其他代辦事項</p>
+      {displayNoTimeGoal.length === 0 ? "目前無其他代辦事項" : ""}
+      {displayNoTimeGoal.map((goal) => (
+        <div key={goal.id} className={classes.goal}>
+          <label className={classes.goalContent}>
+            <input
+              type="checkbox"
+              checked={goal.isComplete}
+              onChange={handleCompleteChange}
+            />
             <p>{goal.goalTime}</p>
 
             <p>{goal.goalText}</p>
@@ -110,29 +134,16 @@ export default function GoalItem({ date: { year, month, day } }) {
                 <p key={tag}>{tag}</p>
               ))}
             </div>
+          </label>
+          <button
+            type="button"
+            onClick={() => {
+              handleShowDetail(goal);
+            }}
+          >
+            詳情
           </button>
-        ))}
-      </div>
-
-      <p>其他代辦事項</p>
-      {noTimeGoalEmpty ? "目前無其他代辦事項" : ""}
-      {displayNoTimeGoal.map((goal) => (
-        <button
-          key={goal.id}
-          onClick={handleOuterClick}
-          className={classes.goal}
-        >
-          <input type="checkbox" onClick={(e) => e.stopPropagation()} />
-          <p>{goal.goalTime}</p>
-
-          <p>{goal.goalText}</p>
-
-          <div className={classes.goalTagList}>
-            {goal.selectedTags.map((tag) => (
-              <p key={tag}>{tag}</p>
-            ))}
-          </div>
-        </button>
+        </div>
       ))}
     </div>
   );
