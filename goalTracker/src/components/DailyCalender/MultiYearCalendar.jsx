@@ -30,9 +30,12 @@ const MultiYearCalendar = () => {
   const dispatch = useDispatch();
   function navigateToDate(e) {
     const newDay = new Date(e.target.value);
-    dispatch(dateAction.switchYear(newDay.getFullYear()));
-    dispatch(dateAction.switchMonth(newDay.getMonth() + 1));
-    dispatch(dateAction.switchDay(newDay.getDate()));
+    // When you click on the year 2024, the calendar for 2024 will not be selected because there is no calendar for 2024 yet.
+    if (newDay.getFullYear() != "2024") {
+      dispatch(dateAction.switchYear(newDay.getFullYear()));
+      dispatch(dateAction.switchMonth(newDay.getMonth() + 1));
+      dispatch(dateAction.switchDay(newDay.getDate()));
+    }
   }
 
   return (

@@ -37,6 +37,3 @@ export const dateAction = date.actions;
 export const setCalendarAction = setCalendarComponent.actions;
 export const dateReducer = date.reducer;
 export const setCalendarReducer = setCalendarComponent.reducer;
-// export const dateStore = configureStore({
-//   reducer: { date: date.reducer, changeComponent: setCalenderComponent.reducer }
-// });

@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useGoalFormHook } from "../../Hooks/useGoalFormHook";
 //REDUX
 import { modalAction, MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,38 +16,35 @@ export function AddGoalForm({ availableTags }) {
   const editDate = useSelector((state) => state.Date);
   const { year, month, day } = editDate;
 
+  //call hook to incoming Form value、selected tags initial useState
+  const initialGoal = {
+    goalTextAndTime: {
+      isSetTime: "",
+      goalTime: "",
+      goalText: "",
+      goalDetail: ""
+    },
+    goalTags: []
+  };
+  const {
+    maxLength,
+    handleChange,
+    formValue,
+    setFormValue,
+    selectedTags,
+    setSelectedTags,
+    handleTagSelect,
+    handleRemoveTag
+  } = useGoalFormHook(initialGoal);
   //Form value
-  const { formValue, maxLength, handleChange } = useGoalFormHook({
-    isSetTime: "",
-    goalTime: "",
-    goalText: "",
-    goalDetail: ""
-  });
-
   const { isSetTime, goalTime, goalText, goalDetail } = formValue;
   console.log("formValue", formValue);
-
-  // Tags handling
-  //store selected tags
-  const [selectedTags, setSelectedTags] = useState([]);
-
-  const handleTagSelect = (event) => {
-    const selectedValue = event.target.value;
-
-    if (selectedValue && !selectedTags.includes(selectedValue)) {
-      setSelectedTags([...selectedTags, selectedValue]);
-    }
-  };
-
-  const handleRemoveTag = (tagToRemove) => {
-    setSelectedTags(selectedTags.filter((tag) => tag !== tagToRemove));
-  };
 
   //Confirm to add new goal
   async function addNewGoal(e) {
     e.preventDefault();
     //generate docID first in order to  store on redux state immediately
-    let newGoal = {
+    const newGoal = {
       year,
       month,
       day,

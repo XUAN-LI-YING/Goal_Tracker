@@ -1,39 +1,26 @@
-import { useState } from "react";
-import Picker from "@emoji-mart/react";
-
+import { useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
+("use client");
 export default function Personal() {
-  const [inputText, setInputText] = useState("");
-  const [selectedEmoji, setSelectedEmoji] = useState("選擇 Emoji");
-  const [isPickerVisible, setIsPickerVisible] = useState(false);
-
-  const handleEmojiSelect = (emoji) => {
-    setSelectedEmoji(emoji.native);
-    setIsPickerVisible(false);
-  };
+  const { yearCompleteNum, monthCompleteNum, dayCompleteNum } = useLoaderData();
 
   return (
     <div>
-      <h1>Emoji Input</h1>
       <div>
-        <input
-          type="text"
-          placeholder="輸入文字"
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-        />
-        <button onClick={() => setIsPickerVisible(!isPickerVisible)}>
-          {selectedEmoji}
-          {inputText}
-        </button>
-        {isPickerVisible && (
-          <div>
-            <Picker onEmojiSelect={handleEmojiSelect} />
-          </div>
-        )}
+        <img></img>
+        <p>User XUAN</p>
       </div>
-      <p>
-        選擇的 Emoji: {selectedEmoji} {inputText}
-      </p>
+      <div>
+        <label>
+          今日已達成：<div>{dayCompleteNum}個目標</div>
+        </label>
+        <label>
+          這個月已達成：<div>{monthCompleteNum}個目標</div>
+        </label>
+        <label>
+          今年已達成：<div>{yearCompleteNum}個目標</div>
+        </label>
+      </div>
     </div>
   );
 }

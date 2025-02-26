@@ -3,45 +3,79 @@ import { useGoalFormHook } from "../../Hooks/useGoalFormHook";
 //Redux
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { editGoalThunk } from "../../Store/GetGoalSlice";
+import {
+  goalDetailModalAction,
+  Detail_MODAL_CONTENT_ELEMENT
+} from "../../Store/GoalDetailModalSlice";
 
-export function GoalDetail() {
+export default function GoalDetail() {
   const dispatch = useDispatch();
+
   //get goal which you were ckicked
   const goal = useSelector((state) => state.GoalDetailModalReducer.displayGoal);
 
   //Get all tags
   const availableTags = useSelector((state) => state.GetTags.tags);
 
-  // Tags handling
-  //store selected tags
-  const [selectingTags, setSelectingTags] = useState(goal.selectedTags);
-
-  const handleTagSelect = (event) => {
-    const selectingValue = event.target.value;
-
-    if (selectingValue && !selectingTags.includes(selectingValue)) {
-      setSelectingTags([...selectingTags, selectingValue]);
-    }
-  };
-
-  const handleRemoveTag = (tagToRemove) => {
-    setSelectingTags(selectingTags.filter((tag) => tag !== tagToRemove));
-  };
-  console.log("selectingTags", selectingTags);
-
-  //redux ,change modal element
-  function goEditTagPage() {}
+  //redux ,change modal element and  go edit tag page
+  function goEditTagPage() {
+    dispatch(
+      goalDetailModalAction.displayElement(
+        Detail_MODAL_CONTENT_ELEMENT.EDIT_TAG
+      )
+    );
+  }
 
   //If Edit goal
-  const [disableEditGoal, setDisableEditGoal] = useState(true);
-
-  function handleEditGoal() {
-    setDisableEditGoal(false);
+  const disableEditGoal = useSelector(
+    (state) => state.GoalDetailModalReducer.disableEditGoal
+  );
+  function handleIsEditGoal() {
+    dispatch(goalDetailModalAction.disableEditGoal(false));
   }
-  //Form value useState
-  const { formValue, maxLength, handleChange } = useGoalFormHook(goal);
+  //call hook to incoming Form value、selected tags initial useState
+  const initialGoal = {
+    goalTextAndTime: goal,
+    goalTags: goal.selectedTags
+  };
+  const {
+    maxLength,
+    handleChange,
+    formValue,
+    setFormValue,
+    selectedTags,
+    setSelectedTags,
+    handleTagSelect,
+    handleRemoveTag
+  } = useGoalFormHook(initialGoal);
   const { year, month, day, isSetTime, goalTime, goalText, goalDetail } =
     formValue;
+
+  //Update new goal ,after edit goal
+  function handleUpdateGoal(e) {
+    e.preventDefault();
+    const newGoal = {
+      ...goal,
+      isSetTime,
+      goalTime,
+      goalText,
+      goalDetail,
+      selectedTags
+    };
+
+    dispatch(editGoalThunk({ year, month, day, newGoal, originalGoal: goal }));
+
+    //以後可新增功能:當確定有正確新增到資料庫與redux時，才從修改頁面變為僅供觀看頁面
+    dispatch(goalDetailModalAction.disableEditGoal(true));
+  }
+
+  //Unedit the target and restore the original target content
+  function handleUndoGoal() {
+    setFormValue(initialGoal.goalTextAndTime);
+    setSelectedTags(initialGoal.goalTags);
+    dispatch(goalDetailModalAction.disableEditGoal(true));
+  }
 
   return (
     <form>
@@ -113,7 +147,7 @@ export function GoalDetail() {
           <div>
             <label>標籤：</label>
             <div>
-              {selectingTags.map((tag) => (
+              {selectedTags.map((tag) => (
                 <div key={tag}>
                   <span>{tag}</span>
                   {disableEditGoal === false && (
@@ -149,12 +183,29 @@ export function GoalDetail() {
             </div>
           )}
         </div>
-        {disableEditGoal === false && <button type="submit">確定</button>}
+        {disableEditGoal === false && (
+          <>
+            <button type="submit" onClick={handleUpdateGoal}>
+              確定
+            </button>
+            <button type="button" onClick={handleUndoGoal}>
+              取消
+            </button>
+          </>
+        )}
       </fieldset>
       {disableEditGoal === true && (
-        <button type="button" onClick={handleEditGoal}>
-          修改
-        </button>
+        <>
+          <button type="button" onClick={handleIsEditGoal}>
+            修改
+          </button>
+          <button
+            type="button"
+            onClick={() => dispatch(goalDetailModalAction.closeDetailModal())}
+          >
+            關閉
+          </button>
+        </>
       )}
     </form>
   );

@@ -3,7 +3,11 @@ import classes from "./GoalItem.module.css";
 
 //Redux
 
-import { dailyGoalsAction, getGoalThunk } from "../../Store/GetGoalSlice";
+import {
+  dailyGoalsAction,
+  getGoalThunk,
+  completeGoalThunk
+} from "../../Store/GetGoalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { goalDetailModalAction } from "../../Store/GoalDetailModalSlice";
 
@@ -77,7 +81,12 @@ export default function GoalItem({ date: { year, month, day } }) {
   }
 
   //Remember the goal is check or not
-  function handleCompleteChange() {}
+  function handleCompleteChange(id, isComplete) {
+    console.log("id", id);
+    console.log("isComplete", isComplete);
+
+    dispatch(completeGoalThunk({ year, month, day, id, isComplete }));
+  }
 
   return (
     <div>
@@ -91,7 +100,9 @@ export default function GoalItem({ date: { year, month, day } }) {
               <input
                 type="checkbox"
                 checked={goal.isComplete}
-                onChange={handleCompleteChange}
+                onChange={() => {
+                  handleCompleteChange(goal.id, !goal.isComplete);
+                }}
               />
               <p>{goal.goalTime}</p>
 
@@ -123,7 +134,9 @@ export default function GoalItem({ date: { year, month, day } }) {
             <input
               type="checkbox"
               checked={goal.isComplete}
-              onChange={handleCompleteChange}
+              onChange={() => {
+                handleCompleteChange(goal.id, !goal.isComplete);
+              }}
             />
             <p>{goal.goalTime}</p>
 

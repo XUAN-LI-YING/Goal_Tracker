@@ -10,8 +10,12 @@ import { useDispatch } from "react-redux";
 import { getTagsAction, deleteTagThunk } from "../../Store/GetTagsSlice";
 import { MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 import { modalAction } from "../../Store/ModalSlice";
+import {
+  goalDetailModalAction,
+  Detail_MODAL_CONTENT_ELEMENT
+} from "../../Store/GoalDetailModalSlice";
 
-export function EditTagForm({ availableTags }) {
+export default function EditTagForm({ availableTags, prev }) {
   const dispatch = useDispatch();
 
   //show input to create tag
@@ -29,7 +33,15 @@ export function EditTagForm({ availableTags }) {
 
   //Go previous page(addGoalPage)
   function goPrePage() {
-    dispatch(modalAction.displayElement(MODAL_CONTENT_ELEMENT.ADD_GOAL));
+    if (prev === "addGoal") {
+      dispatch(modalAction.displayElement(MODAL_CONTENT_ELEMENT.ADD_GOAL));
+    } else {
+      dispatch(
+        goalDetailModalAction.displayElement(
+          Detail_MODAL_CONTENT_ELEMENT.EDIT_GOAL
+        )
+      );
+    }
   }
 
   return (

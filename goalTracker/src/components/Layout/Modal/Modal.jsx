@@ -1,7 +1,7 @@
 //Component
 import ModalUI from "../../UI/ModalUI";
 import { AddGoalForm } from "../../AddGoal/AddGoalForm";
-import { EditTagForm } from "../../EditTag/EditTagForm";
+import EditTagForm from "../../EditTag/EditTagForm";
 
 //Redux
 import { useSelector } from "react-redux";
@@ -21,7 +21,7 @@ export default function AddGoalModal() {
       {displayElement === MODAL_CONTENT_ELEMENT.ADD_GOAL ? (
         <AddGoalForm availableTags={availableTags} />
       ) : (
-        <EditTagForm availableTags={availableTags} />
+        <EditTagForm availableTags={availableTags} prev={"addGoal"} />
       )}
     </ModalUI>
   );
