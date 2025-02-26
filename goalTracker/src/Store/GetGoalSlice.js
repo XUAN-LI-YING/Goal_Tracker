@@ -9,7 +9,8 @@ import {
   collection,
   getDocs,
   updateDoc,
-  increment
+  increment,
+  deleteDoc
 } from "firebase/firestore";
 
 const dailyGoalsSlice = createSlice({
@@ -28,7 +29,7 @@ const dailyGoalsSlice = createSlice({
     },
     removeGoalForTheDay: (state, action) => {
       state.dailyGoals = state.dailyGoals.filter(
-        (goal) => goal.id !== action.payload.id
+        (goal) => goal.id !== action.payload
       );
     },
     editGoal: (state, action) => {
@@ -42,7 +43,6 @@ const dailyGoalsSlice = createSlice({
       }
     },
     completeGoal: (state, action) => {
-      console.log("這裡", action.payload);
       const index = state.dailyGoals.findIndex(
         (goal) => goal.id === action.payload.id
       );
@@ -160,7 +160,7 @@ export const editGoalThunk = createAsyncThunk(
 
 //Change the goal to complete or incomplete
 export const completeGoalThunk = createAsyncThunk(
-  "dailyGoalsSlice/editGoalThunk",
+  "dailyGoalsSlice/completeGoalThunk",
   async (
     { year, month, day, id, isComplete },
     { dispatch, rejectWithValue }
@@ -194,11 +194,9 @@ export const completeGoalThunk = createAsyncThunk(
       "days",
       `${year}_${month}_${day}`
     );
-    //update isComplete in goal
-    console.log("3456");
-    try {
-      console.log("2");
 
+    //update isComplete in goal
+    try {
       await updateDoc(docGoalRef, { isComplete });
     } catch (error) {
       console.error("Firestore post錯誤:", error);
@@ -233,6 +231,35 @@ export const completeGoalThunk = createAsyncThunk(
       alert("更新完成數據失敗，已回復原始狀態");
       dispatch(dailyGoalsAction.completeGoal({ id, isComplete: !isComplete }));
       await updateDoc(docGoalRef, { isComplete: !isComplete });
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+//Delete goal
+export const deleteGoalThunk = createAsyncThunk(
+  "dailyGoalsSlice/deleteGoalThunk",
+  async ({ year, month, day, id }, { dispatch, rejectWithValue }) => {
+    console.log("1");
+    const docRef = doc(
+      db,
+      "users",
+      "userxuan",
+      "goals",
+      "dailyDay",
+      `${year}`,
+      `${month}`,
+      `${year}-${month}-${day}`,
+      `${id}`
+    );
+    dispatch(dailyGoalsAction.removeGoalForTheDay(id));
+    try {
+      await deleteDoc(docRef);
+      alert("刪除成功");
+    } catch (error) {
+      console.error("Firestore post錯誤:", error);
+      alert("無法刪除goals");
+      //回滾redux待補
       return rejectWithValue(error.message);
     }
   }

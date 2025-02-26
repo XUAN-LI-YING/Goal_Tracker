@@ -6,7 +6,8 @@ import classes from "./GoalItem.module.css";
 import {
   dailyGoalsAction,
   getGoalThunk,
-  completeGoalThunk
+  completeGoalThunk,
+  deleteGoalThunk
 } from "../../Store/GetGoalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { goalDetailModalAction } from "../../Store/GoalDetailModalSlice";
@@ -82,10 +83,22 @@ export default function GoalItem({ date: { year, month, day } }) {
 
   //Remember the goal is check or not
   function handleCompleteChange(id, isComplete) {
-    console.log("id", id);
-    console.log("isComplete", isComplete);
+    dispatch(
+      completeGoalThunk({ year, month, day, id, isComplete: !isComplete })
+    );
+  }
 
-    dispatch(completeGoalThunk({ year, month, day, id, isComplete }));
+  //Delete goal
+  function handleDelete(id, isComplete) {
+    //Delete the goal and update the number of goal completions at the same time
+
+    if (isComplete === true) {
+      console.log("123");
+      dispatch(
+        completeGoalThunk({ year, month, day, id, isComplete: !isComplete })
+      );
+    }
+    dispatch(deleteGoalThunk({ year, month, day, id }));
   }
 
   return (
@@ -101,7 +114,7 @@ export default function GoalItem({ date: { year, month, day } }) {
                 type="checkbox"
                 checked={goal.isComplete}
                 onChange={() => {
-                  handleCompleteChange(goal.id, !goal.isComplete);
+                  handleCompleteChange(goal.id, goal.isComplete);
                 }}
               />
               <p>{goal.goalTime}</p>
@@ -122,6 +135,14 @@ export default function GoalItem({ date: { year, month, day } }) {
             >
               詳情
             </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleDelete(goal.id, goal.isComplete);
+              }}
+            >
+              刪除
+            </button>
           </div>
         ))}
       </div>
@@ -135,7 +156,7 @@ export default function GoalItem({ date: { year, month, day } }) {
               type="checkbox"
               checked={goal.isComplete}
               onChange={() => {
-                handleCompleteChange(goal.id, !goal.isComplete);
+                handleCompleteChange(goal.id, goal.isComplete);
               }}
             />
             <p>{goal.goalTime}</p>
@@ -155,6 +176,14 @@ export default function GoalItem({ date: { year, month, day } }) {
             }}
           >
             詳情
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              handleDelete(goal.id);
+            }}
+          >
+            刪除
           </button>
         </div>
       ))}
