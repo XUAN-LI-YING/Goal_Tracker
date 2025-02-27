@@ -2,12 +2,14 @@ import classes from "./SideBar.module.css";
 import { useMemo } from "react";
 import { SelectDisplayTag } from "../SelectdisplayTag/SelectdisplayTag";
 // React Router
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 //Redux
 import { useSelector } from "react-redux";
 
 export default function SideBar() {
-  // const dispatch = useDispatch();
+  //Get current URL
+  const location = useLocation();
 
   //get display tag
   const allGoalForTheDay = useSelector(
@@ -24,18 +26,20 @@ export default function SideBar() {
   return (
     <div className={classes.leftSidebar}>
       <Link to="/home">
-        <button>Home</button>
+        <button className={classes.homeBtn}>首頁</button>
       </Link>
       <Link to="/personal">
         <button>
-          <img src="user-avatar.jpg" alt="User Avatar" />
-          <span>John Doe</span>
+          <img src="user-avatar.jpg" alt="My Profile" />
+          <span>個人中心</span>
         </button>
       </Link>
       <Link to="/">
-        <button>Goal</button>
+        <button>目標管理</button>
       </Link>
-      <SelectDisplayTag displayTag={displayTag} />
+      {location.pathname === "/" && (
+        <SelectDisplayTag displayTag={displayTag} />
+      )}
 
       <button>Logout</button>
     </div>

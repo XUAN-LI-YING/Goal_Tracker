@@ -37,7 +37,8 @@ export default function GoalItem({ date: { year, month, day } }) {
     dispatch(dailyGoalsAction.setNoTimeGoal(noTimeGoal));
     dispatch(dailyGoalsAction.setSortGoalTime(sortGoalTime));
   }, [allGoals, dispatch]);
-
+  console.log("noTimeGoal", noTimeGoal);
+  console.log("sortGoalTime", sortGoalTime);
   //Display goal ,according to left tag which you have selected
   const displaySelectedTag = useSelector(
     (state) => state.SelectTagReducer.selectedGoalTag
@@ -67,6 +68,8 @@ export default function GoalItem({ date: { year, month, day } }) {
 
     return { displayNoTimeGoal, displaySortGoalTime };
   }, [allGoals, displaySelectedTag]);
+  console.log("displayNoTimeGoal", displayNoTimeGoal);
+  console.log("displaySortGoalTime ", displaySortGoalTime);
 
   //DetailGoalMModal open or not
   const showDetail = useSelector(

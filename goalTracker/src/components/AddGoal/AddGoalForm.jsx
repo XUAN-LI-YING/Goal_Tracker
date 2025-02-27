@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { useGoalFormHook } from "../../Hooks/useGoalFormHook";
 //REDUX
 import { modalAction, MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { dailyGoalsAction, postGoalThunk } from "../../Store/GetGoalSlice";
+import { postGoalThunk } from "../../Store/GetGoalSlice";
 
 export function AddGoalForm({ availableTags }) {
   //redux ,change modal element
@@ -143,14 +142,16 @@ export function AddGoalForm({ availableTags }) {
             {selectedTags.map((tag) => (
               <div key={tag}>
                 <span>{tag}</span>
-                <button
-                  onClick={(e) => {
-                    console.log("🚀 按下刪除按鈕:", tag);
-                    handleRemoveTag(tag);
-                  }}
-                >
-                  ❌
-                </button>
+                {tag !== "無" && (
+                  <button
+                    onClick={(e) => {
+                      console.log("🚀 按下刪除按鈕:", tag);
+                      handleRemoveTag(tag);
+                    }}
+                  >
+                    ❌
+                  </button>
+                )}
               </div>
             ))}
           </div>

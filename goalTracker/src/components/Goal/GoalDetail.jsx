@@ -150,7 +150,7 @@ export default function GoalDetail() {
               {selectedTags.map((tag) => (
                 <div key={tag}>
                   <span>{tag}</span>
-                  {disableEditGoal === false && (
+                  {disableEditGoal === false && tag !== "無" && (
                     <button
                       type="button"
                       onClick={(e) => {

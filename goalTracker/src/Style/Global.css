@@ -1,0 +1,92 @@
+/* 設定全域變數，讓整個專案的顏色、間距、字體大小一致 */
+:root {
+  /* 顏色變數 */
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --background-color: #f8f9fa;
+  --text-color: #212529;
+
+  /* 字體大小 */
+  --font-size-sm: 0.875rem;
+  /* 16px */
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+
+  /* 間距 */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+
+  /* 圓角 */
+  --border-radius: 8px;
+}
+
+/*  設定全站標準 layout 容器 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+/* 設定全站統一的按鈕樣式 */
+button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* 平板 （小於等於 768px）*/
+@media (max-width: 768px) {
+  :root {
+    /* 14.8px */
+    --font-size-xs: calc(var(--font-size-xs) * 0.925);
+    --font-size-sm: calc(var(--font-size-sm) * 0.925);
+    --font-size-md: calc(var(--font-size-md) * 0.925);
+    --font-size-lg: calc(var(--font-size-lg) * 0.925);
+
+    /* 13.6px */
+    --spacing-xs: calc(var(--spacing-xs) * 0.85);
+    --spacing-sm: calc(var(--spacing-sm) * 0.85);
+    --spacing-md: calc(var(--spacing-md) * 0.85);
+    --spacing-lg: calc(var(--spacing-lg) * 0.85);
+  }
+}
+
+/* 針對手機（小於等於 576px） */
+@media (max-width: 576px) {
+  :root {
+    /* 14px */
+    --font-size-xs: calc(var(--font-size-xs) * 0.875);
+    --font-size-sm: calc(var(--font-size-sm) * 0.875);
+    --font-size-md: calc(var(--font-size-md) * 0.875);
+    --font-size-lg: calc(var(--font-size-lg) * 0.875);
+    /* 12px */
+    --spacing-xs: calc(var(--spacing-xs) * 0.75);
+    --spacing-sm: calc(var(--spacing-sm) * 0.75);
+    --spacing-md: calc(var(--spacing-md) * 0.75);
+    --spacing-lg: calc(var(--spacing-lg) * 0.75);
+  }
+}
+
+/* 針對超大螢幕（大於等於 1200px） */
+@media (min-width: 1200px) {
+  :root {
+    /* 18.4px */
+    --font-size-xs: calc(var(--font-size-xs) * 1.15);
+    --font-size-sm: calc(var(--font-size-sm) * 1.15);
+    --font-size-md: calc(var(--font-size-md) * 1.15);
+    --font-size-lg: calc(var(--font-size-lg) * 1.15);
+    /* 20px */
+    --spacing-xs: calc(var(--spacing-xs) * 1.25);
+    --spacing-sm: calc(var(--spacing-sm) * 1.25);
+    --spacing-md: calc(var(--spacing-md) * 1.25);
+    --spacing-lg: calc(var(--spacing-lg) * 1.25);
+  }
+}

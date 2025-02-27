@@ -1,0 +1,90 @@
+/* 重置所有元素的 margin、padding，並確保 box-sizing 設為 border-box */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 設定 HTML 的字體基準，影響 rem 計算，並確保滾動平滑 */
+html {
+  /* 確保 1rem = 16px */
+  font-size: 16px;
+  /* 避免 iOS 自動調整字體 */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  /* 讓滾動動畫更流暢 */
+  scroll-behavior: smooth;
+}
+
+/*  設定全站 body 的字體、行高，讓基礎排版統一 */
+body {
+  /* font-family: "Arial", sans-serif; */
+  font-family: "Noto Sans TC", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fff;
+  /* 讓 Mac 裝置上的字體更平滑，避免鋸齒感。*/
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 清除標題 h1-h6 預設 margin，讓間距統一 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal;
+}
+
+/* 清除列表樣式 */
+ul,
+ol {
+  list-style: none;
+}
+
+/*  移除超連結的預設底線 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*  設定按鈕統一樣式，避免不同瀏覽器的外觀不一致 */
+button {
+  /* 移除所有預設樣式 */
+  all: unset;
+  /* 確保按鈕游標為手型 */
+  cursor: pointer;
+}
+
+/*  確保圖片不超出父容器 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/*  確保表單元素不會有預設邊框 */
+input,
+textarea,
+button,
+select {
+  font: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/*  設定 `table` 邊框合併，讓表格更緊湊 */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}

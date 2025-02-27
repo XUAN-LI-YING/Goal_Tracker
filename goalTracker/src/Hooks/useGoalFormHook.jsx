@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //GoalDetail.jsx and AddGoalForm.jsx share this hook
 export function useGoalFormHook(initialGoal) {
@@ -28,13 +28,22 @@ export function useGoalFormHook(initialGoal) {
     const selectedValue = event.target.value;
 
     if (selectedValue && !selectedTags.includes(selectedValue)) {
-      setSelectedTags([...selectedTags, selectedValue]);
+      setSelectedTags((prev) => [...prev, selectedValue]);
+      setSelectedTags((prev) => prev.filter((tag) => tag !== "無"));
     }
   };
 
   const handleRemoveTag = (tagToRemove) => {
     setSelectedTags(selectedTags.filter((tag) => tag !== tagToRemove));
   };
+
+  //  if selectedTags is null display no
+  useEffect(() => {
+    if (selectedTags.length === 0) {
+      console.log(123);
+      setSelectedTags(["無"]);
+    }
+  }, [selectedTags]);
 
   return {
     formValue,
