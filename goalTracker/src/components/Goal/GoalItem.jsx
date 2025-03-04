@@ -105,91 +105,106 @@ export default function GoalItem({ date: { year, month, day } }) {
   }
 
   return (
-    <div>
-      <p>時間表</p>
+    <div className={classes.allGoals}>
+      <p>今日行程</p>
       {displaySortGoalTime.length === 0 ? "時標表目前沒有排任何行程" : ""}
 
       <div className={classes.goalLists}>
         {displaySortGoalTime.map((goal) => (
           <div key={goal.id} className={classes.goal}>
             <label className={classes.goalContent}>
-              <input
-                type="checkbox"
-                checked={goal.isComplete}
-                onChange={() => {
-                  handleCompleteChange(goal.id, goal.isComplete);
-                }}
-              />
-              <p>{goal.goalTime}</p>
+              <div>
+                <input
+                  type="checkbox"
+                  checked={goal.isComplete}
+                  onChange={() => {
+                    handleCompleteChange(goal.id, goal.isComplete);
+                  }}
+                />
+                <div className={classes.checkbox}></div>
+                <p>{goal.goalTime}</p>
 
-              <p>{goal.goalText}</p>
-
+                <p className={classes.goalText}>{goal.goalText}</p>
+              </div>
               <div className={classes.goalTagList}>
                 {goal.selectedTags.map((tag) => (
-                  <p key={tag}>{tag}</p>
+                  <p className={classes.goalTag} key={tag}>
+                    {tag}
+                  </p>
                 ))}
               </div>
             </label>
-            <button
-              type="button"
-              onClick={() => {
-                handleShowDetail(goal);
-              }}
-            >
-              詳情
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleDelete(goal.id, goal.isComplete);
-              }}
-            >
-              刪除
-            </button>
+            <div className={classes.goalBtn}>
+              <button
+                type="button"
+                onClick={() => {
+                  handleShowDetail(goal);
+                }}
+              >
+                詳情
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleDelete(goal.id, goal.isComplete);
+                }}
+              >
+                刪除
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
       <p>其他代辦事項</p>
       {displayNoTimeGoal.length === 0 ? "目前無其他代辦事項" : ""}
-      {displayNoTimeGoal.map((goal) => (
-        <div key={goal.id} className={classes.goal}>
-          <label className={classes.goalContent}>
-            <input
-              type="checkbox"
-              checked={goal.isComplete}
-              onChange={() => {
-                handleCompleteChange(goal.id, goal.isComplete);
-              }}
-            />
-            <p>{goal.goalTime}</p>
+      <div className={classes.goalLists}>
+        {displayNoTimeGoal.map((goal) => (
+          <div key={goal.id} className={classes.goal}>
+            <label className={classes.goalContent}>
+              <div>
+                <input
+                  type="checkbox"
+                  checked={goal.isComplete}
+                  onChange={() => {
+                    handleCompleteChange(goal.id, goal.isComplete);
+                  }}
+                />
+                <div className={classes.checkbox}></div>
+                <p>{goal.goalTime}</p>
 
-            <p>{goal.goalText}</p>
+                <p className={classes.goalText}>{goal.goalText}</p>
+              </div>
+              <div className={classes.goalTagList}>
+                {goal.selectedTags.map((tag) => (
+                  <p className={classes.goalTag} key={tag}>
+                    {tag}
+                  </p>
+                ))}
+              </div>
+            </label>
 
-            <div className={classes.goalTagList}>
-              {goal.selectedTags.map((tag) => (
-                <p key={tag}>{tag}</p>
-              ))}
+            <div className={classes.goalBtn}>
+              <button
+                type="button"
+                onClick={() => {
+                  handleShowDetail(goal);
+                }}
+              >
+                詳情
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleDelete(goal.id);
+                }}
+              >
+                刪除
+              </button>
             </div>
-          </label>
-          <button
-            type="button"
-            onClick={() => {
-              handleShowDetail(goal);
-            }}
-          >
-            詳情
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              handleDelete(goal.id);
-            }}
-          >
-            刪除
-          </button>
-        </div>
-      ))}
+          </div>
+        ))}{" "}
+      </div>
     </div>
   );
 }

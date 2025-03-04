@@ -1,6 +1,12 @@
 import classes from "./SideBar.module.css";
 import { useMemo } from "react";
 import { SelectDisplayTag } from "../SelectdisplayTag/SelectdisplayTag";
+
+//img
+import homeIcon from "../../assets/home.png";
+import userIcon from "../../assets/user.png";
+import goalIcon from "../../assets/goal.png";
+
 // React Router
 import { Link, useLocation } from "react-router-dom";
 
@@ -26,22 +32,22 @@ export default function SideBar() {
   return (
     <div className={classes.leftSidebar}>
       <Link to="/home">
-        <button className={classes.homeBtn}>首頁</button>
+        <img src={homeIcon} alt="Go to home page" />
+        首頁
       </Link>
       <Link to="/personal">
-        <button>
-          <img src="user-avatar.jpg" alt="My Profile" />
-          <span>個人中心</span>
-        </button>
+        <img src={userIcon} alt="Go to person center page" />
+        個人中心
       </Link>
       <Link to="/">
-        <button>目標管理</button>
+        <img src={goalIcon} alt="Go to manage target page" />
+        目標管理
       </Link>
       {location.pathname === "/" && (
         <SelectDisplayTag displayTag={displayTag} />
       )}
 
-      <button>Logout</button>
+      {/* <button>Logout</button> */}
     </div>
   );
 }

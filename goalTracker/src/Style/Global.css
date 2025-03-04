@@ -1,25 +1,76 @@
 /* 設定全域變數，讓整個專案的顏色、間距、字體大小一致 */
 :root {
-  /* 顏色變數 */
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --background-color: #f8f9fa;
-  --text-color: #212529;
+  /* 🎨 主要顏色 */
+  /* 深棕色（主色） */
+  --primary-color: #584d3d;
+  /* 主要文字顏色 */
+  --primary-text: #453c30;
+  /* 🟢 強調色 */
+  /* 綠色（互動元素、按鈕） */
+  --accent-color: #63a088;
+  --accent-hover: #76b59a;
+
+  /* 🟠 輔助強調色 CTA 按鈕 Hover/點擊狀態 */
+  /* 橘色（按鈕 hover 時） */
+  --highlight-color: #e8a33e;
+  --highlight-hover: #cc7235;
+  /* 背景與輔助色 */
+  /* 背景色（米白） */
+  --background-color: #f8f5f2;
+  /* 次要文字（灰色） */
+  --secondary-text: #8e8e8e;
+  /* 深色背景（用於 footer、深色模式） */
+  --dark-bg: #3c3228;
+
+  /* 🔳 邊框 & 陰影 */
+  /* 淺灰色邊框 */
+  --border-color: #ccc;
+  /* 陰影效果 */
+  --shadow-color: rgba(0, 0, 0, 0.1);
 
   /* 字體大小 */
-  --font-size-sm: 0.875rem;
+  --font-size-base-sm: 0.875rem;
   /* 16px */
-  --font-size-md: 1rem;
-  --font-size-lg: 1.25rem;
+  --font-size-base-md: 1rem;
+  --font-size-base-md-lg: 1.125rem;
+  --font-size-base-lg: 1.25rem;
+
+  --font-size-sm: var(--font-size-base-sm);
+  --font-size-md: var(--font-size-base-md);
+  --font-size-md-lg: var(--font-size-base-md-lg);
+  --font-size-lg: var(--font-size-base-lg);
+
+  /* 字體粗細 */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
 
   /* 間距 */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
+  --spacing-base-xs: 0.25rem;
+  --spacing-base-sm: 0.5rem;
+  --spacing-base-md: 1rem;
+  --spacing-base-lg: 2rem;
+
+  --spacing-xs: var(--spacing-base-xs);
+  --spacing-sm: var(--spacing-base-sm);
+  --spacing-md: var(--spacing-base-md);
+  --spacing-lg: var(--spacing-base-lg);
 
   /* 圓角 */
-  --border-radius: 8px;
+
+  /* 小圓角 (次要按鈕、輸入框) */
+  --radius-sm: 4px;
+  /* 中等圓角 (主要按鈕、卡片) */
+  --radius-md: 8px;
+  /* 大圓角 (模態框、特殊 UI) */
+  --radius-lg: 16px;
+  /* 超大圓角 (浮動按鈕、特殊元素) */
+  --radius-xl: 32px;
+  /* 完全圓形 (用於 Avatar、圓形按鈕) */
+  --radius-full: 999px;
 }
 
 /*  設定全站標準 layout 容器 */
@@ -31,31 +82,29 @@
 
 /* 設定全站統一的按鈕樣式 */
 button {
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
-  text-align: center;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: var(--accent-hover);
 }
 
 /* 平板 （小於等於 768px）*/
 @media (max-width: 768px) {
   :root {
     /* 14.8px */
-    --font-size-xs: calc(var(--font-size-xs) * 0.925);
-    --font-size-sm: calc(var(--font-size-sm) * 0.925);
-    --font-size-md: calc(var(--font-size-md) * 0.925);
-    --font-size-lg: calc(var(--font-size-lg) * 0.925);
+    --font-size-md-lg: calc(var(--font-size-base-md-lg) * 0.925);
+    --font-size-sm: calc(var(--font-size-base-sm) * 0.925);
+    --font-size-md: calc(var(--font-size-base-md) * 0.925);
+    --font-size-lg: calc(var(--font-size-base-lg) * 0.925);
 
     /* 13.6px */
-    --spacing-xs: calc(var(--spacing-xs) * 0.85);
-    --spacing-sm: calc(var(--spacing-sm) * 0.85);
-    --spacing-md: calc(var(--spacing-md) * 0.85);
-    --spacing-lg: calc(var(--spacing-lg) * 0.85);
+    --spacing-xs: calc(var(--spacing-base-xs) * 0.85);
+    --spacing-sm: calc(var(--spacing-base-sm) * 0.85);
+    --spacing-md: calc(var(--spacing-base-md) * 0.85);
+    --spacing-lg: calc(var(--spacing-base-lg) * 0.85);
   }
 }
 
@@ -63,15 +112,15 @@ button {
 @media (max-width: 576px) {
   :root {
     /* 14px */
-    --font-size-xs: calc(var(--font-size-xs) * 0.875);
-    --font-size-sm: calc(var(--font-size-sm) * 0.875);
-    --font-size-md: calc(var(--font-size-md) * 0.875);
-    --font-size-lg: calc(var(--font-size-lg) * 0.875);
+    --font-size-md-lg: calc(var(--font-size-base-md-lg) * 0.875);
+    --font-size-sm: calc(var(--font-size-base-sm) * 0.875);
+    --font-size-md: calc(var(--font-size-base-md) * 0.875);
+    --font-size-lg: calc(var(--font-size-base-lg) * 0.875);
     /* 12px */
-    --spacing-xs: calc(var(--spacing-xs) * 0.75);
-    --spacing-sm: calc(var(--spacing-sm) * 0.75);
-    --spacing-md: calc(var(--spacing-md) * 0.75);
-    --spacing-lg: calc(var(--spacing-lg) * 0.75);
+    --spacing-xs: calc(var(--spacing-base-xs) * 0.75);
+    --spacing-sm: calc(var(--spacing-base-sm) * 0.75);
+    --spacing-md: calc(var(--spacing-base-md) * 0.75);
+    --spacing-lg: calc(var(--spacing-base-lg) * 0.75);
   }
 }
 
@@ -79,14 +128,14 @@ button {
 @media (min-width: 1200px) {
   :root {
     /* 18.4px */
-    --font-size-xs: calc(var(--font-size-xs) * 1.15);
-    --font-size-sm: calc(var(--font-size-sm) * 1.15);
-    --font-size-md: calc(var(--font-size-md) * 1.15);
-    --font-size-lg: calc(var(--font-size-lg) * 1.15);
+    --font-size-md-lg: calc(var(--font-size-base-md-lg) * 1.15);
+    --font-size-sm: calc(var(--font-size-base-sm) * 1.15);
+    --font-size-md: calc(var(--font-size-base-md) * 1.15);
+    --font-size-lg: calc(var(--font-size-base-lg) * 1.15);
     /* 20px */
-    --spacing-xs: calc(var(--spacing-xs) * 1.25);
-    --spacing-sm: calc(var(--spacing-sm) * 1.25);
-    --spacing-md: calc(var(--spacing-md) * 1.25);
-    --spacing-lg: calc(var(--spacing-lg) * 1.25);
+    --spacing-xs: calc(var(--spacing-base-xs) * 1.25);
+    --spacing-sm: calc(var(--spacing-base-sm) * 1.25);
+    --spacing-md: calc(var(--spacing-base-md) * 1.25);
+    --spacing-lg: calc(var(--spacing-base-lg) * 1.25);
   }
 }

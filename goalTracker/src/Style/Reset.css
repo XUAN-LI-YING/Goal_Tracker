@@ -21,7 +21,6 @@ html {
 
 /*  設定全站 body 的字體、行高，讓基礎排版統一 */
 body {
-  /* font-family: "Arial", sans-serif; */
   font-family: "Noto Sans TC", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;

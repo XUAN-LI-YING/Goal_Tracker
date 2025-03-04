@@ -54,6 +54,7 @@ export function SelectDisplayTag({ displayTag }) {
                 onChange={handleTagChange}
                 value={tag}
               />
+              <span className={classes.checkbox}></span>
               <span>{tag}</span>
             </label>
           </li>

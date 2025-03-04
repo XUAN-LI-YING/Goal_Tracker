@@ -1,21 +1,105 @@
+.allGoals {
+  width: 100%;
+}
+
+.allGoals > p {
+  margin-left: 5%;
+}
+
 .goalLists {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .goal {
-  background-color: #ffffff;
   width: 90%;
   display: flex;
   flex-direction: row;
-}
-
-.goalTagList {
-  display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffffff;
+  margin: var(--spacing-base-sm);
+  padding: var(--spacing-base-sm);
+  height: 2.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0.5rem 0.5rem 0.8rem var(--shadow-color);
+  align-items: center;
 }
 
 .goalContent {
   display: flex;
   flex-direction: row;
+  width: 80%;
+  min-width: 0;
+}
+.goalBtn {
+  width: 20%;
+}
+
+.goalContent p {
+  font-size: var(--font-size-sm);
+}
+
+.goalTagList {
+  width: 50%;
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* 
+.goalTag {
+  background-color: #f8f5f2;
+  width: auto;
+  height: 1.6rem;
+  padding: var(--spacing-base-xs);
+  border-radius: var(--radius-md);
+  margin-right: var(--spacing-base-sm);
+  display: flex;
+  line-height: 1rem;
+} */
+.goalContent > div:first-of-type {
+  width: 50%;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+}
+.goalText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 7rem;
+  margin-left: 1rem;
+  /* flex: 1 1 0; 允許彈性成長與收縮 */
+  min-width: 0; /* 防止內容溢出 */
+}
+
+.goalContent input {
+  display: none;
+}
+
+.checkbox {
+  display: inline-block;
+  width: var(--font-size-sm);
+  height: var(--font-size-sm);
+  border: 0.1rem solid #ece8e4;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  position: relative;
+  margin: 0 var(--spacing-base-sm);
+}
+
+.goalContent input:checked + div::before {
+  position: absolute;
+  content: "✔";
+  font-size: var(--font-size-md);
+  color: var(--secondary-text);
+
+  width: 100%;
+  height: 100%;
+  background-color: #ece8e4;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

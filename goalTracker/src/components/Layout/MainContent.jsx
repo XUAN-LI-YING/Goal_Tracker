@@ -7,6 +7,11 @@ import { modalAction } from "../../Store/ModalSlice";
 import { dateAction } from "../../Store/DateSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
+//img
+import prevIcon from "../../assets/prevPage.png";
+import nextIcon from "../../assets/nextPage.png";
+
+import addIcon from "../../assets/add.png";
 
 export default function MainContent() {
   const dispatch = useDispatch();
@@ -14,7 +19,7 @@ export default function MainContent() {
   //Get day to display
   const { year, month, day } = useSelector((state) => state.Date);
   const selectDay = new Date(year, month - 1, day);
-  const displayDay = format(selectDay, "	yyyy MMMM dd ");
+  const displayDay = format(selectDay, "	yyyy年MM月dd日 ");
 
   // AddGoalModal Redux
 
@@ -42,21 +47,28 @@ export default function MainContent() {
 
   return (
     <div className={classes.mainContent}>
-      <select>
+      {/* <select>
         <option value="Daily">Daily</option>
         <option value="Weekly">Weekly</option>
         <option value="Monthly">Monthly</option>
         <option value="Annual">Annual</option>
-      </select>
+      </select> */}
 
-      <h1>Daily Goals</h1>
-      <div>
+      <h1>每日目標</h1>
+      <div className={classes.date}>
+        {" "}
         <h2>{displayDay}</h2>
-        <button onClick={goPreDay}>&lt;</button>
-        <button onClick={goNextDay}>&gt;</button>
+        <button className={classes.goOneDay} onClick={goPreDay}>
+          <img src={prevIcon} alt="Go to prev day." />
+        </button>
+        <button className={classes.goOneDay} onClick={goNextDay}>
+          <img src={nextIcon} alt="Go to next day." />
+        </button>
       </div>
       <GoalItem date={{ year, month, day }} />
-      <button onClick={openModal}>+</button>
+      <button className={classes.addGoalBtn} onClick={openModal}>
+        <img src={addIcon} />
+      </button>
     </div>
   );
 }

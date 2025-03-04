@@ -3,7 +3,7 @@ import classes from "./EditTagForm.module.css";
 import { useEffect, useState } from "react";
 
 //Img
-import prePageImage from "../../assets/prePage.png";
+import prePageImage from "../../assets/prevPage.png";
 
 //Redux
 import { useDispatch } from "react-redux";
