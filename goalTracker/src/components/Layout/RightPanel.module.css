@@ -1,7 +1,28 @@
 /* 右側欄 */
 .rightSidebar {
   width: 30%;
-  background-color: #97f1a3;
-  padding: 20px;
+  background-color: var(--background-color);
+  /* background-color: #f2f2f2; */
+  padding: var(--spacing-md-lg);
   overflow: hidden;
+  box-shadow: -0.5rem 0rem 1rem var(--secondary-background-color);
+}
+
+.rightSidebar > p {
+  font-size: var(--font-size-sm);
+  color: var(--accent-color);
+}
+
+.rightSidebar > button {
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  background-color: var(--accent-color);
+  color: #ffffff;
+  margin-top: var(--spacing-md);
+}
+
+.rightSidebar > button:hover {
+  background-color: var(--accent-hover);
 }

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { format, isToday, isSameDay } from "date-fns";
 
 // Component & Css
-import "./MultiYearCalendar.css";
+// import classes from "./MultiYearCalendar.module.css";
+import classes from "./MultiYearCalendar.module.css";
 import { generateMultiYearCalendar } from "./CalendarGenerate";
 
 // Redux
@@ -39,20 +40,22 @@ const MultiYearCalendar = () => {
   }
 
   return (
-    <div className="calendar-container">
+    <div className={classes.calendarContainer}>
       {/* 日曆顯示 */}
-      <div className="calendar-grid">
+      <div className={classes.calendarGrid}>
         {["日", "一", "二", "三", "四", "五", "六"].map((day) => (
-          <div key={day} className="calendar-header">
+          <div key={day} className={classes.calendarHeader}>
             {day}
           </div>
         ))}
         {currentMonthData.days?.map(({ date, formatted, isCurrentMonth }) => (
           <button
             key={formatted}
-            className={`calendar-day ${isCurrentMonth ? "" : "outside-month"} ${
-              isToday(formatted) ? "today" : ""
-            } ${isSameDay(selectDay, date) ? "selectDay" : ""} `}
+            className={`${classes.calendarDay} ${
+              isCurrentMonth ? "" : classes.outsideMonth
+            } ${isToday(formatted) ? classes.today : ""} ${
+              isSameDay(selectDay, date) ? classes.selectDay : ""
+            } `}
             value={date}
             onClick={navigateToDate}
           >

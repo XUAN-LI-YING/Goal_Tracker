@@ -26,10 +26,15 @@ export default function RightPanel() {
     dispatch(setCalendarAction.changeComponentPage("selectYear"));
   }
 
+  const paragraphs = {
+    selectDay: <p>日曆</p>,
+    selectMonth: <p>選擇月份</p>,
+    selectYear: <p>選擇年份</p>
+  };
+
   return (
     <div className={classes.rightSidebar}>
-      <p>Select Date</p>
-      <p>{componentPage}</p>
+      {paragraphs[componentPage]}
       {componentPage == "selectDay" ? (
         <button onClick={selectMonth}>{`${year}年${month}月`}</button>
       ) : componentPage == "selectMonth" ? (

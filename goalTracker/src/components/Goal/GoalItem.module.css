@@ -2,14 +2,25 @@
   width: 100%;
 }
 
-.allGoals > p {
+.line + p {
   margin-left: 5%;
+  margin-top: 4%;
+  color: var(--accent-color);
 }
 
+.line {
+  height: 1px;
+  width: 90%;
+  background-color: var(--border-color);
+  display: flex;
+  margin: 0 var(--spacing-sm);
+  justify-self: center;
+}
 .goalLists {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 4%;
 }
 
 .goal {
@@ -18,8 +29,8 @@
   flex-direction: row;
   justify-content: space-between;
   background-color: #ffffff;
-  margin: var(--spacing-base-sm);
-  padding: var(--spacing-base-sm);
+  margin: var(--spacing-sm);
+  padding: var(--spacing-sm);
   height: 2.5rem;
   border-radius: var(--radius-md);
   box-shadow: 0.5rem 0.5rem 0.8rem var(--shadow-color);
@@ -33,7 +44,18 @@
   min-width: 0;
 }
 .goalBtn {
+  display: flex;
+  justify-content: end;
   width: 20%;
+}
+
+.goalBtn button {
+  font-size: var(--font-size-sm);
+  color: var(--secondary-text);
+  margin-right: var(--spacing-sm);
+}
+.goalBtn button:hover {
+  color: var(--highlight-color);
 }
 
 .goalContent p {
@@ -47,17 +69,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* 
-.goalTag {
-  background-color: #f8f5f2;
-  width: auto;
-  height: 1.6rem;
-  padding: var(--spacing-base-xs);
-  border-radius: var(--radius-md);
-  margin-right: var(--spacing-base-sm);
-  display: flex;
-  line-height: 1rem;
-} */
+
 .goalContent > div:first-of-type {
   width: 50%;
   display: flex;
@@ -82,11 +94,11 @@
   display: inline-block;
   width: var(--font-size-sm);
   height: var(--font-size-sm);
-  border: 0.1rem solid #ece8e4;
+  border: 0.1rem solid var(--secondary-background-color);
   border-radius: var(--radius-sm);
   cursor: pointer;
   position: relative;
-  margin: 0 var(--spacing-base-sm);
+  margin: 0 var(--spacing-sm);
 }
 
 .goalContent input:checked + div::before {
@@ -102,4 +114,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.noTask {
+  color: var(--secondary-text);
+  margin-left: 5%;
+  margin-top: 5%;
+  font-weight: var(--font-weight-light);
+  margin-top: 4%;
 }

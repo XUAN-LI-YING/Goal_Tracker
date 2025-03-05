@@ -142,7 +142,7 @@ export function AddGoalForm({ availableTags }) {
             {selectedTags.map((tag) => (
               <div key={tag}>
                 <span>{tag}</span>
-                {tag !== "無" && (
+                {tag !== "無標籤" && (
                   <button
                     onClick={(e) => {
                       console.log("🚀 按下刪除按鈕:", tag);

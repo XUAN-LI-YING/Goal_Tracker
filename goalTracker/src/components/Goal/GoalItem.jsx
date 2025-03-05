@@ -106,8 +106,13 @@ export default function GoalItem({ date: { year, month, day } }) {
 
   return (
     <div className={classes.allGoals}>
+      <div className={classes.line}></div>
       <p>今日行程</p>
-      {displaySortGoalTime.length === 0 ? "時標表目前沒有排任何行程" : ""}
+      {displaySortGoalTime.length === 0 ? (
+        <p className={classes.noTask}>目前沒有排任何行程</p>
+      ) : (
+        ""
+      )}
 
       <div className={classes.goalLists}>
         {displaySortGoalTime.map((goal) => (
@@ -129,7 +134,7 @@ export default function GoalItem({ date: { year, month, day } }) {
               <div className={classes.goalTagList}>
                 {goal.selectedTags.map((tag) => (
                   <p className={classes.goalTag} key={tag}>
-                    {tag}
+                    {tag !== "無標籤" ? tag : undefined}
                   </p>
                 ))}
               </div>
@@ -156,8 +161,13 @@ export default function GoalItem({ date: { year, month, day } }) {
         ))}
       </div>
 
+      <div className={classes.line}></div>
       <p>其他代辦事項</p>
-      {displayNoTimeGoal.length === 0 ? "目前無其他代辦事項" : ""}
+      {displayNoTimeGoal.length === 0 ? (
+        <p className={classes.noTask}>目前無其他代辦事項</p>
+      ) : (
+        ""
+      )}
       <div className={classes.goalLists}>
         {displayNoTimeGoal.map((goal) => (
           <div key={goal.id} className={classes.goal}>
@@ -178,7 +188,7 @@ export default function GoalItem({ date: { year, month, day } }) {
               <div className={classes.goalTagList}>
                 {goal.selectedTags.map((tag) => (
                   <p className={classes.goalTag} key={tag}>
-                    {tag}
+                    {tag !== "無標籤" ? tag : undefined}
                   </p>
                 ))}
               </div>

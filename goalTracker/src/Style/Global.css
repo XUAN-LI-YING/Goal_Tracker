@@ -13,10 +13,11 @@
   /* 🟠 輔助強調色 CTA 按鈕 Hover/點擊狀態 */
   /* 橘色（按鈕 hover 時） */
   --highlight-color: #e8a33e;
-  --highlight-hover: #cc7235;
+  --highlight-hover: #eeb053;
   /* 背景與輔助色 */
   /* 背景色（米白） */
   --background-color: #f8f5f2;
+  --secondary-background-color: #ece8e4;
   /* 次要文字（灰色） */
   --secondary-text: #8e8e8e;
   /* 深色背景（用於 footer、深色模式） */
@@ -29,6 +30,7 @@
   --shadow-color: rgba(0, 0, 0, 0.1);
 
   /* 字體大小 */
+
   --font-size-base-sm: 0.875rem;
   /* 16px */
   --font-size-base-md: 1rem;
@@ -51,13 +53,19 @@
   /* 間距 */
   --spacing-base-xs: 0.25rem;
   --spacing-base-sm: 0.5rem;
+  --spacing-base-sm-md: 0.8rem;
   --spacing-base-md: 1rem;
+  --spacing-base-md-lg: 1.25rem;
   --spacing-base-lg: 2rem;
+  --spacing-base-lg-lg: 2.5rem;
 
   --spacing-xs: var(--spacing-base-xs);
   --spacing-sm: var(--spacing-base-sm);
+  --spacing-sm-md: var(--spacing-base-sm-md);
   --spacing-md: var(--spacing-base-md);
+  --spacing-md-lg: var(--spacing-base-md-lg);
   --spacing-lg: var(--spacing-base-lg);
+  --spacing-lg-lg: 2.5rem;
 
   /* 圓角 */
 
@@ -103,7 +111,9 @@ button {
     /* 13.6px */
     --spacing-xs: calc(var(--spacing-base-xs) * 0.85);
     --spacing-sm: calc(var(--spacing-base-sm) * 0.85);
+    --spacing-sm-md: calc(var(--spacing-base-sm-md) * 0.85);
     --spacing-md: calc(var(--spacing-base-md) * 0.85);
+    --spacing-md-lg: calc(var(--spacing-base-md-lg) * 0.85);
     --spacing-lg: calc(var(--spacing-base-lg) * 0.85);
   }
 }
@@ -119,7 +129,9 @@ button {
     /* 12px */
     --spacing-xs: calc(var(--spacing-base-xs) * 0.75);
     --spacing-sm: calc(var(--spacing-base-sm) * 0.75);
+    --spacing-sm-md: calc(var(--spacing-base-sm-md) * 0.75);
     --spacing-md: calc(var(--spacing-base-md) * 0.75);
+    --spacing-md-lg: calc(var(--spacing-base-md-lg) * 0.75);
     --spacing-lg: calc(var(--spacing-base-lg) * 0.75);
   }
 }
@@ -135,7 +147,9 @@ button {
     /* 20px */
     --spacing-xs: calc(var(--spacing-base-xs) * 1.25);
     --spacing-sm: calc(var(--spacing-base-sm) * 1.25);
+    --spacing-sm-md: calc(var(--spacing-base-sm-md) * 1.25);
     --spacing-md: calc(var(--spacing-base-md) * 1.25);
+    --spacing-md-lg: calc(var(--spacing-base-md-lg) * 1.25);
     --spacing-lg: calc(var(--spacing-base-lg) * 1.25);
   }
 }

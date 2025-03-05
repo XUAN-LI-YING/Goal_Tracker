@@ -27,8 +27,8 @@ body {
   font-style: normal;
   font-size: 1rem;
   line-height: 1.5;
-  color: #333;
-  background-color: #fff;
+  color: var(--primary-text);
+  background-color: var(--background-color);
   /* 讓 Mac 裝置上的字體更平滑，避免鋸齒感。*/
   -webkit-font-smoothing: antialiased;
 }

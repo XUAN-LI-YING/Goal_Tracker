@@ -8,7 +8,7 @@ import userIcon from "../../assets/user.png";
 import goalIcon from "../../assets/goal.png";
 
 // React Router
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 //Redux
 import { useSelector } from "react-redux";
@@ -31,18 +31,27 @@ export default function SideBar() {
 
   return (
     <div className={classes.leftSidebar}>
-      <Link to="/home">
+      <NavLink
+        to="/home"
+        className={({ isActive }) => (isActive ? classes.active : undefined)}
+      >
         <img src={homeIcon} alt="Go to home page" />
         首頁
-      </Link>
-      <Link to="/personal">
+      </NavLink>
+      <NavLink
+        to="/personal"
+        className={({ isActive }) => (isActive ? classes.active : undefined)}
+      >
         <img src={userIcon} alt="Go to person center page" />
         個人中心
-      </Link>
-      <Link to="/">
+      </NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive }) => (isActive ? classes.active : undefined)}
+      >
         <img src={goalIcon} alt="Go to manage target page" />
         目標管理
-      </Link>
+      </NavLink>
       {location.pathname === "/" && (
         <SelectDisplayTag displayTag={displayTag} />
       )}

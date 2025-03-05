@@ -25,9 +25,11 @@
   margin-right: var(--spacing-md);
 }
 
-.leftSidebar a:hover {
-  background-color: var(--highlight-color);
+.leftSidebar a {
+  height: 6%;
+  margin: var(--spacing-xs);
 }
-.leftSidebar a:active {
-  transform: scale(0.9);
+
+.active {
+  background-color: var(--highlight-color);
 }

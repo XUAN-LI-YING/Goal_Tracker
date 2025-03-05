@@ -29,7 +29,7 @@ export function useGoalFormHook(initialGoal) {
 
     if (selectedValue && !selectedTags.includes(selectedValue)) {
       setSelectedTags((prev) => [...prev, selectedValue]);
-      setSelectedTags((prev) => prev.filter((tag) => tag !== "無"));
+      setSelectedTags((prev) => prev.filter((tag) => tag !== "無標籤"));
     }
   };
 
@@ -41,7 +41,7 @@ export function useGoalFormHook(initialGoal) {
   useEffect(() => {
     if (selectedTags.length === 0) {
       console.log(123);
-      setSelectedTags(["無"]);
+      setSelectedTags(["無標籤"]);
     }
   }, [selectedTags]);
 

@@ -1,0 +1,65 @@
+.yearSelector,
+.monthSelector {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 10%;
+  text-align: center;
+  height: 50%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+/* 滾動條本體 */
+.yearSelector::-webkit-scrollbar,
+.monthSelector::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* 滾動條的軌道（背景區域） */
+.yearSelector::-webkit-scrollbar-track,
+.monthSelector::-webkit-scrollbar {
+  background: none;
+  border-radius: 4px;
+}
+
+/* 滾動條的滑塊 */
+.yearSelector::-webkit-scrollbar-thumb,
+.monthSelector::-webkit-scrollbar {
+  /* background: rgba(0, 0, 0, 0.3); */
+  background-color: var(--border-color);
+  border-radius: 4px;
+}
+
+/* 滑鼠懸停時的滾動條 */
+.yearSelector::-webkit-scrollbar-thumb:hover,
+.monthSelector::-webkit-scrollbar {
+  /* background: rgba(0, 0, 0, 0.5); */
+  background-color: var(--secondary-text);
+}
+
+.yearSelector button,
+.monthSelector button {
+  width: var(--spacing-lg-lg);
+  height: var(--spacing-lg-lg);
+  margin: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.yearSelector button:active,
+.monthSelector button:active {
+  transform: scale(0.9);
+}
+
+.yearSelector button:hover,
+.monthSelector button:hover {
+  background-color: var(--secondary-background-color);
+}
+.currentYear {
+  background-color: var(--highlight-color);
+}
+.currentMonth {
+  background-color: var(--highlight-color);
+}
