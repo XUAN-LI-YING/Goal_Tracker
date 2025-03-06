@@ -13,11 +13,14 @@
 
 .modalContent {
   background: white;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-lg-lg);
   border-radius: var(--radius-md);
   position: relative;
-  width: 40%;
-  height: 50%;
+  width: 42rem;
+  /* height: 34rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .closeButton {

@@ -1,4 +1,6 @@
 import { useGoalFormHook } from "../../Hooks/useGoalFormHook";
+import classes from "./AddGoalForm.module.css";
+
 //REDUX
 import { modalAction, MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -68,13 +70,13 @@ export function AddGoalForm({ availableTags }) {
   }
 
   return (
-    <form onSubmit={addNewGoal}>
+    <form onSubmit={addNewGoal} className={classes.addGoalForm}>
       <p>
-        Added target to {year}/{month}/{day}
+        新增目標至{year}/{month}/{day}
       </p>
-      <label>
+      <div className={classes.goalTime}>
         是否設定時間
-        <label>
+        <label className={classes.radio}>
           <input
             type="radio"
             name="isSetTime"
@@ -83,35 +85,40 @@ export function AddGoalForm({ availableTags }) {
             onChange={handleChange}
             required
           />
+          <div className={classes.checked}></div>
           YES
         </label>
-        <label>
+        <label className={classes.radio}>
           <input
             type="radio"
             name="isSetTime"
             value="no"
             checked={isSetTime === "no"}
             onChange={handleChange}
+            required
           />
+          <div className={classes.checked}></div>
           NO
         </label>
-      </label>
-
-      <label>
-        目標完成時間：{" "}
-        <input
-          type="time"
-          name="goalTime"
-          value={goalTime}
-          required
-          onChange={handleChange}
-          disabled={isSetTime === "yes" ? false : true}
-        />
-      </label>
-
+        <div>
+          <label
+            className={`${isSetTime === "yes" ? undefined : classes.disabled}`}
+          >
+            目標完成時間
+            <input
+              type="time"
+              name="goalTime"
+              value={goalTime}
+              required
+              onChange={handleChange}
+              disabled={isSetTime === "yes" ? false : true}
+            />
+          </label>
+        </div>
+      </div>
       <div>
-        <label>
-          輸入目標（最多 {maxLength} 個字）：{" "}
+        <label className={classes.goalText}>
+          輸入目標（最多 {maxLength} 個字）
           <input
             type="text"
             name="goalText"
@@ -123,8 +130,8 @@ export function AddGoalForm({ availableTags }) {
           {goalText.length === maxLength && <p>已達字數上限！</p>}
         </label>
       </div>
-      <label>
-        目標詳情：{" "}
+      <label className={classes.goalDetail}>
+        目標詳情
         <textarea
           name="goalDetail"
           rows="5"
@@ -136,11 +143,28 @@ export function AddGoalForm({ availableTags }) {
       </label>
       <div>
         {/* Selected tag list */}
-        <div>
-          <label>選擇標籤：</label>
-          <div>
+        <div className={classes.selectedTags}>
+          <label>選擇標籤</label>
+          <div className={classes.labelOptions}>
+            {availableTags.map((tag) => (
+              <button
+                className={classes.tagBtn}
+                type="button"
+                key={tag}
+                value={tag}
+                onClick={handleTagSelect}
+              >
+                {tag}
+              </button>
+            ))}
+            <button type="button" onClick={goEditPage}>
+              編輯
+            </button>
+          </div>
+          <div className={classes.line}></div>
+          <div className={classes.tagInput}>
             {selectedTags.map((tag) => (
-              <div key={tag}>
+              <div className={classes.tag} key={tag}>
                 <span>{tag}</span>
                 {tag !== "無標籤" && (
                   <button
@@ -156,24 +180,10 @@ export function AddGoalForm({ availableTags }) {
             ))}
           </div>
         </div>
-
-        <div>
-          <button type="button" onClick={goEditPage}>
-            編輯
-          </button>
-          {availableTags.map((tag) => (
-            <button
-              type="button"
-              key={tag}
-              value={tag}
-              onClick={handleTagSelect}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
       </div>
-      <button type="submit">確定</button>
+      <button className={classes.submitGoal} type="submit">
+        確定
+      </button>
     </form>
   );
 }

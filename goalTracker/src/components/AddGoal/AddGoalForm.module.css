@@ -1,0 +1,225 @@
+.addGoalForm {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.addGoalForm > p:first-of-type {
+  color: var(--accent-color);
+  font-size: var(--font-size-md-lg);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.addGoalForm input,
+.addGoalForm textarea {
+  border: 0.1rem solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs);
+  height: var(--spacing-lg);
+  color: var(--primary-text);
+}
+
+.addGoalForm input:focus,
+.addGoalForm textarea:focus {
+  border: 0.16rem solid var(--border-color);
+}
+
+.radio {
+  display: flex;
+  margin-right: var(--spacing-md);
+}
+.goalTime {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--spacing-sm);
+}
+
+.goalTime input {
+  margin-left: var(--spacing-sm);
+}
+
+.disabled {
+  color: var(--border-color);
+}
+.disabled input {
+  color: var(--border-color);
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+}
+.radio label {
+  display: flex;
+  align-items: center;
+  margin: 0 var(--spacing-xs);
+}
+
+.goalText {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--spacing-sm);
+}
+.goalText input {
+  width: 100%;
+}
+
+.goalDetail {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--spacing-sm);
+}
+
+.goalDetail textarea {
+  height: 6rem;
+}
+
+.goalDetail textarea::placeholder {
+  color: var(--border-color);
+}
+
+.selectedTags {
+  width: 100%;
+  margin-top: var(--spacing-sm);
+}
+
+.tagInput {
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-direction: row;
+  height: 5rem;
+  overflow-y: scroll;
+
+  flex-wrap: wrap;
+  border-radius: var(--radius-sm);
+}
+
+/* 滾動條本體 */
+.tagInput::-webkit-scrollbar,
+.labelOptions::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+/* 滾動條的軌道（背景區域） */
+.tagInput::-webkit-scrollbar-track,
+.labelOptions::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* 滾動條的滑塊 */
+.tagInput::-webkit-scrollbar-thumb,
+.labelOptions::-webkit-scrollbar-thumb {
+  /* background: rgba(0, 0, 0, 0.3); */
+  background-color: var(--border-color);
+}
+
+/* 滑鼠懸停時的滾動條 */
+.tagInput::-webkit-scrollbar-thumb:hover,
+.labelOptions::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary-text);
+}
+
+.line {
+  margin-top: var(--spacing-md-lg);
+  border: 0.05rem dashed var(--border-color);
+}
+.tag {
+  display: flex;
+  background-color: var(--background-color);
+  height: 1.6rem;
+  align-items: center;
+  margin: var(--spacing-xs);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+}
+
+.tag span {
+  margin-right: var(--spacing-xs);
+}
+
+.tag button {
+  font-size: 0.6rem;
+}
+
+.tag button:hover {
+  transform: scale(1.2);
+}
+.tag button:active {
+  transform: scale(0.9);
+}
+
+.tagBtn {
+  display: flex;
+  background-color: var(--background-color);
+  height: 1rem;
+  align-items: center;
+  margin: var(--spacing-xs);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+}
+
+.tagBtn:hover {
+  background-color: var(--secondary-background-color);
+}
+.tagBtn:active {
+  transform: scale(0.9);
+}
+
+.labelOptions {
+  display: flex;
+  height: 5rem;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+}
+
+.radio input {
+  width: 1px;
+  height: 1px;
+}
+
+.checked {
+  border: 0.1rem solid var(--border-color);
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: var(--radius-full);
+  margin: 0 var(--spacing-sm);
+  position: relative;
+  cursor: pointer;
+}
+
+.radio input:checked + .checked::before {
+  position: absolute;
+  content: "●";
+  font-size: 0.8m;
+  color: var(--highlight-color);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submitGoal {
+  background-color: var(--accent-color);
+  width: 15%;
+  height: 12%;
+  padding: var(--spacing-xs);
+  text-align: center;
+  color: #fff;
+  border-radius: var(--radius-sm);
+  align-self: end;
+  font-size: var(--font-size-md-lg);
+}
+
+.submitGoal:hover {
+  background-color: #518e75;
+}
+
+.submitGoal:active {
+  transform: scale(0.9);
+}

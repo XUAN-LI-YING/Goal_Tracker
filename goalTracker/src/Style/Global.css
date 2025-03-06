@@ -9,6 +9,7 @@
   /* 綠色（互動元素、按鈕） */
   --accent-color: #63a088;
   --accent-hover: #76b59a;
+  --accent-hover-dark: #518e75;
 
   /* 🟠 輔助強調色 CTA 按鈕 Hover/點擊狀態 */
   /* 橘色（按鈕 hover 時） */
