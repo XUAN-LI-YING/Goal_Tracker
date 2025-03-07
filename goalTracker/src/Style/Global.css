@@ -33,12 +33,14 @@
   /* 字體大小 */
 
   --font-size-base-sm: 0.875rem;
+  --font-size-base-sm-md: 0.9rem;
   /* 16px */
   --font-size-base-md: 1rem;
   --font-size-base-md-lg: 1.125rem;
   --font-size-base-lg: 1.25rem;
 
   --font-size-sm: var(--font-size-base-sm);
+  --font-size-sm-md: var(--font-size-base-sm-md);
   --font-size-md: var(--font-size-base-md);
   --font-size-md-lg: var(--font-size-base-md-lg);
   --font-size-lg: var(--font-size-base-lg);
@@ -106,6 +108,7 @@ button {
     /* 14.8px */
     --font-size-md-lg: calc(var(--font-size-base-md-lg) * 0.925);
     --font-size-sm: calc(var(--font-size-base-sm) * 0.925);
+    --font-size-sm-md: calc(var(--font-size-base-sm-md) * 0.925);
     --font-size-md: calc(var(--font-size-base-md) * 0.925);
     --font-size-lg: calc(var(--font-size-base-lg) * 0.925);
 
@@ -125,6 +128,7 @@ button {
     /* 14px */
     --font-size-md-lg: calc(var(--font-size-base-md-lg) * 0.875);
     --font-size-sm: calc(var(--font-size-base-sm) * 0.875);
+    --font-size-sm-md: calc(var(--font-size-base-sm-md) * 0.875);
     --font-size-md: calc(var(--font-size-base-md) * 0.875);
     --font-size-lg: calc(var(--font-size-base-lg) * 0.875);
     /* 12px */
@@ -141,16 +145,17 @@ button {
 @media (min-width: 1200px) {
   :root {
     /* 18.4px */
-    --font-size-md-lg: calc(var(--font-size-base-md-lg) * 1.15);
-    --font-size-sm: calc(var(--font-size-base-sm) * 1.15);
-    --font-size-md: calc(var(--font-size-base-md) * 1.15);
-    --font-size-lg: calc(var(--font-size-base-lg) * 1.15);
+    --font-size-md-lg: calc(var(--font-size-base-md-lg) * 1.1);
+    --font-size-sm: calc(var(--font-size-base-sm) * 1.1);
+    --font-size-sm-md: calc(var(--font-size-base-sm-md) * 1.1);
+    --font-size-md: calc(var(--font-size-base-md) * 1.1);
+    --font-size-lg: calc(var(--font-size-base-lg) * 1.1);
     /* 20px */
-    --spacing-xs: calc(var(--spacing-base-xs) * 1.25);
-    --spacing-sm: calc(var(--spacing-base-sm) * 1.25);
-    --spacing-sm-md: calc(var(--spacing-base-sm-md) * 1.25);
-    --spacing-md: calc(var(--spacing-base-md) * 1.25);
-    --spacing-md-lg: calc(var(--spacing-base-md-lg) * 1.25);
-    --spacing-lg: calc(var(--spacing-base-lg) * 1.25);
+    --spacing-xs: calc(var(--spacing-base-xs) * 1.2);
+    --spacing-sm: calc(var(--spacing-base-sm) * 1.2);
+    --spacing-sm-md: calc(var(--spacing-base-sm-md) * 1.2);
+    --spacing-md: calc(var(--spacing-base-md) * 1.2);
+    --spacing-md-lg: calc(var(--spacing-base-md-lg) * 1.2);
+    --spacing-lg: calc(var(--spacing-base-lg) * 1.2);
   }
 }

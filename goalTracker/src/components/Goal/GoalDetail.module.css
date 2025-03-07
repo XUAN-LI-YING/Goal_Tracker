@@ -1,0 +1,138 @@
+.goalForm p {
+  color: var(--accent-color);
+  font-size: var(--font-size-md);
+  margin-bottom: var(--spacing-md-lg);
+}
+
+.goalForm input,
+.goalForm textarea {
+  border: 0.1rem solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs);
+  height: var(--spacing-lg);
+  color: var(--primary-text);
+}
+.goalForm label {
+  font-size: var(--font-size-sm);
+}
+
+.goalForm input:focus,
+.goalForm textarea:focus {
+  border: 0.16rem solid var(--border-color);
+}
+
+.goalText {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--spacing-md-lg);
+}
+.goalText input {
+  width: 100%;
+}
+
+.goalText p {
+  color: var(--highlight-color);
+}
+
+/* goalTime */
+
+.goalForm > label:first-of-type {
+  display: flex;
+}
+.radioSection {
+  display: flex;
+}
+.radio {
+  display: flex;
+  margin-left: var(--spacing-lg);
+  align-items: center;
+}
+.goalTime {
+  display: flex;
+  align-items: center;
+  margin-top: var(--spacing-md-lg);
+}
+.goalTime input {
+  margin-left: var(--spacing-lg);
+}
+
+.disabled {
+  color: var(--border-color);
+}
+.disabled input {
+  color: var(--border-color);
+}
+
+.radio input {
+  width: 1px;
+  height: 1px;
+  margin-left: -7px;
+}
+
+.checked {
+  border: 0.1rem solid var(--border-color);
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: var(--radius-full);
+  margin: 0 var(--spacing-sm);
+  position: relative;
+  cursor: pointer;
+}
+
+.radio input:checked + .checked::before {
+  position: absolute;
+  content: "●";
+  font-size: 0.8m;
+  color: var(--border-color);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* goalDetail */
+.goalDetail {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--spacing-md-lg);
+}
+
+.goalDetail textarea {
+  height: 6rem;
+}
+
+.goalDetail textarea::placeholder {
+  color: var(--border-color);
+  font-size: var(--font-size-sm);
+}
+
+.labelSection {
+  margin-top: var(--spacing-md-lg);
+}
+
+/* btn */
+.btnSection {
+  margin-top: var(--spacing-md-lg);
+}
+
+.submitBtn button,
+.closeBtn button {
+  background-color: var(--accent-color);
+  width: 15%;
+  height: 12%;
+  padding: var(--spacing-xs);
+  text-align: center;
+  color: #fff;
+  border-radius: var(--radius-md);
+  align-self: end;
+  font-size: var(--font-size-sm);
+}
+
+.btnSection button:hover {
+  background-color: #518e75;
+}
+.btnSection:active {
+  transform: scale(0.9);
+}

@@ -141,46 +141,52 @@ export function AddGoalForm({ availableTags }) {
           value={goalDetail}
         ></textarea>
       </label>
-      <div>
-        {/* Selected tag list */}
-        <div className={classes.selectedTags}>
+
+      {/* Selected tag list */}
+      <div className={classes.selectedTags}>
+        <div>
           <label>選擇標籤</label>
-          <div className={classes.labelOptions}>
-            {availableTags.map((tag) => (
-              <button
-                className={classes.tagBtn}
-                type="button"
-                key={tag}
-                value={tag}
-                onClick={handleTagSelect}
-              >
-                {tag}
-              </button>
-            ))}
-            <button type="button" onClick={goEditPage}>
-              編輯
+          <button
+            className={classes.editTag}
+            type="button"
+            onClick={goEditPage}
+          >
+            編輯
+          </button>
+        </div>
+        <div className={classes.labelOptions}>
+          {availableTags.map((tag) => (
+            <button
+              className={classes.tagBtn}
+              type="button"
+              key={tag}
+              value={tag}
+              onClick={handleTagSelect}
+            >
+              {tag}
             </button>
-          </div>
-          <div className={classes.line}></div>
-          <div className={classes.tagInput}>
-            {selectedTags.map((tag) => (
-              <div className={classes.tag} key={tag}>
-                <span>{tag}</span>
-                {tag !== "無標籤" && (
-                  <button
-                    onClick={(e) => {
-                      console.log("🚀 按下刪除按鈕:", tag);
-                      handleRemoveTag(tag);
-                    }}
-                  >
-                    ❌
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
+          ))}
+        </div>
+        <div className={classes.line}></div>
+        <div className={classes.tagInput}>
+          {selectedTags.map((tag) => (
+            <div className={classes.tag} key={tag}>
+              <span>{tag}</span>
+              {tag !== "無標籤" && (
+                <button
+                  onClick={(e) => {
+                    console.log("🚀 按下刪除按鈕:", tag);
+                    handleRemoveTag(tag);
+                  }}
+                >
+                  ❌
+                </button>
+              )}
+            </div>
+          ))}
         </div>
       </div>
+
       <button className={classes.submitGoal} type="submit">
         確定
       </button>

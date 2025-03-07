@@ -23,9 +23,9 @@ html {
 body {
   font-family: "Noto Sans TC", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   font-style: normal;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   line-height: 1.5;
   color: var(--primary-text);
   background-color: var(--background-color);
@@ -75,7 +75,8 @@ img {
 input,
 textarea,
 button,
-select {
+select,
+fieldset {
   font: inherit;
   border: none;
   background: none;

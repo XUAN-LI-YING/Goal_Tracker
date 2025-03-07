@@ -9,7 +9,7 @@
 }
 
 .rightSidebar > p {
-  font-size: var(--font-size-sm);
+  /* font-size: var(--font-size-sm); */
   color: var(--accent-color);
 }
 
@@ -21,8 +21,13 @@
   background-color: var(--accent-color);
   color: #ffffff;
   margin-top: var(--spacing-md);
+  font-size: var(--font-size-sm);
 }
 
 .rightSidebar > button:hover {
+  background-color: var(--accent-hover);
+}
+
+.rightSidebar > button:active {
   background-color: var(--accent-hover);
 }

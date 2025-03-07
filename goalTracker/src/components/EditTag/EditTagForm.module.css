@@ -1,15 +1,99 @@
 .prePageBtn {
   position: absolute;
-  font-weight: 800;
-  font-size: x-large;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-full);
+  width: 2rem;
 }
+
+.prePageBtn:hover {
+  background-color: var(--secondary-background-color);
+}
+
 .editContainer {
   position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .editForm {
-  padding: 10%;
+  margin-top: 12%;
+  padding: 0 var(--spacing-lg-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.editForm > div:first-of-type {
+  display: flex;
+  align-items: center;
+}
+.editForm > div > p:first-of-type {
+  color: var(--accent-color);
+}
+.addBtn {
+  background-color: var(--accent-color);
+  width: 0.7rem;
+  height: 0.7rem;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-full);
+  margin-left: var(--spacing-sm);
+}
+
+.addBtn:active {
+  transform: scale(0.9);
+}
+
+.tag {
+  display: flex;
+  background-color: var(--background-color);
+  height: 1.6rem;
+  align-items: center;
+  margin: var(--spacing-xs);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+}
+
+.tag span {
+  margin-right: var(--spacing-xs);
+}
+
+.tag button {
+  font-size: 0.6rem;
+}
+.tag button:hover {
+  transform: scale(1.2);
+}
+
+.tagList {
+  display: flex;
+  display: flex;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+  position: relative;
+  height: 25rem;
+  margin-top: var(--spacing-lg);
+  align-content: flex-start;
+}
+
+/* 滾動條本體 */
+.tagList::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+/* 滾動條的軌道（背景區域） */
+.tagList::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* 滾動條的滑塊 */
+.tagList::-webkit-scrollbar-thumb {
+  /* background: rgba(0, 0, 0, 0.3); */
+  background-color: var(--border-color);
+}
+
+/* 滑鼠懸停時的滾動條 */
+.tagList::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary-text);
 }

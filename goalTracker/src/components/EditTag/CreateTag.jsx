@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Picker from "@emoji-mart/react";
+import classes from "./CreateTag.module.css";
 
 //Redux
 import { useEffect } from "react";
@@ -53,7 +54,7 @@ export default function CreateTag() {
 
   return (
     <div>
-      <form onSubmit={postTag}>
+      <form onSubmit={postTag} className={classes.addTag}>
         <button
           type="button"
           onClick={() => setIsPickerVisible(!isPickerVisible)}
@@ -67,12 +68,9 @@ export default function CreateTag() {
           onChange={(e) => setInputText(e.target.value)}
         />
         <button type="submit">新增</button>
-        {hasSubmitted && !isFormValid && (
-          <p>請選擇欲新增標籤的Emoji以及填入標籤名稱!</p>
-        )}
 
         {isPickerVisible && (
-          <div>
+          <div className={classes.picker}>
             <Picker
               set="facebook"
               emoji="department_store"
@@ -81,6 +79,9 @@ export default function CreateTag() {
               previewPosition="none"
             />
           </div>
+        )}
+        {hasSubmitted && !isFormValid && (
+          <p className={classes.prompt}>請選擇Emoji並填入標籤名稱!</p>
         )}
       </form>
     </div>

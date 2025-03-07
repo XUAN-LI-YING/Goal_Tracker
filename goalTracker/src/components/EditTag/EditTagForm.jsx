@@ -3,7 +3,8 @@ import classes from "./EditTagForm.module.css";
 import { useEffect, useState } from "react";
 
 //Img
-import prePageImage from "../../assets/prevPage.png";
+import prevPageImage from "../../assets/prevPage.png";
+import addImage from "../../assets/add.png";
 
 //Redux
 import { useDispatch } from "react-redux";
@@ -47,20 +48,26 @@ export default function EditTagForm({ availableTags, prev }) {
   return (
     <div className={classes.editContainer}>
       <button onClick={goPrePage} className={classes.prePageBtn}>
-        &lt;
+        <img src={prevPageImage} />
       </button>
       <div className={classes.editForm}>
-        <p>Tag</p>
-        <button onClick={createTag}>+</button>
+        <div>
+          <p>所有標籤</p>
+          <button className={classes.addBtn} onClick={createTag}>
+            <img src={addImage} />
+          </button>
+        </div>
         {showInput && <CreateTag />}
-        {availableTags.map((tag) => (
-          <div key={tag}>
-            <span>{tag}</span>
-            <button value={tag} onClick={removeTagFromDataBase}>
-              X
-            </button>
-          </div>
-        ))}
+        <div className={classes.tagList}>
+          {availableTags.map((tag) => (
+            <div className={classes.tag} key={tag}>
+              <span>{tag}</span>
+              <button value={tag} onClick={removeTagFromDataBase}>
+                ❌
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -16,8 +16,8 @@
   padding: var(--spacing-lg-lg);
   border-radius: var(--radius-md);
   position: relative;
-  width: 42rem;
-  /* height: 34rem; */
+  width: 45rem;
+  height: 43rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,4 +29,13 @@
   right: 5%;
   font-size: var(--font-size-lg);
   cursor: pointer;
+  z-index: 20;
+}
+
+.closeButton:hover {
+  transform: scale(1.2);
+}
+
+.closeButton:active {
+  transform: scale(1.2);
 }

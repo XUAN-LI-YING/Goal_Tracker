@@ -1,0 +1,41 @@
+.addTag input {
+  border: 0.09rem solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--spacing-xs);
+  height: 1.8rem;
+  color: var(--primary-text);
+  font-size: var(--font-size-sm);
+  margin: 0 var(--spacing-xs);
+}
+
+.addTag input::placeholder {
+  color: var(--border-color);
+}
+.addTag {
+  margin-top: var(--spacing-md);
+}
+
+.addTag button {
+  background-color: var(--background-color);
+  padding: 0.3rem 0.8rem;
+  color: var(--accent-color);
+  font-size: var(--font-size-sm);
+}
+
+.addTag button:active {
+  color: var(--accent-hover);
+}
+
+.addTag > button:first-of-type {
+  position: relative;
+}
+.picker {
+  position: absolute;
+  z-index: 1;
+}
+
+.prompt {
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-sm);
+  /* color: var(--accent-color); */
+}

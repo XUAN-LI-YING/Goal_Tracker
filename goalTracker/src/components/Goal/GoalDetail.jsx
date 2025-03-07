@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useGoalFormHook } from "../../Hooks/useGoalFormHook";
+import classes from "./GoalDetail.module.css";
 //Redux
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -79,10 +80,55 @@ export default function GoalDetail() {
 
   return (
     <form>
-      <fieldset disabled={disableEditGoal}>
+      <fieldset disabled={disableEditGoal} className={classes.goalForm}>
         <p>{`${year}年${month}月${day}日`}</p>
+
         <label>
-          目標名稱：{" "}
+          是否設定時間
+          <div className={classes.radioSection}>
+            <label className={classes.radio}>
+              <input
+                type="radio"
+                name="isSetTime"
+                value="yes"
+                checked={isSetTime === "yes"}
+                onChange={handleChange}
+                required
+              />
+              <div className={classes.checked}></div>
+              YES
+            </label>
+            <label className={classes.radio}>
+              <input
+                type="radio"
+                name="isSetTime"
+                value="no"
+                checked={isSetTime === "no"}
+                onChange={handleChange}
+              />
+              <div className={classes.checked}></div>
+              NO
+            </label>
+          </div>
+        </label>
+
+        <label
+          className={`${classes.goalTime} ${
+            isSetTime === "yes" ? undefined : classes.disabled
+          }`}
+        >
+          目標完成時間
+          <input
+            type="time"
+            name="goalTime"
+            value={goalTime}
+            required
+            onChange={handleChange}
+            disabled={isSetTime === "no" ? true : false}
+          />
+        </label>
+        <label className={classes.goalText}>
+          目標名稱
           <input
             value={goalText}
             required
@@ -94,46 +140,9 @@ export default function GoalDetail() {
             <p>已達{maxLength}字的字數上限！</p>
           )}
         </label>
-
-        <label>
-          是否設定時間：{" "}
-          <label>
-            <input
-              type="radio"
-              name="isSetTime"
-              value="yes"
-              checked={isSetTime === "yes"}
-              onChange={handleChange}
-              required
-            />
-            YES
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="isSetTime"
-              value="no"
-              checked={isSetTime === "no"}
-              onChange={handleChange}
-            />
-            NO
-          </label>
-        </label>
-
-        <label>
-          目標完成時間：{" "}
-          <input
-            type="time"
-            name="goalTime"
-            value={goalTime}
-            required
-            onChange={handleChange}
-            disabled={isSetTime === "no" ? true : false}
-          />
-        </label>
-        <label>
-          目標詳情：{" "}
-          <input
+        <label className={classes.goalDetail}>
+          目標詳情
+          <textarea
             value={goalDetail}
             required
             onChange={handleChange}
@@ -144,8 +153,8 @@ export default function GoalDetail() {
 
         <div>
           {/* Selected tag list */}
-          <div>
-            <label>標籤：</label>
+          <div className={classes.labelSection}>
+            <label>標籤</label>
             <div>
               {selectedTags.map((tag) => (
                 <div key={tag}>
@@ -184,28 +193,41 @@ export default function GoalDetail() {
           )}
         </div>
         {disableEditGoal === false && (
-          <>
-            <button type="submit" onClick={handleUpdateGoal}>
+          <div className={classes.btnSection}>
+            <button
+              className={classes.submitBtn}
+              type="submit"
+              onClick={handleUpdateGoal}
+            >
               確定
             </button>
-            <button type="button" onClick={handleUndoGoal}>
+            <button
+              className={classes.cancelBtn}
+              type="button"
+              onClick={handleUndoGoal}
+            >
               取消
             </button>
-          </>
+          </div>
         )}
       </fieldset>
       {disableEditGoal === true && (
-        <>
-          <button type="button" onClick={handleIsEditGoal}>
+        <div className={classes.btnSection}>
+          <button
+            className={classes.editBtn}
+            type="button"
+            onClick={handleIsEditGoal}
+          >
             修改
           </button>
           <button
+            className={classes.closeBtn}
             type="button"
             onClick={() => dispatch(goalDetailModalAction.closeDetailModal())}
           >
             關閉
           </button>
-        </>
+        </div>
       )}
     </form>
   );

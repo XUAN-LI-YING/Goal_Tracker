@@ -58,6 +58,10 @@
   background-color: var(--accent-hover);
   border-radius: var(--radius-full);
 }
+.goOneDay:active {
+  background-color: var(--accent-hover);
+  border-radius: var(--radius-full);
+}
 
 .date {
   display: flex;
@@ -80,6 +84,12 @@
   transition: transform 0.3s ease;
 }
 .addGoalBtn:hover {
+  background-color: var(--accent-hover);
+  border-radius: var(--radius-full);
+  transform: scale(1.2);
+}
+
+.addGoalBtn:active {
   background-color: var(--accent-hover);
   border-radius: var(--radius-full);
   transform: scale(1.2);

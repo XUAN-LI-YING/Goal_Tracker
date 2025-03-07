@@ -2,10 +2,11 @@
 import { useDispatch } from "react-redux";
 import { modalAction } from "../../Store/ModalSlice";
 
+//
 import classes from "./ModalUI.module.css";
+
 export default function Modal({ children }) {
   // openGoalModalState
-
   const dispatch = useDispatch();
 
   return (

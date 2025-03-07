@@ -84,6 +84,10 @@
   width: 100%;
   margin-top: var(--spacing-sm);
 }
+.selectedTags > div:first-of-type {
+  display: flex;
+  justify-content: space-between;
+}
 
 .tagInput {
   margin-top: var(--spacing-md);
@@ -174,6 +178,19 @@
   height: 5rem;
   overflow-y: scroll;
   flex-wrap: wrap;
+  position: relative;
+}
+.editTag {
+  margin-right: var(--spacing-sm-md);
+  font-size: var(--font-size-sm);
+  color: var(--secondary-text);
+}
+
+.editTag:hover {
+  color: #858585;
+}
+.editTag:active {
+  color: #858585;
 }
 
 .radio input {
@@ -195,7 +212,7 @@
   position: absolute;
   content: "●";
   font-size: 0.8m;
-  color: var(--highlight-color);
+  color: var(--border-color);
   width: 100%;
   height: 100%;
   text-align: center;
@@ -214,6 +231,7 @@
   border-radius: var(--radius-sm);
   align-self: end;
   font-size: var(--font-size-md-lg);
+  margin-top: var(--spacing-xs);
 }
 
 .submitGoal:hover {
