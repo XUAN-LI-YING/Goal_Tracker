@@ -187,10 +187,10 @@
 }
 
 .editTag:hover {
-  color: #858585;
+  color: var(--secondary-text-dark);
 }
 .editTag:active {
-  color: #858585;
+  color: var(--secondary-text-dark);
 }
 
 .radio input {

@@ -9,7 +9,7 @@
   /* 綠色（互動元素、按鈕） */
   --accent-color: #63a088;
   --accent-hover: #76b59a;
-  --accent-hover-dark: #518e75;
+  --accent-hover-dark: #49866c;
 
   /* 🟠 輔助強調色 CTA 按鈕 Hover/點擊狀態 */
   /* 橘色（按鈕 hover 時） */
@@ -21,6 +21,7 @@
   --secondary-background-color: #ece8e4;
   /* 次要文字（灰色） */
   --secondary-text: #8e8e8e;
+  --secondary-text-dark: #7b7b7b;
   /* 深色背景（用於 footer、深色模式） */
   --dark-bg: #3c3228;
 

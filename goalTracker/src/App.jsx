@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import page
 import Root from "./Pages/Root";
 import Home from "./pages/home";
-import Personal from "./Pages/personal";
+import Personal from "./Pages/Personal";
 import Goals from "./Pages/Goals";
 import Loading from "./components/CompletionStats/loading";
 //Redux store

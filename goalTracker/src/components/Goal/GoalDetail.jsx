@@ -83,33 +83,31 @@ export default function GoalDetail() {
       <fieldset disabled={disableEditGoal} className={classes.goalForm}>
         <p>{`${year}年${month}月${day}日`}</p>
 
-        <label>
+        <label className={classes.radioSection}>
           是否設定時間
-          <div className={classes.radioSection}>
-            <label className={classes.radio}>
-              <input
-                type="radio"
-                name="isSetTime"
-                value="yes"
-                checked={isSetTime === "yes"}
-                onChange={handleChange}
-                required
-              />
-              <div className={classes.checked}></div>
-              YES
-            </label>
-            <label className={classes.radio}>
-              <input
-                type="radio"
-                name="isSetTime"
-                value="no"
-                checked={isSetTime === "no"}
-                onChange={handleChange}
-              />
-              <div className={classes.checked}></div>
-              NO
-            </label>
-          </div>
+          <label className={classes.radio}>
+            <input
+              type="radio"
+              name="isSetTime"
+              value="yes"
+              checked={isSetTime === "yes"}
+              onChange={handleChange}
+              required
+            />
+            <div className={classes.checked}></div>
+            YES
+          </label>
+          <label className={classes.radio}>
+            <input
+              type="radio"
+              name="isSetTime"
+              value="no"
+              checked={isSetTime === "no"}
+              onChange={handleChange}
+            />
+            <div className={classes.checked}></div>
+            NO
+          </label>
         </label>
 
         <label
@@ -136,7 +134,7 @@ export default function GoalDetail() {
             maxLength={maxLength}
             name="goalText"
           />
-          {goalText.length === maxLength && (
+          {goalText.length === maxLength && disableEditGoal === false && (
             <p>已達{maxLength}字的字數上限！</p>
           )}
         </label>
@@ -153,11 +151,11 @@ export default function GoalDetail() {
 
         <div>
           {/* Selected tag list */}
-          <div className={classes.labelSection}>
+          <div className={classes.selectedTags}>
             <label>標籤</label>
-            <div>
+            <div className={classes.tagInput}>
               {selectedTags.map((tag) => (
-                <div key={tag}>
+                <div className={classes.tag} key={tag}>
                   <span>{tag}</span>
                   {disableEditGoal === false && tag !== "無標籤" && (
                     <button
@@ -173,22 +171,30 @@ export default function GoalDetail() {
               ))}
             </div>
           </div>
+          <div className={classes.line}></div>
 
           {disableEditGoal === false && (
-            <div>
-              <button type="button" onClick={goEditTagPage}>
+            <div className={classes.labelBtnSection}>
+              <button
+                className={classes.editTag}
+                type="button"
+                onClick={goEditTagPage}
+              >
                 編輯
               </button>
-              {availableTags.map((tag) => (
-                <button
-                  type="button"
-                  key={tag}
-                  value={tag}
-                  onClick={handleTagSelect}
-                >
-                  {tag}
-                </button>
-              ))}
+              <div className={classes.labelOptions}>
+                {availableTags.map((tag) => (
+                  <button
+                    className={classes.tagBtn}
+                    type="button"
+                    key={tag}
+                    value={tag}
+                    onClick={handleTagSelect}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>
@@ -202,7 +208,7 @@ export default function GoalDetail() {
               確定
             </button>
             <button
-              className={classes.cancelBtn}
+              className={classes.cancleBtn}
               type="button"
               onClick={handleUndoGoal}
             >
