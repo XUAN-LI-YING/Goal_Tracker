@@ -1,8 +1,8 @@
 import { useEffect, useState, useMemo } from "react";
 import classes from "./GoalItem.module.css";
+import { motion } from "framer-motion";
 
 //Redux
-
 import {
   dailyGoalsAction,
   getGoalThunk,
@@ -96,7 +96,6 @@ export default function GoalItem({ date: { year, month, day } }) {
     //Delete the goal and update the number of goal completions at the same time
 
     if (isComplete === true) {
-      console.log("123");
       dispatch(
         completeGoalThunk({ year, month, day, id, isComplete: !isComplete })
       );
@@ -116,7 +115,13 @@ export default function GoalItem({ date: { year, month, day } }) {
 
       <div className={classes.goalLists}>
         {displaySortGoalTime.map((goal) => (
-          <div key={goal.id} className={classes.goal}>
+          <motion.div
+            key={goal.id}
+            className={classes.goal}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
             <label className={classes.goalContent}>
               <div>
                 <input
@@ -157,7 +162,7 @@ export default function GoalItem({ date: { year, month, day } }) {
                 刪除
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
@@ -170,7 +175,13 @@ export default function GoalItem({ date: { year, month, day } }) {
       )}
       <div className={classes.goalLists}>
         {displayNoTimeGoal.map((goal) => (
-          <div key={goal.id} className={classes.goal}>
+          <motion.div
+            key={goal.id}
+            className={classes.goal}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
             <label className={classes.goalContent}>
               <div>
                 <input
@@ -212,7 +223,7 @@ export default function GoalItem({ date: { year, month, day } }) {
                 刪除
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}{" "}
       </div>
     </div>

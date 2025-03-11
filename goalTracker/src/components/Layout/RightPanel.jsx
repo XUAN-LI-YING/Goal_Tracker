@@ -6,6 +6,8 @@ import SetCalenderYear from "../DailyCalender/SetCalendarYear";
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
 import { setCalendarAction } from "../../Store/DateSlice";
+//Animation
+import { AnimatePresence } from "framer-motion";
 
 export default function RightPanel() {
   // REDUX Date
@@ -44,15 +46,17 @@ export default function RightPanel() {
       ) : (
         <p>No matching componentPage</p>
       )}
-      {componentPage == "selectDay" ? (
-        <MultiYearCalendar />
-      ) : componentPage == "selectMonth" ? (
-        <SetCalenderMonth />
-      ) : componentPage == "selectYear" ? (
-        <SetCalenderYear />
-      ) : (
-        <p>No matching Component</p>
-      )}
+      <AnimatePresence mode="wait">
+        {componentPage == "selectDay" ? (
+          <MultiYearCalendar key="selectDay" />
+        ) : componentPage == "selectMonth" ? (
+          <SetCalenderMonth key="selectMonth" />
+        ) : componentPage == "selectYear" ? (
+          <SetCalenderYear key="selectYear" />
+        ) : (
+          <p>No matching Component</p>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

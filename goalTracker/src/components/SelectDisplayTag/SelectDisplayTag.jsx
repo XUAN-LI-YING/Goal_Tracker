@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 import classes from "./SelectDisplayTag.module.css";
+//Animation
+import { motion, AnimatePresence } from "framer-motion";
+
 //Redux
 import { selectTagAction } from "../../Store/SelectTagSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -43,23 +46,32 @@ export function SelectDisplayTag({ displayTag }) {
   }
 
   return (
-    <div className={classes.tagSection}>
-      <ul>
-        {displayTag.map((tag) => (
-          <li key={tag}>
-            <label>
-              <input
-                type="checkbox"
-                checked={selectedTags.includes(tag)}
-                onChange={handleTagChange}
-                value={tag}
-              />
-              <span className={classes.checkbox}></span>
-              <span>{tag}</span>
-            </label>
-          </li>
-        ))}
-      </ul>
+    <div>
+      <AnimatePresence mode="wait">
+        <motion.ul
+          key={displayTag.join(",")}
+          className={classes.tagSection}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+          exit={{ opacity: 0 }}
+        >
+          {displayTag.map((tag) => (
+            <li key={tag}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={selectedTags.includes(tag)}
+                  onChange={handleTagChange}
+                  value={tag}
+                />
+                <span className={classes.checkbox}></span>
+                <span>{tag}</span>
+              </label>
+            </li>
+          ))}
+        </motion.ul>
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,12 +1,12 @@
-// css
+// css、Animation
 import classes from "./SetCalendar.module.css";
-
+import { motion } from "framer-motion";
 // Redux
 import { dateAction } from "../../Store/DateSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { setCalendarAction } from "../../Store/DateSlice";
 
-export default function SetCalenderYear() {
+export default function SetCalenderYear({ key }) {
   // Redux
   const currentYear = useSelector((state) => {
     console.log("yearSlice");
@@ -20,7 +20,14 @@ export default function SetCalenderYear() {
   };
 
   return (
-    <div className={classes.yearSelector}>
+    <motion.div
+      className={classes.yearSelector}
+      key={key}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
       {Array.from({ length: 50 }, (_, i) => 2025 + i).map((year) => (
         <button
           className={year === currentYear ? classes.currentYear : undefined}
@@ -31,6 +38,6 @@ export default function SetCalenderYear() {
           {year}
         </button>
       ))}
-    </div>
+    </motion.div>
   );
 }

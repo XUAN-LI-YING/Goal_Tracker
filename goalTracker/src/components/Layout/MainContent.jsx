@@ -10,8 +10,9 @@ import { MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 //img
 import prevIcon from "../../assets/prevPage.png";
 import nextIcon from "../../assets/nextPage.png";
-
 import addIcon from "../../assets/add.png";
+//Framer motion
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function MainContent() {
   const dispatch = useDispatch();
@@ -56,8 +57,17 @@ export default function MainContent() {
 
       <h1>每日目標</h1>
       <div className={classes.date}>
-        {" "}
-        <h2>{displayDay}</h2>
+        <AnimatePresence mode="wait">
+          <motion.h2
+            key={displayDay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            // exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+          >
+            {displayDay}
+          </motion.h2>
+        </AnimatePresence>
         <button className={classes.goOneDay} onClick={goPreDay}>
           <img src={prevIcon} alt="Go to prev day." />
         </button>
@@ -65,7 +75,18 @@ export default function MainContent() {
           <img src={nextIcon} alt="Go to next day." />
         </button>
       </div>
-      <GoalItem date={{ year, month, day }} />
+      <AnimatePresence mode="wait">
+        <motion.div
+          className={classes.goalItem}
+          key={displayDay}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          // exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <GoalItem date={{ year, month, day }} />
+        </motion.div>
+      </AnimatePresence>
       <button className={classes.addGoalBtn} onClick={openModal}>
         <img src={addIcon} />
       </button>

@@ -4,6 +4,8 @@ import GoalDetail from "../../Goal/GoalDetail";
 //Redux
 import { useSelector } from "react-redux";
 import { Detail_MODAL_CONTENT_ELEMENT } from "../../../Store/GoalDetailModalSlice";
+//Animation
+import { AnimatePresence } from "framer-motion";
 
 export function GoalDetailModal() {
   const isOpen = useSelector((state) => state.GoalDetailModalReducer.isOpen);
@@ -13,15 +15,19 @@ export function GoalDetailModal() {
   );
   const availableTags = useSelector((state) => state.GetTags.tags);
 
-  if (!isOpen) return null;
+  // if (!isOpen) return null;
 
   return (
-    <GoalDetailModalUI>
-      {displayElement === Detail_MODAL_CONTENT_ELEMENT.EDIT_GOAL ? (
-        <GoalDetail />
-      ) : (
-        <EditTagForm availableTags={availableTags} prev={"editGoal"} />
+    <AnimatePresence>
+      {isOpen && (
+        <GoalDetailModalUI>
+          {displayElement === Detail_MODAL_CONTENT_ELEMENT.EDIT_GOAL ? (
+            <GoalDetail />
+          ) : (
+            <EditTagForm availableTags={availableTags} prev={"editGoal"} />
+          )}
+        </GoalDetailModalUI>
       )}
-    </GoalDetailModalUI>
+    </AnimatePresence>
   );
 }

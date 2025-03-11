@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { format, isToday, isSameDay } from "date-fns";
-
+import { motion } from "framer-motion";
 // Component & Css
 // import classes from "./MultiYearCalendar.module.css";
 import classes from "./MultiYearCalendar.module.css";
@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { dateAction } from "../../Store/DateSlice";
 
-const MultiYearCalendar = () => {
+const MultiYearCalendar = ({ key }) => {
   // Generate calendar from 2025 to 2075
   const startYear = 2025;
   const endYear = 2075;
@@ -40,7 +40,14 @@ const MultiYearCalendar = () => {
   }
 
   return (
-    <div className={classes.calendarContainer}>
+    <motion.div
+      className={classes.calendarContainer}
+      key={key}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
       {/* 日曆顯示 */}
       <div className={classes.calendarGrid}>
         {["日", "一", "二", "三", "四", "五", "六"].map((day) => (
@@ -63,7 +70,7 @@ const MultiYearCalendar = () => {
           </button>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
