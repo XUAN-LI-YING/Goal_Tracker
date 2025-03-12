@@ -9,8 +9,18 @@
 }
 
 .rightSidebar > p {
-  /* font-size: var(--font-size-sm); */
   color: var(--accent-color);
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-xs) 0;
+}
+.rightSidebar > p:nth-of-type(n + 2) {
+  font-size: var(--font-size-sm);
+}
+
+.rightSidebar > p:first-of-type {
+  font-size: var(--font-size-md);
+  padding: var(--spacing-xs) 0;
+  margin-top: var(--spacing-md);
 }
 
 .rightSidebar > button {
@@ -30,4 +40,22 @@
 
 .rightSidebar > button:active {
   background-color: var(--accent-hover);
+}
+
+.calendar {
+  height: 45%;
+}
+
+.completionNum {
+  margin-top: var(--spacing-md);
+}
+.completionNum label {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.completionNum span {
+  font-size: 6rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--highlight-color);
 }

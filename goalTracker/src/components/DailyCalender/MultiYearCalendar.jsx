@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { dateAction } from "../../Store/DateSlice";
 
-const MultiYearCalendar = ({ key }) => {
+const MultiYearCalendar = ({ motionKey }) => {
   // Generate calendar from 2025 to 2075
   const startYear = 2025;
   const endYear = 2075;
@@ -42,7 +42,7 @@ const MultiYearCalendar = ({ key }) => {
   return (
     <motion.div
       className={classes.calendarContainer}
-      key={key}
+      key={motionKey}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}

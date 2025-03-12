@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { dateAction } from "../../Store/DateSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { setCalendarAction } from "../../Store/DateSlice";
-export default function SetCalenderMonth({ key }) {
+export default function SetCalenderMonth({ motionKey }) {
   // REDUX Date
   const currentMonth = useSelector((state) => {
     console.log("monthSlice");
@@ -22,7 +22,7 @@ export default function SetCalenderMonth({ key }) {
   return (
     <motion.div
       className={classes.monthSelector}
-      key={key}
+      key={motionKey}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}

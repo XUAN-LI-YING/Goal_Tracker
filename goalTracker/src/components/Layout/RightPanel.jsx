@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 //Component and Css
 import classes from "./RightPanel.module.css";
 import MultiYearCalendar from "../DailyCalender/MultiYearCalendar";
@@ -6,14 +7,26 @@ import SetCalenderYear from "../DailyCalender/SetCalendarYear";
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
 import { setCalendarAction } from "../../Store/DateSlice";
+import { getDailyCompletionsThunk } from "../../Store/GetCompletionSlice";
 //Animation
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function RightPanel() {
   // REDUX Date
   const year = useSelector((state) => state.Date.year);
 
   const month = useSelector((state) => state.Date.month);
+
+  const day = useSelector((state) => state.Date.day);
+
+  //Redux completion
+  const dailyCompletions = useSelector(
+    (state) => state.CompletionsReducer.dailyCompletions
+  );
+
+  useEffect(() => {
+    dispatch(getDailyCompletionsThunk({ year, month, day }));
+  }, [year, month, day]);
 
   // REDUX Change component
   const componentPage = useSelector((state) => state.SetCalendar.componentPage);
@@ -46,17 +59,39 @@ export default function RightPanel() {
       ) : (
         <p>No matching componentPage</p>
       )}
-      <AnimatePresence mode="wait">
-        {componentPage == "selectDay" ? (
-          <MultiYearCalendar key="selectDay" />
-        ) : componentPage == "selectMonth" ? (
-          <SetCalenderMonth key="selectMonth" />
-        ) : componentPage == "selectYear" ? (
-          <SetCalenderYear key="selectYear" />
-        ) : (
-          <p>No matching Component</p>
-        )}
-      </AnimatePresence>
+
+      <div className={classes.calendar}>
+        <AnimatePresence mode="wait">
+          {componentPage == "selectDay" ? (
+            <MultiYearCalendar motionKey="selectDay" />
+          ) : componentPage == "selectMonth" ? (
+            <SetCalenderMonth motionKey="selectMonth" />
+          ) : componentPage == "selectYear" ? (
+            <SetCalenderYear motionKey="selectYear" />
+          ) : (
+            <p>No matching Component</p>
+          )}
+        </AnimatePresence>
+      </div>
+      <div className={classes.completionNum}>
+        <label>
+          {year}/{month}/{day}已達成
+          <p>
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={`${year}/${month}/${day}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                exit={{ opacity: 0 }}
+              >
+                {dailyCompletions}
+              </motion.span>
+            </AnimatePresence>
+            個目標
+          </p>
+        </label>
+      </div>
     </div>
   );
 }

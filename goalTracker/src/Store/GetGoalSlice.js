@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { completionsAction } from "./GetCompletionSlice";
 //Firebase
 import { db } from "../FireBase/FireBaseConfig";
 
@@ -165,8 +165,18 @@ export const completeGoalThunk = createAsyncThunk(
     { year, month, day, id, isComplete },
     { dispatch, rejectWithValue }
   ) => {
+    //該日該項任務轉為完成或未完成
     dispatch(dailyGoalsAction.completeGoal({ id, isComplete }));
 
+    //用redux管理該日完成的任務數量
+    if (isComplete) {
+      console.log("isComplete", isComplete);
+      dispatch(completionsAction.plusDailyCompletions());
+    } else {
+      console.log("isComplete", isComplete);
+
+      dispatch(completionsAction.minusDailyCompletions());
+    }
     // 共同擁有的路徑
     const getDocRef = (...pathSegments) =>
       doc(db, "users", "userxuan", ...pathSegments);
@@ -201,7 +211,14 @@ export const completeGoalThunk = createAsyncThunk(
     } catch (error) {
       console.error("Firestore post錯誤:", error);
       alert("無法更新goal isComplet資料,已回復原始狀態");
+      //回滾redux狀態
       dispatch(dailyGoalsAction.completeGoal({ id, isComplete: !isComplete }));
+      if (isComplete) {
+        dispatch(completionsAction.minusDailyCompletions());
+      } else {
+        dispatch(completionsAction.plusDailyCompletions());
+      }
+      //
       return rejectWithValue(error.message);
     }
 
@@ -229,8 +246,15 @@ export const completeGoalThunk = createAsyncThunk(
       console.error("Firestore post錯誤:", error);
 
       alert("更新完成數據失敗，已回復原始狀態");
+      // 回滾狀態
       dispatch(dailyGoalsAction.completeGoal({ id, isComplete: !isComplete }));
+      if (isComplete) {
+        dispatch(completionsAction.minusDailyCompletions());
+      } else {
+        dispatch(completionsAction.plusDailyCompletions());
+      }
       await updateDoc(docGoalRef, { isComplete: !isComplete });
+      //
       return rejectWithValue(error.message);
     }
   }

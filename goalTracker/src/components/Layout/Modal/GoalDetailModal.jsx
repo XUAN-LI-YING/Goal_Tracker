@@ -18,7 +18,7 @@ export function GoalDetailModal() {
   // if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
         <GoalDetailModalUI>
           {displayElement === Detail_MODAL_CONTENT_ELEMENT.EDIT_GOAL ? (

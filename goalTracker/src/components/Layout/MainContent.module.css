@@ -98,3 +98,17 @@
 .goalItem {
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .mainContent h1 {
+    text-align: center;
+  }
+
+  .mainContent h2 {
+    order: 2;
+  }
+
+  .date > button:first-of-type {
+    order: 1;
+  }
+}

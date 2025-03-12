@@ -3,15 +3,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // import page
 import Root from "./Pages/Root";
-import Home from "./pages/home";
+import Home from "./Pages/Home";
 import Personal from "./Pages/Personal";
 import Goals from "./Pages/Goals";
-import Loading from "./components/CompletionStats/loading";
+import Loading from "./components/Loading/Loading";
 //Redux store
 import { Provider } from "react-redux";
 import { store } from "./Store/store";
 // import loader function
-import getCompletionStats from "./components/CompletionStats/getCompletionStats";
+import { getCompletionStats } from "./Store/GetCompletionSlice";
 
 //get today date
 const now = new Date();

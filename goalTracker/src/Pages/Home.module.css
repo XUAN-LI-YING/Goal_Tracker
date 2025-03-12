@@ -1,0 +1,66 @@
+.homeContent {
+  /* width: 85%; */
+  width: 100%;
+
+  overflow-y: auto;
+  height: 100vh;
+}
+.homeBar {
+  background-color: #faf1e0;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+}
+.homeBar img {
+  height: 100%;
+}
+.homeContent .homeImg {
+  position: relative;
+  width: 100%;
+}
+
+.homeImg button {
+  position: absolute;
+  z-index: 5;
+  top: 53%;
+  left: 30%;
+  font-size: var(--font-size-md-lg);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-sm-md);
+  color: #faf1e0;
+  background-color: var(--primary-color);
+}
+
+.homeImg button:hover {
+  transform: scale(1.1);
+}
+
+.homeImg button:active {
+  transform: scale(0.9);
+  /* color: #fff; */
+  /* background-color: var(--highlight-color); */
+}
+
+/* 滾動條本體 */
+.homeContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* 滾動條的軌道（背景區域） */
+.homeContent::-webkit-scrollbar-track {
+  background: none;
+  border-radius: 4px;
+}
+
+/* 滾動條的滑塊 */
+.homeContent::-webkit-scrollbar-thumb {
+  /* background: rgba(0, 0, 0, 0.3); */
+  background-color: var(--border-color);
+  border-radius: 4px;
+}
+
+/* 滑鼠懸停時的滾動條 */
+.homeContent::-webkit-scrollbar-thumb:hover {
+  /* background: rgba(0, 0, 0, 0.5); */
+  background-color: var(--secondary-text);
+}

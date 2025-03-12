@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // LAYOUT
 import MainContent from "../components/Layout/MainContent";
 import RightPanel from "../components/Layout/RightPanel";
@@ -17,12 +19,26 @@ export default function Goals() {
     dispatch(getAllTagsThunk());
   }, []);
 
+  // 監聽視窗大小變化
+  const [openSide, setOpenSide] = useState(window.innerWidth > 576);
+
+  const handleResize = () => {
+    setOpenSide(window.innerWidth > 576);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className={classes.container}>
       <MainContent />
       <Modal />
       <GoalDetailModal />
-      <RightPanel />
+      {openSide && <RightPanel />}
     </div>
   );
 }
