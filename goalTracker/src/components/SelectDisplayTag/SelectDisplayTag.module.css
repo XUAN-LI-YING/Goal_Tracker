@@ -2,14 +2,15 @@
 
 .tagSection {
   margin-top: var(--spacing-lg);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 0 var(--spacing-md);
   width: 100%;
   overflow-y: auto;
+  height: 60%;
 }
 
 /* 滾動條本體 */
 .tagSection::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 /* 滾動條的軌道（背景區域） */
@@ -21,14 +22,14 @@
 /* 滾動條的滑塊 */
 .tagSection::-webkit-scrollbar-thumb {
   /* background: rgba(0, 0, 0, 0.3); */
-  background-color: var(--border-color);
+  background-color: #ffffff42;
   border-radius: 4px;
 }
 
 /* 滑鼠懸停時的滾動條 */
 .tagSection::-webkit-scrollbar-thumb:hover {
   /* background: rgba(0, 0, 0, 0.5); */
-  background-color: var(--secondary-text);
+  background-color: var(--border-color);
 }
 
 .tagSection li {

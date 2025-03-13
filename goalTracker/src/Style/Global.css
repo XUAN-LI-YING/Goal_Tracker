@@ -127,11 +127,11 @@ button {
 @media (max-width: 576px) {
   :root {
     /* 14px */
-    --font-size-md-lg: calc(var(--font-size-base-md-lg) * 0.875);
-    --font-size-sm: calc(var(--font-size-base-sm) * 0.875);
-    --font-size-sm-md: calc(var(--font-size-base-sm-md) * 0.875);
-    --font-size-md: calc(var(--font-size-base-md) * 0.875);
-    --font-size-lg: calc(var(--font-size-base-lg) * 0.875);
+    --font-size-md-lg: calc(var(--font-size-base-md-lg) * 0.925);
+    --font-size-sm: calc(var(--font-size-base-sm) * 0.925);
+    --font-size-sm-md: calc(var(--font-size-base-sm-md) * 0.925);
+    --font-size-md: calc(var(--font-size-base-md) * 0.925);
+    --font-size-lg: calc(var(--font-size-base-lg) * 0.925);
     /* 12px */
     --spacing-xs: calc(var(--spacing-base-xs) * 0.75);
     --spacing-sm: calc(var(--spacing-base-sm) * 0.75);

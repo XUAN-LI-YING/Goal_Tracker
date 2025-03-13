@@ -7,7 +7,9 @@ import { dailyGoalsReducer } from "./GetGoalSlice";
 import { selectTagReducer } from "./SelectTagSlice";
 import { goalDetailModalReducer } from "./GoalDetailModalSlice";
 import { completionsReducer } from "./GetCompletionSlice";
-
+import { sideBarModalReducer } from "./SideBarModalSlice";
+import { rwdStateSliceReducer } from "./RwdStateSlice";
+import { rightPanelModalReducer } from "./RightPanelModalSlice";
 export const store = configureStore({
   reducer: {
     Modal: modalSliceReducer,
@@ -17,6 +19,9 @@ export const store = configureStore({
     DailyGoalsReducer: dailyGoalsReducer,
     SelectTagReducer: selectTagReducer,
     GoalDetailModalReducer: goalDetailModalReducer,
-    CompletionsReducer: completionsReducer
+    CompletionsReducer: completionsReducer,
+    SideBarModalReducer: sideBarModalReducer,
+    RwdStateSliceReducer: rwdStateSliceReducer,
+    RightPanelModalReducer: rightPanelModalReducer
   }
 });

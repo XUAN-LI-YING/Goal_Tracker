@@ -46,11 +46,10 @@ export function SelectDisplayTag({ displayTag }) {
   }
 
   return (
-    <div>
+    <div className={classes.tagSection}>
       <AnimatePresence mode="wait">
         <motion.ul
           key={displayTag.join(",")}
-          className={classes.tagSection}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2 }}

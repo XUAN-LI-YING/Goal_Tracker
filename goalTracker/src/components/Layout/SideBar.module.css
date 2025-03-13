@@ -35,3 +35,12 @@
 .active {
   background-color: var(--highlight-color);
 }
+
+@media (max-width: 576px) {
+  .leftSidebar {
+    position: fixed;
+    z-index: 5;
+    width: auto;
+    width: 10rem;
+  }
+}

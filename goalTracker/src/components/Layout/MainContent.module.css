@@ -1,3 +1,7 @@
+.hambugerIcon {
+  display: none;
+}
+
 .mainContent {
   width: 70%;
   background-color: var(--background-color);
@@ -79,7 +83,7 @@
   bottom: 6%;
   left: 64%;
   z-index: 1;
-  padding: var(--spacing-md);
+  padding: var(--spacing-md-lg);
   box-shadow: 0.4rem 0.4rem 0.4rem var(--shadow-color);
   transition: transform 0.3s ease;
 }
@@ -99,7 +103,23 @@
   width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
+  .mainContent {
+    position: relative;
+    padding: var(--spacing-md-lg) 0;
+  }
+  .hambugerIcon {
+    display: flex;
+    position: absolute;
+    left: 5%;
+  }
+
+  .hambugerIcon img {
+    width: 1.6rem;
+  }
+  .mainContent {
+    width: 100%;
+  }
   .mainContent h1 {
     text-align: center;
   }
@@ -110,5 +130,18 @@
 
   .date > button:first-of-type {
     order: 1;
+  }
+  .date > button:nth-of-type(2) {
+    order: 3;
+  }
+
+  .date {
+    justify-content: center;
+  }
+
+  .addGoalBtn {
+    left: 80%;
+    bottom: 9%;
+    padding: var(--spacing-lg);
   }
 }

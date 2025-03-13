@@ -1,5 +1,5 @@
 import classes from "./SideBar.module.css";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { SelectDisplayTag } from "../SelectdisplayTag/SelectdisplayTag";
 
 //img
@@ -11,7 +11,8 @@ import goalIcon from "../../assets/goal.png";
 import { NavLink, useLocation } from "react-router-dom";
 
 //Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { sideBarModalAction } from "../../Store/SideBarModalSlice";
 
 export default function SideBar() {
   //Get current URL
@@ -27,10 +28,9 @@ export default function SideBar() {
     const displayTag = [...new Set(flatAllGoalTag)];
     return { allGoalTagArray, displayTag };
   }, [allGoalForTheDay]);
-  // console.log("displayTag", displayTag);
 
   return (
-    <div className={classes.leftSidebar}>
+    <div className={classes.leftSidebar} onClick={(e) => e.stopPropagation()}>
       <NavLink
         to="/home"
         className={({ isActive }) => (isActive ? classes.active : undefined)}
