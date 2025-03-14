@@ -2,11 +2,12 @@
   width: 90%;
   display: flex;
   flex-direction: column;
+  font-size: var(--font-size-sm);
 }
 
 .addGoalForm > p:first-of-type {
   color: var(--accent-color);
-  font-size: var(--font-size-md-lg);
+  font-size: var(--font-size-md);
   margin-bottom: var(--spacing-lg);
   text-align: center;
 }
@@ -35,7 +36,9 @@
   justify-content: space-between;
   margin-top: var(--spacing-sm);
 }
-
+.goalTime > div:first-of-type {
+  display: flex;
+}
 .goalTime input {
   margin-left: var(--spacing-sm);
 }
@@ -131,7 +134,7 @@
 }
 .tag {
   display: flex;
-  background-color: var(--background-color);
+  background-color: rgb(236, 236, 236);
   height: 1.6rem;
   align-items: center;
   margin: var(--spacing-xs);
@@ -157,7 +160,8 @@
 
 .tagBtn {
   display: flex;
-  background-color: var(--background-color);
+  background-color: rgb(236, 236, 236);
+
   height: 1rem;
   align-items: center;
   margin: var(--spacing-xs);
@@ -224,13 +228,13 @@
 .submitGoal {
   background-color: var(--accent-color);
   width: 15%;
-  height: 12%;
+  /* height: 12%; */
   padding: var(--spacing-xs);
   text-align: center;
   color: #fff;
   border-radius: var(--radius-sm);
   align-self: end;
-  font-size: var(--font-size-md-lg);
+  /* font-size: var(--font-size-md-lg); */
   margin-top: var(--spacing-xs);
 }
 
@@ -240,4 +244,12 @@
 
 .submitGoal:active {
   transform: scale(0.9);
+}
+
+@media (max-width: 576px) {
+  .goalTime {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
 }

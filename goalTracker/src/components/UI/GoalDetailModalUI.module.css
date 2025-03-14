@@ -17,7 +17,7 @@
   left: 74.6%;
   height: 100vh;
   display: flex; */
-
+  overflow-y: auto;
   background: var(--background-color);
   padding: var(--spacing-lg);
   position: relative;
@@ -42,4 +42,9 @@
 
 .closeButton:hover {
   transform: scale(1.2);
+}
+@media (max-width: 576px) {
+  .modalContent {
+    width: 100%;
+  }
 }

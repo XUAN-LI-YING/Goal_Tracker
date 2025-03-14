@@ -269,3 +269,6 @@
 .labelOptions::-webkit-scrollbar-thumb:hover {
   background-color: var(--secondary-text);
 }
+
+@media (max-width: 576px) {
+}

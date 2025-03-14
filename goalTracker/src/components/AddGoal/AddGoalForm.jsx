@@ -75,31 +75,33 @@ export function AddGoalForm({ availableTags }) {
         新增目標至{year}/{month}/{day}
       </p>
       <div className={classes.goalTime}>
-        是否設定時間
-        <label className={classes.radio}>
-          <input
-            type="radio"
-            name="isSetTime"
-            value="yes"
-            checked={isSetTime === "yes"}
-            onChange={handleChange}
-            required
-          />
-          <div className={classes.checked}></div>
-          YES
-        </label>
-        <label className={classes.radio}>
-          <input
-            type="radio"
-            name="isSetTime"
-            value="no"
-            checked={isSetTime === "no"}
-            onChange={handleChange}
-            required
-          />
-          <div className={classes.checked}></div>
-          NO
-        </label>
+        <div>
+          <p>是否設定時間</p>
+          <label className={classes.radio}>
+            <input
+              type="radio"
+              name="isSetTime"
+              value="yes"
+              checked={isSetTime === "yes"}
+              onChange={handleChange}
+              required
+            />
+            <div className={classes.checked}></div>
+            YES
+          </label>
+          <label className={classes.radio}>
+            <input
+              type="radio"
+              name="isSetTime"
+              value="no"
+              checked={isSetTime === "no"}
+              onChange={handleChange}
+              required
+            />
+            <div className={classes.checked}></div>
+            NO
+          </label>
+        </div>
         <div>
           <label
             className={`${isSetTime === "yes" ? undefined : classes.disabled}`}

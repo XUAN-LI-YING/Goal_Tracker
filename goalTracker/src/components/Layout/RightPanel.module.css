@@ -6,6 +6,7 @@
   padding: var(--spacing-md-lg);
   overflow: hidden;
   box-shadow: -0.5rem 0rem 1rem var(--secondary-background-color);
+  overflow-y: auto;
 }
 
 .rightSidebar > p {
@@ -43,7 +44,7 @@
 }
 
 .calendar {
-  height: 45%;
+  height: 15rem;
 }
 
 .completionNum {
@@ -67,6 +68,6 @@
     width: 10rem;
   }
   .rightSidebar {
-    width: 15rem;
+    width: 16rem;
   }
 }

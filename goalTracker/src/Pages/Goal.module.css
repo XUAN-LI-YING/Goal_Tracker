@@ -15,7 +15,7 @@
     height: 100vh;
     background: rgb(235 235 235 / 41%);
     display: flex;
-    z-index: 1;
+    z-index: 1000;
     justify-content: end;
   }
   .modalOverlay.rightPanelNone {

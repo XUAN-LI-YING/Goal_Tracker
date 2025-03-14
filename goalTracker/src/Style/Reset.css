@@ -82,6 +82,9 @@ fieldset {
   background: none;
   outline: none;
 }
+textarea {
+  resize: none;
+}
 
 /*  設定 `table` 邊框合併，讓表格更緊湊 */
 table {

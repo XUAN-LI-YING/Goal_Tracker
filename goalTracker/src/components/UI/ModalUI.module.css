@@ -7,20 +7,21 @@
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   z-index: 1000;
 }
 
 .modalContent {
-  background: white;
-  padding: var(--spacing-lg-lg);
+  background: var(--background-color);
+  padding: var(--spacing-lg);
   border-radius: var(--radius-md);
   position: relative;
   width: 45rem;
-  height: 43rem;
+  /* height: 43rem; */
+  overflow-y: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .closeButton {
@@ -38,4 +39,10 @@
 
 .closeButton:active {
   transform: scale(1.2);
+}
+
+@media (max-width: 576px) {
+  .modalContent {
+    border-radius: 0;
+  }
 }
