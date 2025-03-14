@@ -59,3 +59,14 @@
   font-weight: var(--font-weight-bold);
   color: var(--highlight-color);
 }
+
+@media (max-width: 576px) {
+  .leftSidebar {
+    position: fixed;
+    z-index: 5;
+    width: 10rem;
+  }
+  .rightSidebar {
+    width: 15rem;
+  }
+}

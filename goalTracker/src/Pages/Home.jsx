@@ -9,6 +9,7 @@ export default function Home() {
       {/* <div className={classes.homeBar}>
         <img src={logoImg} />
       </div> */}
+
       <div className={classes.homeImg}>
         <img src={coverImg} />
         <NavLink to="/">

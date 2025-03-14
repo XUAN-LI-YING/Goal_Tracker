@@ -1,7 +1,10 @@
 import SideBar from "../components/Layout/SideBar";
 import classes from "./Root.module.css";
-import { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
+
+import RwdNavigationBtn from "../components/UI/RwdBtn/RwdNavigationBtn";
+
+import { Fragment } from "react";
 //React router
 import { Outlet } from "react-router-dom";
 //Redux
@@ -25,15 +28,18 @@ export default function Root() {
 
   const handleResize = () => {
     let screenSize;
+    console.log(" window.innerWidth", window.innerWidth);
 
+    const screenWidth = document.documentElement.clientWidth;
+    console.log(" screenWidth", screenWidth);
     switch (true) {
-      case window.innerWidth <= 576:
+      case screenWidth <= 576:
         screenSize = RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_576;
         break;
-      case window.innerWidth <= 768:
+      case screenWidth <= 768:
         screenSize = RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_768;
         break;
-      case window.innerWidth < 1200:
+      case screenWidth < 1200:
         screenSize = RWD_STATE_ELEMENT.SCREEN_SMALL_1200;
         break;
       default:
@@ -62,14 +68,17 @@ export default function Root() {
   return (
     <div className={classes.container}>
       {screenState === RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_576 ? (
-        <div
-          className={`${classes.modalOverlay} ${
-            !sideBarOpen && classes.leftSidebarNone
-          }`}
-          onClick={controlSideBar}
-        >
-          <SideBar />
-        </div>
+        <Fragment>
+          <RwdNavigationBtn />
+          <div
+            className={`${classes.modalOverlay} ${
+              !sideBarOpen && classes.leftSidebarNone
+            }`}
+            onClick={controlSideBar}
+          >
+            <SideBar />
+          </div>
+        </Fragment>
       ) : (
         <SideBar />
       )}

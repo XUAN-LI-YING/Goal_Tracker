@@ -3,8 +3,22 @@
   width: 85%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   .container {
     width: 100%;
+  }
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(235 235 235 / 41%);
+    display: flex;
+    z-index: 1;
+    justify-content: end;
+  }
+  .modalOverlay.rightPanelNone {
+    display: none;
   }
 }

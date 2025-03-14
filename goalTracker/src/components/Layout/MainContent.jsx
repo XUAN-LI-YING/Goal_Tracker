@@ -1,18 +1,19 @@
 import classes from "./MainContent.module.css";
 import { useState } from "react";
 import { format, addDays } from "date-fns";
-import GoalItem from "../Goal/GoalItem";
+
+import GoalList from "../Goal/GoalList";
 //Redux
 import { modalAction } from "../../Store/ModalSlice";
 import { dateAction } from "../../Store/DateSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
-import { sideBarModalAction } from "../../Store/SideBarModalSlice";
+
 //img
 import prevIcon from "../../assets/prevPage.png";
 import nextIcon from "../../assets/nextPage.png";
 import addIcon from "../../assets/add.png";
-import hambugerIcon from "../../assets/hambuger_black.png";
+
 //Framer motion
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -48,11 +49,6 @@ export default function MainContent() {
     dispatch(dateAction.switchDay(newDay.getDate()));
   }
 
-  //rwd open or close sideBar
-  function handleSideBar() {
-    dispatch(sideBarModalAction.controlModal());
-  }
-
   return (
     <div className={classes.mainContent}>
       {/* <select>
@@ -61,11 +57,8 @@ export default function MainContent() {
         <option value="Monthly">Monthly</option>
         <option value="Annual">Annual</option>
       </select> */}
-      <button className={classes.hambugerIcon} onClick={handleSideBar}>
-        <img src={hambugerIcon} />
-      </button>
-      <h1>每日目標</h1>
 
+      <h1>每日目標</h1>
       <div className={classes.date}>
         <AnimatePresence mode="wait">
           <motion.h2
@@ -94,7 +87,7 @@ export default function MainContent() {
           // exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
         >
-          <GoalItem date={{ year, month, day }} />
+          <GoalList date={{ year, month, day }} />
         </motion.div>
       </AnimatePresence>
       <button className={classes.addGoalBtn} onClick={openModal}>

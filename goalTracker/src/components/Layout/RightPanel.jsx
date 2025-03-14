@@ -48,7 +48,7 @@ export default function RightPanel() {
   };
 
   return (
-    <div className={classes.rightSidebar}>
+    <div className={classes.rightSidebar} onClick={(e) => e.stopPropagation()}>
       {paragraphs[componentPage]}
       {componentPage == "selectDay" ? (
         <button onClick={selectMonth}>{`${year}年${month}月`}</button>
