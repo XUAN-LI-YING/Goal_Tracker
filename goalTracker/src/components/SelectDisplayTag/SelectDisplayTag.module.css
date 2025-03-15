@@ -8,17 +8,6 @@
   height: 60%;
 }
 
-/* 滾動條本體 */
-.tagSection::-webkit-scrollbar {
-  width: 4px;
-}
-
-/* 滾動條的軌道（背景區域） */
-.tagSection::-webkit-scrollbar-track {
-  background: none;
-  border-radius: 4px;
-}
-
 /* 滾動條的滑塊 */
 .tagSection::-webkit-scrollbar-thumb {
   /* background: rgba(0, 0, 0, 0.3); */
@@ -29,7 +18,7 @@
 /* 滑鼠懸停時的滾動條 */
 .tagSection::-webkit-scrollbar-thumb:hover {
   /* background: rgba(0, 0, 0, 0.5); */
-  background-color: var(--border-color);
+  background-color: #ffffff69;
 }
 
 .tagSection li {

@@ -1,24 +1,31 @@
-@media (max-width: 576px) {
-  .btnSection {
-    margin-top: var(--spacing-md-lg);
-  }
+.btnSection {
+  margin-top: var(--spacing-md-lg);
+}
 
+.hambugerIcon {
+  position: fixed;
+  left: 5%;
+  z-index: 3;
+}
+
+.hambugerIcon img {
+  width: 1.6rem;
+}
+
+.calendarIcon {
+  position: fixed;
+  right: 5%;
+  z-index: 3;
+}
+.calendarIcon img {
+  width: 1.7rem;
+}
+.calendarIconNone {
+  display: none;
+}
+
+@media (max-width: 768px) and (min-width: 577px) {
   .hambugerIcon {
-    position: fixed;
-    left: 5%;
-    z-index: 3;
-  }
-
-  .hambugerIcon img {
-    width: 1.6rem;
-  }
-
-  .calendarIcon {
-    position: fixed;
-    right: 5%;
-    z-index: 3;
-  }
-  .calendarIcon img {
-    width: 1.7rem;
+    display: none;
   }
 }

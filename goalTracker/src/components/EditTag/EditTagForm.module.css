@@ -46,7 +46,7 @@
 
 .tag {
   display: flex;
-  background-color: var(--background-color);
+  background-color: #ebeae8;
   height: 1.6rem;
   align-items: center;
   margin: var(--spacing-xs);
@@ -96,4 +96,14 @@
 /* 滑鼠懸停時的滾動條 */
 .tagList::-webkit-scrollbar-thumb:hover {
   background-color: var(--secondary-text);
+}
+
+@media (max-width: 460px) {
+  .tagList {
+    /* flex-direction: column; */
+  }
+  .tag {
+    width: fit-content;
+    height: fit-content;
+  }
 }

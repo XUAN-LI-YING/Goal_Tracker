@@ -144,7 +144,7 @@
   margin-top: 4%;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 576px) and (min-width: 450px) {
   .line + p {
     color: var(--highlight-color);
   }

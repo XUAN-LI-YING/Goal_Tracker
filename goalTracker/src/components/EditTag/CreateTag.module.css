@@ -13,29 +13,45 @@
 }
 .addTag {
   margin-top: var(--spacing-md);
+  display: flex;
+  position: relative;
+  flex-direction: column;
 }
 
 .addTag button {
-  background-color: var(--background-color);
+  background-color: #ebeae8;
   padding: 0.3rem 0.8rem;
   color: var(--accent-color);
   font-size: var(--font-size-sm);
+  width: fit-content;
 }
 
 .addTag button:active {
   color: var(--accent-hover);
 }
 
-.addTag > button:first-of-type {
-  position: relative;
-}
 .picker {
   position: absolute;
   z-index: 1;
+  top: 2rem;
 }
 
 .prompt {
   font-size: var(--font-size-sm);
   margin-top: var(--spacing-sm);
   /* color: var(--accent-color); */
+}
+
+.addTag > div:first-of-type {
+  display: flex;
+}
+.addTag p {
+  color: var(--highlight-color);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 460px) {
+  .addTag > div:first-of-type {
+    flex-direction: column;
+  }
 }

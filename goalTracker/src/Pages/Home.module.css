@@ -40,27 +40,3 @@
   /* color: #fff; */
   /* background-color: var(--highlight-color); */
 }
-
-/* 滾動條本體 */
-.homeContent::-webkit-scrollbar {
-  width: 6px;
-}
-
-/* 滾動條的軌道（背景區域） */
-.homeContent::-webkit-scrollbar-track {
-  background: none;
-  border-radius: 4px;
-}
-
-/* 滾動條的滑塊 */
-.homeContent::-webkit-scrollbar-thumb {
-  /* background: rgba(0, 0, 0, 0.3); */
-  background-color: var(--border-color);
-  border-radius: 4px;
-}
-
-/* 滑鼠懸停時的滾動條 */
-.homeContent::-webkit-scrollbar-thumb:hover {
-  /* background: rgba(0, 0, 0, 0.5); */
-  background-color: var(--secondary-text);
-}

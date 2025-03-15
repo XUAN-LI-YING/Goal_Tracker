@@ -79,6 +79,11 @@ export default function Root() {
             <SideBar />
           </div>
         </Fragment>
+      ) : screenState === RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_768 ? (
+        <Fragment>
+          <RwdNavigationBtn />
+          <SideBar />
+        </Fragment>
       ) : (
         <SideBar />
       )}

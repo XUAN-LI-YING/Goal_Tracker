@@ -3,7 +3,7 @@
   width: 85%;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 576px), (max-width: 768px) {
   .container {
     width: 100%;
   }
@@ -20,5 +20,11 @@
   }
   .modalOverlay.rightPanelNone {
     display: none;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 577px) {
+  .container {
+    width: 75%;
   }
 }

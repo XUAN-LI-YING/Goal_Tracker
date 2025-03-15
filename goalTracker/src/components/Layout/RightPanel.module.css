@@ -60,6 +60,17 @@
   font-weight: var(--font-weight-bold);
   color: var(--highlight-color);
 }
+@media (min-width: 1200px) {
+  .calendar {
+    height: 20rem;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 577px) {
+  .rightSidebar {
+    width: auto;
+  }
+}
 
 @media (max-width: 576px) {
   .leftSidebar {

@@ -44,7 +44,8 @@ export default function Goals() {
       <MainContent />
       <Modal />
       <GoalDetailModal />
-      {screenSize === RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_576 ? (
+      {screenSize === RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_576 ||
+      screenSize === RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_768 ? (
         <div
           className={`${classes.modalOverlay} ${
             !rightPanelOpen && classes.rightPanelNone

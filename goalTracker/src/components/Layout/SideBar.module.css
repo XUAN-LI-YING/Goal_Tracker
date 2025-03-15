@@ -36,6 +36,11 @@
   background-color: var(--highlight-color);
 }
 
+@media (max-width: 768px) and (min-width: 577px) {
+  .leftSidebar {
+    width: 25%;
+  }
+}
 @media (max-width: 576px) {
   .leftSidebar {
     position: fixed;

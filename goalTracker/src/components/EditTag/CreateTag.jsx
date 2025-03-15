@@ -55,19 +55,25 @@ export default function CreateTag() {
   return (
     <div>
       <form onSubmit={postTag} className={classes.addTag}>
-        <button
-          type="button"
-          onClick={() => setIsPickerVisible(!isPickerVisible)}
-        >
-          {selectedEmoji}
-        </button>
-        <input
-          type="text"
-          placeholder="輸入文字"
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-        />
-        <button type="submit">新增</button>
+        <div>
+          <button
+            type="button"
+            onClick={() => setIsPickerVisible(!isPickerVisible)}
+          >
+            {selectedEmoji}
+          </button>
+          <div>
+            <input
+              type="text"
+              placeholder="輸入文字"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              maxLength="10"
+            />
+            <button type="submit">新增</button>
+          </div>
+        </div>
+        {inputText.length >= 10 && <p>已達字數上限(最多只能輸入10個字)</p>}
 
         {isPickerVisible && (
           <div className={classes.picker}>

@@ -5,14 +5,16 @@ export const Detail_MODAL_CONTENT_ELEMENT = {
   EDIT_TAG: "editTag"
 };
 
+const initialState = {
+  isOpen: false,
+  displayGoal: {},
+  displayElement: "editGoal",
+  disableEditGoal: true
+};
+
 const goalDetailModalSlice = createSlice({
   name: "goalDetailModalSlice",
-  initialState: {
-    isOpen: false,
-    displayGoal: {},
-    displayElement: "editGoal",
-    disableEditGoal: true
-  },
+  initialState: initialState,
   reducers: {
     openDetailModal: (state, action) => {
       state.isOpen = true;
@@ -28,6 +30,9 @@ const goalDetailModalSlice = createSlice({
     },
     disableEditGoal: (state, action) => {
       state.disableEditGoal = action.payload;
+    },
+    initialAllState: () => {
+      return initialState;
     }
   }
 });

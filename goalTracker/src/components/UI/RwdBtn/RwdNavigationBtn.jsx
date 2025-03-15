@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 //Img
 import hambugerIcon from "../../../assets/hambuger_black.png";
 import calendarIcon from "../../../assets/calendar.png";
+//React router
+import { useLocation } from "react-router-dom";
 
 export default function RwdNavigationBtn() {
   const dispatch = useDispatch();
@@ -20,12 +22,22 @@ export default function RwdNavigationBtn() {
     dispatch(rightPanelModalAction.controlModal());
   }
 
+  //根據當前頁面決定哪些btn該顯示
+  const location = useLocation();
+
   return (
     <div className={classes.btnSection}>
       <button className={classes.hambugerIcon} onClick={handleSideBar}>
         <img src={hambugerIcon} />
       </button>
-      <button className={classes.calendarIcon} onClick={handlerightPanel}>
+      <button
+        className={
+          location.pathname === "/"
+            ? classes.calendarIcon
+            : classes.calendarIconNone
+        }
+        onClick={handlerightPanel}
+      >
         <img src={calendarIcon} />
       </button>
     </div>

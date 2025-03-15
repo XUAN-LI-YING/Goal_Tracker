@@ -13,7 +13,7 @@ export default function GoalDetailModalUI({ children }) {
   return (
     <motion.div
       className={classes.modalOverlay}
-      onClick={() => dispatch(goalDetailModalAction.closeDetailModal())}
+      onClick={() => dispatch(goalDetailModalAction.initialAllState())}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -29,7 +29,7 @@ export default function GoalDetailModalUI({ children }) {
       >
         <button
           className={classes.closeButton}
-          onClick={() => dispatch(goalDetailModalAction.closeDetailModal())}
+          onClick={() => dispatch(goalDetailModalAction.initialAllState())}
         >
           &times;
         </button>

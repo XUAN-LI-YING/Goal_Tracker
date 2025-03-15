@@ -245,30 +245,3 @@
   margin: var(--spacing-xs) 0;
   border: 0.05rem dashed var(--border-color);
 }
-/* 滾動條本體 */
-.tagInput::-webkit-scrollbar,
-.labelOptions::-webkit-scrollbar {
-  width: 0.3rem;
-}
-
-/* 滾動條的軌道（背景區域） */
-.tagInput::-webkit-scrollbar-track,
-.labelOptions::-webkit-scrollbar-track {
-  background: none;
-}
-
-/* 滾動條的滑塊 */
-.tagInput::-webkit-scrollbar-thumb,
-.labelOptions::-webkit-scrollbar-thumb {
-  /* background: rgba(0, 0, 0, 0.3); */
-  background-color: var(--border-color);
-}
-
-/* 滑鼠懸停時的滾動條 */
-.tagInput::-webkit-scrollbar-thumb:hover,
-.labelOptions::-webkit-scrollbar-thumb:hover {
-  background-color: var(--secondary-text);
-}
-
-@media (max-width: 576px) {
-}
