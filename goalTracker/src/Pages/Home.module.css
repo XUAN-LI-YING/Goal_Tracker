@@ -1,6 +1,5 @@
 .homeContent {
-  /* width: 85%; */
-  width: 100%;
+  width: 85%;
 
   overflow-y: auto;
   height: 100vh;
@@ -39,4 +38,14 @@
   transform: scale(0.9);
   /* color: #fff; */
   /* background-color: var(--highlight-color); */
+}
+@media (max-width: 768px) and (min-width: 577px) {
+  .homeContent {
+    width: 75%;
+  }
+}
+@media (max-width: 576px) and (min-width: 400px), (max-width: 400px) {
+  .homeContent {
+    width: 100%;
+  }
 }

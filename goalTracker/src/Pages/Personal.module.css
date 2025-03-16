@@ -34,6 +34,7 @@
   color: var(--accent-color);
   text-align: center;
   width: 25%;
+  min-width: 170px;
   /* font-size: var(--font-size-md-lg);
   font-weight: var(--font-weight-medium); */
 }
@@ -42,4 +43,57 @@
   font-size: 6rem;
   font-weight: var(--font-weight-bold);
   color: var(--highlight-color);
+}
+
+@media (max-width: 1199.98px) and (min-width: 769px) {
+  .userSection {
+  }
+}
+
+@media (max-width: 768px) and (min-width: 577px) {
+  .userGoalData label {
+    min-width: 127px;
+  }
+
+  .userGoalData span {
+    font-size: 4rem;
+  }
+
+  .userSection {
+    width: 75%;
+  }
+}
+@media (max-width: 576px) and (min-width: 400px) {
+  .userGoalData {
+    width: 90%;
+  }
+  .userGoalData label {
+    min-width: 120px;
+  }
+
+  .userGoalData span {
+    font-size: 4rem;
+  }
+  .userSection {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .userGoalData {
+    width: 90%;
+  }
+  .userGoalData label {
+    min-width: 100px;
+  }
+
+  .userGoalData span {
+    font-size: 2rem;
+  }
+  .userSection {
+    width: 100%;
+  }
+  .userSticker {
+    width: 8rem;
+  }
 }
