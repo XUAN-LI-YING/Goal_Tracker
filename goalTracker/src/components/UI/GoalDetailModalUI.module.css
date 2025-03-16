@@ -21,7 +21,7 @@
   background: var(--background-color);
   padding: var(--spacing-lg);
   position: relative;
-  width: 26%;
+  width: 35rem;
   box-shadow: -0.5rem 0rem 1rem var(--secondary-background-color);
 }
 
@@ -42,6 +42,11 @@
 
 .closeButton:hover {
   transform: scale(1.2);
+}
+@media (max-width: 1199.98px) and (min-width: 769px) {
+  .modalContent {
+    width: 32rem;
+  }
 }
 
 @media (max-width: 768px) and (min-width: 577px) {

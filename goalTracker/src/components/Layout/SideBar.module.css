@@ -35,6 +35,11 @@
 .active {
   background-color: var(--highlight-color);
 }
+@media (max-width: 1199.98px) and (min-width: 769px) {
+  .leftSidebar {
+    width: clamp(154px, 20vw, 184px);
+  }
+}
 
 @media (max-width: 768px) and (min-width: 577px) {
   .leftSidebar {

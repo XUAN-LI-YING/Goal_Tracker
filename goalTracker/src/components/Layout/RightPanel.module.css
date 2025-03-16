@@ -1,12 +1,14 @@
 /* 右側欄 */
 .rightSidebar {
   width: 30%;
+
   background-color: var(--background-color);
   /* background-color: #f2f2f2; */
   padding: var(--spacing-md-lg);
   overflow: hidden;
   box-shadow: -0.5rem 0rem 1rem var(--secondary-background-color);
   overflow-y: auto;
+  z-index: 1;
 }
 
 .rightSidebar > p {
@@ -63,6 +65,15 @@
 @media (min-width: 1200px) {
   .calendar {
     height: 20rem;
+  }
+  .rightSidebar {
+    min-width: 328px;
+  }
+}
+@media (max-width: 1199.98px) and (min-width: 769px) {
+  .rightSidebar {
+    width: clamp(250px, 34%, 260px);
+    padding: var(--spacing-md);
   }
 }
 

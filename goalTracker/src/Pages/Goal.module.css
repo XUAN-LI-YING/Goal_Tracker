@@ -2,6 +2,11 @@
   display: flex;
   width: 85%;
 }
+@media (max-width: 1199.98px) and (min-width: 769px) {
+  .mainContent {
+    flex: 1;
+  }
+}
 
 @media (max-width: 576px), (max-width: 768px) {
   .container {

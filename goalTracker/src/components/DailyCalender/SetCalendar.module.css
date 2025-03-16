@@ -36,3 +36,10 @@
 .currentMonth {
   background-color: var(--highlight-color);
 }
+
+@media (max-width: 1199.98px) and (min-width: 769px) {
+  .yearSelector button,
+  .monthSelector button {
+    margin: 0;
+  }
+}

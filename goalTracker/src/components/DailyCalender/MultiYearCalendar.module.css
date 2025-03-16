@@ -51,3 +51,9 @@
 .selectDay {
   border: 2px solid var(--highlight-color);
 }
+
+@media (max-width: 1199.98px) and (min-width: 769px) {
+  .calendarGrid {
+    gap: 0px;
+  }
+}

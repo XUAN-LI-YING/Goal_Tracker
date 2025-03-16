@@ -173,14 +173,10 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 450px), (max-width: 1000px) and (min-width: 769px) {
   .goal {
     height: 3.5rem;
   }
-  .line + p {
-    color: var(--highlight-color);
-  }
-
   .goalContent {
     flex-direction: column;
     width: 72%;
@@ -227,5 +223,10 @@
   }
   .goalTag {
     margin-top: 0.5rem;
+  }
+}
+@media (max-width: 450px) {
+  .line + p {
+    color: var(--highlight-color);
   }
 }
