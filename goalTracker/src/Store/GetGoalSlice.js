@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { completionsAction } from "./GetCompletionSlice";
 //Firebase
 import { db } from "../FireBase/FireBaseConfig";
+import { getCollectionRefHelper } from "../FireBase/FireBaseRefHelper";
 
 import {
   setDoc,
@@ -69,10 +70,8 @@ export const postGoalThunk = createAsyncThunk(
   "dailyGoalsSlice/postGoalThunk",
   async ({ year, month, day, newGoal }, { dispatch, rejectWithValue }) => {
     //generate docID first in order to  store on redux state immediately
-    const collectionRef = collection(
-      db,
-      "users",
-      "userxuan",
+
+    const collectionRef = getCollectionRefHelper(
       "goals",
       "dailyDay",
       `${year}`,

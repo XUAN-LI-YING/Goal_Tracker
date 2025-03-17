@@ -1,6 +1,7 @@
 //Firebase
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../FireBase/FireBaseConfig";
+
 //Rudex
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -41,6 +42,7 @@ export const getDailyCompletionsThunk = createAsyncThunk(
     );
     try {
       const daySnap = await getDoc(dayRef);
+
       // 提取 completeNum，若文件不存在則預設為 0
       const dayCompleteNum = daySnap.exists()
         ? daySnap.data().completeNum || 0

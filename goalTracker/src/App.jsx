@@ -7,11 +7,13 @@ import Home from "./Pages/Home";
 import Personal from "./Pages/Personal";
 import Goals from "./Pages/Goals";
 import Loading from "./components/Loading/Loading";
+import Login from "./Pages/LogIn";
 //Redux store
 import { Provider } from "react-redux";
 import { store } from "./Store/store";
 // import loader function
 import { getCompletionStats } from "./Store/GetCompletionSlice";
+import { useEffect } from "react";
 
 //get today date
 const now = new Date();
@@ -33,7 +35,8 @@ const router = createBrowserRouter([
         },
         hydrateFallbackElement: <Loading />
       },
-      { path: "/home", element: <Home /> }
+      { path: "/home", element: <Home /> },
+      { index: "/logIn", element: <Login /> }
     ]
   }
 ]);

@@ -1,7 +1,7 @@
 import SideBar from "../components/Layout/SideBar";
 import classes from "./Root.module.css";
 import { useEffect } from "react";
-
+import Login from "./LogIn";
 import RwdNavigationBtn from "../components/UI/RwdBtn/RwdNavigationBtn";
 
 import { Fragment } from "react";
@@ -14,6 +14,9 @@ import { RWD_STATE_ELEMENT } from "../Store/RwdStateSlice";
 import { sideBarModalAction } from "../Store/SideBarModalSlice";
 
 export default function Root() {
+  //if Logout ，render login page
+  const accountNum = useSelector((state) => state.LoginReducer.accountNum);
+
   //rwd sideBar state
   const sideBarOpen = useSelector(
     (state) => state.SideBarModalReducer.sideBarOpen
@@ -87,8 +90,7 @@ export default function Root() {
       ) : (
         <SideBar />
       )}
-
-      <Outlet />
+      {!accountNum ? <Login /> : <Outlet />}
     </div>
   );
 }

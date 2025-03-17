@@ -10,6 +10,8 @@ import { completionsReducer } from "./GetCompletionSlice";
 import { sideBarModalReducer } from "./SideBarModalSlice";
 import { rwdStateSliceReducer } from "./RwdStateSlice";
 import { rightPanelModalReducer } from "./RightPanelModalSlice";
+import { loginReducer } from "./LoginSlice";
+
 export const store = configureStore({
   reducer: {
     Modal: modalSliceReducer,
@@ -22,6 +24,7 @@ export const store = configureStore({
     CompletionsReducer: completionsReducer,
     SideBarModalReducer: sideBarModalReducer,
     RwdStateSliceReducer: rwdStateSliceReducer,
-    RightPanelModalReducer: rightPanelModalReducer
+    RightPanelModalReducer: rightPanelModalReducer,
+    LoginReducer: loginReducer
   }
 });
