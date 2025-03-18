@@ -16,7 +16,7 @@ export default function AnimatedNumber({ targetNumber }) {
   return (
     <motion.span
       animate={controls}
-      initial={{ value: 1 }}
+      initial={{ value: -1 }}
       onUpdate={(latest) => setNumber(Math.floor(Math.random() * 10) + 1)}
       onAnimationComplete={() => setNumber(targetNumber)}
     >

@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { completionsAction } from "./GetCompletionSlice";
 //Firebase
-import { db } from "../FireBase/FireBaseConfig";
 import { getCollectionRefHelper } from "../FireBase/FireBaseRefHelper";
+import { getDocRefHelper } from "../FireBase/FireBaseRefHelper";
 
 import {
   setDoc,
@@ -99,10 +99,7 @@ export const postGoalThunk = createAsyncThunk(
 export const getGoalThunk = createAsyncThunk(
   "dailyGoalsSlice/getGoalThunk",
   async ({ year, month, day }, { dispatch, rejectWithValue }) => {
-    const collectionRef = collection(
-      db,
-      "users",
-      "userxuan",
+    const collectionRef = getCollectionRefHelper(
       "goals",
       "dailyDay",
       `${year}`,
@@ -132,10 +129,7 @@ export const editGoalThunk = createAsyncThunk(
     { year, month, day, newGoal, originalGoal },
     { dispatch, rejectWithValue }
   ) => {
-    const docRef = doc(
-      db,
-      "users",
-      "userxuan",
+    const docRef = getDocRefHelper(
       "goals",
       "dailyDay",
       `${year}`,
@@ -176,11 +170,8 @@ export const completeGoalThunk = createAsyncThunk(
 
       dispatch(completionsAction.minusDailyCompletions());
     }
-    // 共同擁有的路徑
-    const getDocRef = (...pathSegments) =>
-      doc(db, "users", "userxuan", ...pathSegments);
 
-    const docGoalRef = getDocRef(
+    const docGoalRef = getDocRefHelper(
       "goals",
       "dailyDay",
       `${year}`,
@@ -188,14 +179,14 @@ export const completeGoalThunk = createAsyncThunk(
       `${year}-${month}-${day}`,
       `${id}`
     );
-    const yearRef = getDocRef("completionStats", `${year}`);
-    const monthRef = getDocRef(
+    const yearRef = getDocRefHelper("completionStats", `${year}`);
+    const monthRef = getDocRefHelper(
       "completionStats",
       `${year}`,
       "months",
       `${month}`
     );
-    const dayRef = getDocRef(
+    const dayRef = getDocRefHelper(
       "completionStats",
       `${year}`,
       "months",
@@ -264,10 +255,7 @@ export const deleteGoalThunk = createAsyncThunk(
   "dailyGoalsSlice/deleteGoalThunk",
   async ({ year, month, day, id }, { dispatch, rejectWithValue }) => {
     console.log("1");
-    const docRef = doc(
-      db,
-      "users",
-      "userxuan",
+    const docRef = getDocRefHelper(
       "goals",
       "dailyDay",
       `${year}`,
@@ -277,6 +265,7 @@ export const deleteGoalThunk = createAsyncThunk(
     );
     dispatch(dailyGoalsAction.removeGoalForTheDay(id));
     try {
+      //這裡即使沒有這了路徑他還是會刪除成功
       await deleteDoc(docRef);
       alert("刪除成功");
     } catch (error) {

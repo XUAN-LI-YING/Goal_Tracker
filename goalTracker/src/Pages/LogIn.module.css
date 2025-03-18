@@ -1,0 +1,63 @@
+.logInSectoin {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  margin: 5rem 5rem 0 5rem;
+}
+
+.logInSectoin > div {
+  margin-top: var(--spacing-lg);
+}
+.logInSectoin h1 {
+  font-size: var(--font-size-lg);
+
+  color: var(--accent-color);
+}
+.logInSectoin h2 {
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-md);
+}
+
+.loginsectoin > div:first-of-type {
+  margin-top: var(--spacing-lg);
+}
+.logInSectoin input {
+  border: 0.1rem solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs);
+  height: var(--spacing-lg);
+  color: var(--primary-text);
+  font-size: var(--font-size-sm);
+}
+
+.logInSectoin input::placeholder {
+  color: #c5c5c5;
+  font-size: var(--font-size-sm);
+}
+
+.logInSectoin button {
+  background-color: var(--accent-color);
+  width: fit-content;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  text-align: center;
+  color: #fff;
+  border-radius: var(--radius-sm);
+  align-self: end;
+  margin-top: var(--spacing-xs);
+}
+.logInSectoin button:hover {
+  background-color: #518e75;
+}
+.logInSectoin button:active {
+  background-color: #518e75;
+}
+
+.logInSectoin span {
+  color: var(--highlight-color);
+}
+
+.remindSection {
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+}

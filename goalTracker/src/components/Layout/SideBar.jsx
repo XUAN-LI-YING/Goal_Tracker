@@ -12,9 +12,11 @@ import { NavLink, useLocation } from "react-router-dom";
 
 //Redux
 import { useSelector, useDispatch } from "react-redux";
-import { sideBarModalAction } from "../../Store/SideBarModalSlice";
+import { loginAction } from "../../Store/LoginSlice";
 
 export default function SideBar() {
+  const dispatch = useDispatch();
+
   //Get current URL
   const location = useLocation();
 
@@ -29,6 +31,16 @@ export default function SideBar() {
     return { allGoalTagArray, displayTag };
   }, [allGoalForTheDay]);
 
+  //if login or not
+  //display or hide log out button
+  const accountNum = useSelector((state) => state.LoginReducer.accountNum);
+  //lOG OUT
+
+  function logOutHandle() {
+    document.cookie =
+      "accountNum=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+    dispatch(loginAction.logOutAccount());
+  }
   return (
     <div className={classes.leftSidebar} onClick={(e) => e.stopPropagation()}>
       <NavLink
@@ -56,7 +68,11 @@ export default function SideBar() {
         <SelectDisplayTag displayTag={displayTag} />
       )}
 
-      {/* <button>Logout</button> */}
+      {accountNum && (
+        <button className={classes.logOut} onClick={logOutHandle}>
+          登出
+        </button>
+      )}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 //Firebase
-import { getDoc, doc } from "firebase/firestore";
-import { db } from "../FireBase/FireBaseConfig";
+import { getDoc } from "firebase/firestore";
+import { getDocRefHelper } from "../FireBase/FireBaseRefHelper";
 
 //Rudex
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -29,10 +29,7 @@ export const completionsReducer = completions.reducer;
 export const getDailyCompletionsThunk = createAsyncThunk(
   "getCompletionSlice/getDailyCompletionsThunk",
   async ({ year, month, day }, { dispatch, rejectWithValue }) => {
-    const getDocRef = (...pathSegments) =>
-      doc(db, "users", "userxuan", ...pathSegments);
-
-    const dayRef = getDocRef(
+    const dayRef = getDocRefHelper(
       "completionStats",
       `${year}`,
       "months",
@@ -61,16 +58,24 @@ export const getDailyCompletionsThunk = createAsyncThunk(
 
 //Get  year, month, day Completions
 export async function getCompletionStats(year, month, day) {
-  const getDocRef = (...pathSegments) =>
-    doc(db, "users", "userxuan", ...pathSegments);
-  const yearRef = getDocRef("completionStats", `${year}`);
-  const monthRef = getDocRef(
+  const accountNum =
+    document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("accountNum="))
+      ?.split("=")[1] || "";
+
+  if (!accountNum) {
+    // 未登入時直接導向登入頁
+    return null;
+  }
+  const yearRef = getDocRefHelper("completionStats", `${year}`);
+  const monthRef = getDocRefHelper(
     "completionStats",
     `${year}`,
     "months",
     `${month}`
   );
-  const dayRef = getDocRef(
+  const dayRef = getDocRefHelper(
     "completionStats",
     `${year}`,
     "months",

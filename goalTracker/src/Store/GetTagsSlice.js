@@ -9,6 +9,8 @@ import {
   deleteDoc
 } from "firebase/firestore";
 import { db } from "../FireBase/FireBaseConfig";
+import { getDocRefHelper } from "../FireBase/FireBaseRefHelper";
+import { getCollectionRefHelper } from "../FireBase/FireBaseRefHelper";
 
 const getTagsSlice = createSlice({
   name: "getTagsSlice",
@@ -42,7 +44,7 @@ export const getAllTagsThunk = createAsyncThunk(
   "getTagsSlice/getAllTags",
   async (__DO_NOT_USE__ActionTypes, { dispatch, rejectWithValue }) => {
     try {
-      const tagsCollection = collection(db, "users", "userxuan", "tags");
+      const tagsCollection = getCollectionRefHelper("tags");
 
       const querySnapshot = await getDocs(tagsCollection);
 
@@ -64,12 +66,9 @@ export const postTagThunk = createAsyncThunk(
   "getTagsSlice/postTag",
   async (newTag, { dispatch, rejectWithValue }) => {
     try {
-      const docRef = await setDoc(
-        doc(db, "users", "userxuan", "tags", newTag),
-        {
-          tag: newTag
-        }
-      );
+      const docRef = await setDoc(getDocRefHelper("tags", newTag), {
+        tag: newTag
+      });
     } catch (error) {
       console.error("Firestore post錯誤:", error);
       dispatch(getTagsAction.removeTag(newTag));
@@ -83,7 +82,8 @@ export const deleteTagThunk = createAsyncThunk(
   "getTagsSlice/deleteTag",
   async (deleteTag, { dispatch, rejectWithValue }) => {
     try {
-      await deleteDoc(doc(db, "users", "userxuan", "tags", deleteTag));
+      //注意這裡即使沒有這個路徑也會 alert("刪除成功!");
+      await deleteDoc(getDocRefHelper("tags", deleteTag));
 
       alert("刪除成功!");
     } catch (error) {

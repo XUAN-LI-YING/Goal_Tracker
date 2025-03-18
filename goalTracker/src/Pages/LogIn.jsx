@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import classes from "./LogIn.module.css";
+//Redux
 import { useDispatch } from "react-redux";
-import { loginAction } from "../Store/LoginSlice";
+import { createUserIfNotExistsThunk } from "../Store/LoginSlice";
+//Router
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
-
+  const navigate = useNavigate();
   const handleLogin = () => {
     // 移除空格
     const trimmedInput = input.replace(/\s+/g, "");
 
     if (trimmedInput.length !== 4) {
-      alert("請輸入 2 個英文字母 + 2 個中文字（順序不限），例如 a好B你");
+      alert("請輸入 2 個英文字母 + 2 個中文字，順序不限，例如：a好B你");
       return;
     }
 
@@ -22,42 +26,61 @@ export default function Login() {
     // 確保字元類型符合需求
     if (englishLetters.length !== 2 || chineseChars.length !== 2) {
       alert(
-        "輸入格式錯誤！請輸入 2 個英文字母 + 2 個中文字（順序不限），例如 a好B你"
+        "輸入格式錯誤！請輸入 2 個英文字母 + 2 個中文字，順序不限，例如 a好B你"
       );
       return;
     }
-
+    navigate("/");
     // 通過驗證，存入 Redux
-    dispatch(loginAction.setAccountNum(trimmedInput));
+    dispatch(createUserIfNotExistsThunk(trimmedInput));
   };
 
   return (
-    <div>
+    <div className={classes.logInSectoin}>
+      <h1>快速登入</h1>
       <div>
-        <p>
-          我們的網站採用「快速登入」機制，讓你不需要註冊、不需要密碼，立即開始使用。
+        <p className={classes.introduction}>
+          ✨我們知道您超忙，還要註冊登入超麻煩！
+          <br />
+          ✨為了讓您方便，我們的網站採用「
+          <span>快速登入</span>
+          」機制，讓您不需操作複雜的註冊與登入程序，即可開始使用。
         </p>
-        <p>
-          <strong>快速登入：</strong>請輸入
-          <strong> 2 個英文字母 + 2 個中文字</strong>（順序不限），例如
-          <strong> a好B你</strong>。
-        </p>
-        <p>📌 如果輸入和上次一樣的代碼，你將登入你的專屬資料。</p>
-        <p>📌 如果輸入新的代碼，系統會自動幫你建立新的帳戶，資料也是全新的。</p>
-        <p>
-          ⚠️
-          注意！請記住你的識別碼，因為如果輸入錯了，可能會變成另一個帳號，無法找回舊資料！
-        </p>
+
+        <div>
+          <div>
+            <h2>✏️請輸入代碼以便快速登入：</h2>
+            <p>
+              <span>請輸入 2 個英文字母 + 2 個中文字（順序不限）</span>
+            </p>
+          </div>
+          <div className={classes.inputSection}>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value.replace(/\s+/g, ""))}
+              // placeholder="例如：a好B你"
+              maxLength={4}
+              onKeyUp={(e) => e.key === "Enter" && handleLogin()}
+              tabIndex={0}
+            />
+            <button onClick={handleLogin}>確認登入</button>
+          </div>
+        </div>
+        <div className={classes.remindSection}>
+          <p>📌 如果輸入和上次一樣的代碼，您將登入您的專屬資料。</p>
+          <p>
+            📌 如果輸入新的代碼，系統會自動幫您建立新的帳戶，資料也會是全新的。
+          </p>
+
+          <p>
+            <span>
+              ⚠️注意！如果您的代碼剛好與其他人相同，可能會進入一個「已有人使用過的環境」！😲
+            </span>
+          </p>
+          <p>👉 請輸入獨特的代碼，確保您的資料都是專屬的！</p>
+        </div>
       </div>
-      <h2>請輸入代碼</h2>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value.replace(/\s+/g, ""))}
-        placeholder="例如 a好B你"
-        maxLength={4}
-      />
-      <button onClick={handleLogin}>確認登入</button>
     </div>
   );
 }

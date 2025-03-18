@@ -13,7 +13,6 @@ import { Provider } from "react-redux";
 import { store } from "./Store/store";
 // import loader function
 import { getCompletionStats } from "./Store/GetCompletionSlice";
-import { useEffect } from "react";
 
 //get today date
 const now = new Date();
@@ -34,11 +33,12 @@ const router = createBrowserRouter([
           return await getCompletionStats(todayYear, todayMonth, todayDay);
         },
         hydrateFallbackElement: <Loading />
-      },
-      { path: "/home", element: <Home /> },
-      { index: "/logIn", element: <Login /> }
+      }
+
+      // { path: "/logIn", element: <Login /> }
     ]
-  }
+  },
+  { path: "/home", element: <Home /> }
 ]);
 
 function App() {

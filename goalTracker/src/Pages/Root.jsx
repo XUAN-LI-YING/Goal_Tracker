@@ -72,7 +72,7 @@ export default function Root() {
     <div className={classes.container}>
       {screenState === RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_576 ? (
         <Fragment>
-          <RwdNavigationBtn />
+          {!accountNum ? undefined : <RwdNavigationBtn />}
           <div
             className={`${classes.modalOverlay} ${
               !sideBarOpen && classes.leftSidebarNone
@@ -84,7 +84,7 @@ export default function Root() {
         </Fragment>
       ) : screenState === RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_768 ? (
         <Fragment>
-          <RwdNavigationBtn />
+          {!accountNum ? undefined : <RwdNavigationBtn />}
           <SideBar />
         </Fragment>
       ) : (
