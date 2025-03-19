@@ -1,5 +1,5 @@
 //image
-import coverImg from "../assets/cover.png";
+import coverImg from "../assets/cover.webp";
 import logoImg from "../assets/logo.png";
 //css、motion
 import classes from "./Home.module.css";
@@ -15,7 +15,9 @@ export default function Home() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <div className={classes.homeBar}>{/* <img src={logoImg} /> */}</div>
+      <div className={classes.homeBar}>
+        <p>GoalTracker</p>
+      </div>
 
       <div className={classes.homeImg}>
         <img src={coverImg} />

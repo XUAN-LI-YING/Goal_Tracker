@@ -4,10 +4,10 @@ import { getDocRefHelper } from "../FireBase/FireBaseRefHelper";
 
 //Rudex
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+const initialState = { dailyCompletions: 0 };
 const completions = createSlice({
   name: "completions",
-  initialState: { dailyCompletions: 0 },
+  initialState,
   reducers: {
     setDailyCompletions(state, action) {
       state.dailyCompletions = action.payload;
@@ -18,6 +18,9 @@ const completions = createSlice({
     },
     plusDailyCompletions(state) {
       state.dailyCompletions = state.dailyCompletions + 1;
+    },
+    initialState(state) {
+      return { ...initialState };
     }
   }
 });

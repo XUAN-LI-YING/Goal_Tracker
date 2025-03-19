@@ -1,14 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const now = new Date();
-console.log("now", now);
+
 const initialYear = now.getFullYear();
 const initialMonth = now.getMonth() + 1;
 const initialDay = now.getDate();
 
+const initialState = {
+  year: initialYear,
+  month: initialMonth,
+  day: initialDay
+};
 const date = createSlice({
   name: "date",
-  initialState: { year: initialYear, month: initialMonth, day: initialDay },
+  initialState,
   reducers: {
     switchYear(state, action) {
       state.year = action.payload;
@@ -18,16 +23,24 @@ const date = createSlice({
     },
     switchDay(state, action) {
       state.day = action.payload;
+    },
+    initialState(state) {
+      return { ...initialState };
     }
   }
 });
 //changeComponent
+const initialStateComponent = { componentPage: "selectDay" };
+
 const setCalendarComponent = createSlice({
   name: "setCalendarComponent",
-  initialState: { componentPage: "selectDay" },
+  initialState: initialStateComponent,
   reducers: {
     changeComponentPage(state, action) {
       state.componentPage = action.payload;
+    },
+    initialState(state) {
+      return { ...initialStateComponent };
     }
   }
 });

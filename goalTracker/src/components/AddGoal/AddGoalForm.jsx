@@ -1,6 +1,6 @@
 import { useGoalFormHook } from "../../Hooks/useGoalFormHook";
 import classes from "./AddGoalForm.module.css";
-
+import { useEffect } from "react";
 //REDUX
 import { modalAction, MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,15 +18,7 @@ export function AddGoalForm({ availableTags }) {
   const { year, month, day } = editDate;
 
   //call hook to incoming Form value、selected tags initial useState
-  const initialGoal = {
-    goalTextAndTime: {
-      isSetTime: "",
-      goalTime: "",
-      goalText: "",
-      goalDetail: ""
-    },
-    goalTags: []
-  };
+  const initialGoal = handleInitial();
   const {
     maxLength,
     handleChange,
@@ -40,6 +32,34 @@ export function AddGoalForm({ availableTags }) {
   //Form value
   const { isSetTime, goalTime, goalText, goalDetail } = formValue;
   console.log("formValue", formValue);
+
+  //sessionStorage
+  useEffect(() => {
+    sessionStorage.setItem("addGoalForm", JSON.stringify(formValue));
+    sessionStorage.setItem("addGoalFormTag", JSON.stringify(selectedTags));
+  }, [formValue, selectedTags]);
+
+  function handleInitial() {
+    if (sessionStorage.getItem("addGoalForm")) {
+      const goalTextAndTime = JSON.parse(sessionStorage.getItem("addGoalForm"));
+      const goalTags = JSON.parse(sessionStorage.getItem("addGoalFormTag"));
+
+      return {
+        goalTextAndTime,
+        goalTags
+      };
+    } else {
+      return {
+        goalTextAndTime: {
+          isSetTime: "",
+          goalTime: "",
+          goalText: "",
+          goalDetail: ""
+        },
+        goalTags: []
+      };
+    }
+  }
 
   //Confirm to add new goal
   async function addNewGoal(e) {
@@ -66,6 +86,7 @@ export function AddGoalForm({ availableTags }) {
       goalText: "",
       goalDetail: ""
     });
+
     setSelectedTags([]);
   }
 

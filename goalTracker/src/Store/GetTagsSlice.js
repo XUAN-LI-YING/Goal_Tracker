@@ -12,11 +12,13 @@ import { db } from "../FireBase/FireBaseConfig";
 import { getDocRefHelper } from "../FireBase/FireBaseRefHelper";
 import { getCollectionRefHelper } from "../FireBase/FireBaseRefHelper";
 
+const initialState = {
+  tags: []
+};
+
 const getTagsSlice = createSlice({
   name: "getTagsSlice",
-  initialState: {
-    tags: []
-  },
+  initialState,
   reducers: {
     setTags: (state, action) => {
       state.tags = action.payload;

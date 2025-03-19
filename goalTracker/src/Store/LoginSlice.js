@@ -24,7 +24,6 @@ const loginSlice = createSlice({
   reducers: {
     setAccountNum: (state, action) => {
       state.accountNum = action.payload;
-      document.cookie = `accountNum=${action.payload}; path=/`; // 存到 Cookie
     },
     logOutAccount: (state) => {
       state.accountNum = "";
@@ -58,13 +57,14 @@ export const createUserIfNotExistsThunk = createAsyncThunk(
         await setDoc(userRef, { createdTime: new Date().toISOString() });
 
         dispatch(loginAction.setAccountNum(accountNum));
-
+        document.cookie = `accountNum=${accountNum}; path=/;`;
         //為剛註冊的用戶建立預設tag
         await Promise.all(defaultTag.map((tag) => dispatch(postTagThunk(tag))));
-
+        //設定cookie
         alert("您好，恭喜您註冊新的帳號，歡迎使用！😁✨🎉🎈🎊❤️");
       } else {
         dispatch(loginAction.setAccountNum(accountNum));
+        document.cookie = `accountNum=${accountNum}; path=/;`;
         alert("您好，歡迎回來！😎😁🤓😍");
       }
     } catch (error) {

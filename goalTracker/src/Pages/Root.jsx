@@ -14,6 +14,8 @@ import { RWD_STATE_ELEMENT } from "../Store/RwdStateSlice";
 import { sideBarModalAction } from "../Store/SideBarModalSlice";
 
 export default function Root() {
+  const { year, month, day } = useSelector((state) => state.Date);
+
   //if Logout ，render login page
   const accountNum = useSelector((state) => state.LoginReducer.accountNum);
 
@@ -72,7 +74,7 @@ export default function Root() {
     <div className={classes.container}>
       {screenState === RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_576 ? (
         <Fragment>
-          {!accountNum ? undefined : <RwdNavigationBtn />}
+          <RwdNavigationBtn />
           <div
             className={`${classes.modalOverlay} ${
               !sideBarOpen && classes.leftSidebarNone
@@ -84,7 +86,7 @@ export default function Root() {
         </Fragment>
       ) : screenState === RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_768 ? (
         <Fragment>
-          {!accountNum ? undefined : <RwdNavigationBtn />}
+          <RwdNavigationBtn />
           <SideBar />
         </Fragment>
       ) : (

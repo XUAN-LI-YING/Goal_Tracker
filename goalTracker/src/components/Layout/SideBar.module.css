@@ -38,15 +38,21 @@
 
 .logOut {
   position: absolute;
-  bottom: 8%;
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0%;
   color: var(--background-color);
   font-size: var(--font-size-sm);
+  border-radius: 0;
 }
 .logOut:hover {
-  transform: scale(1.05);
+  background-color: #82766352;
 }
 .logOut:active {
-  transform: scale(0.9);
+  background-color: #82766352;
 }
 @media (max-width: 1199.98px) and (min-width: 769px) {
   .leftSidebar {

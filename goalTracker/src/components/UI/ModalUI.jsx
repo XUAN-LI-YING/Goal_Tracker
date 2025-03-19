@@ -10,10 +10,18 @@ export default function Modal({ children }) {
   // openGoalModalState
   const dispatch = useDispatch();
 
+  function handleCloseModal() {
+    //session
+    sessionStorage.removeItem("addGoalForm");
+    sessionStorage.removeItem("addGoalFormTag");
+    //
+    dispatch(modalAction.closeModal());
+  }
+
   return (
     <motion.div
       className={classes.modalOverlay}
-      onClick={() => dispatch(modalAction.closeModal())}
+      onClick={handleCloseModal}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -27,10 +35,7 @@ export default function Modal({ children }) {
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <button
-          className={classes.closeButton}
-          onClick={() => dispatch(modalAction.closeModal())}
-        >
+        <button className={classes.closeButton} onClick={handleCloseModal}>
           &times;
         </button>
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGoalFormHook } from "../../Hooks/useGoalFormHook";
 import classes from "./GoalDetail.module.css";
 //Redux
@@ -21,6 +21,10 @@ export default function GoalDetail() {
 
   //redux ,change modal element and  go edit tag page
   function goEditTagPage() {
+    //Session Storage editing  content
+    sessionStorage.setItem("editGoalForm", JSON.stringify(formValue));
+    sessionStorage.setItem("editGoalFormTag", JSON.stringify(selectedTags));
+
     dispatch(
       goalDetailModalAction.displayElement(
         Detail_MODAL_CONTENT_ELEMENT.EDIT_TAG
@@ -36,10 +40,7 @@ export default function GoalDetail() {
     dispatch(goalDetailModalAction.disableEditGoal(false));
   }
   //call hook to incoming Form value、selected tags initial useState
-  const initialGoal = {
-    goalTextAndTime: goal,
-    goalTags: goal.selectedTags
-  };
+  const initialGoal = handleInitial();
   const {
     maxLength,
     handleChange,
@@ -52,6 +53,27 @@ export default function GoalDetail() {
   } = useGoalFormHook(initialGoal);
   const { year, month, day, isSetTime, goalTime, goalText, goalDetail } =
     formValue;
+
+  function handleInitial() {
+    if (sessionStorage.getItem("editGoalForm")) {
+      const goalTextAndTime = JSON.parse(
+        sessionStorage.getItem("editGoalForm")
+      );
+      const goalTags = JSON.parse(sessionStorage.getItem("editGoalFormTag"));
+      console.log("有東西!😑");
+      return {
+        goalTextAndTime,
+        goalTags
+      };
+    } else {
+      console.log("沒東西!😑");
+
+      return {
+        goalTextAndTime: goal,
+        goalTags: goal.selectedTags
+      };
+    }
+  }
 
   //Update new goal ,after edit goal
   function handleUpdateGoal(e) {
@@ -73,9 +95,22 @@ export default function GoalDetail() {
 
   //Unedit the target and restore the original target content
   function handleUndoGoal() {
+    //session
+    sessionStorage.removeItem("editGoalForm");
+    sessionStorage.removeItem("editGoalFormTag");
+    //
     setFormValue(initialGoal.goalTextAndTime);
     setSelectedTags(initialGoal.goalTags);
     dispatch(goalDetailModalAction.disableEditGoal(true));
+  }
+
+  //handle close modal
+  function handleClose() {
+    //session
+    sessionStorage.removeItem("editGoalForm");
+    sessionStorage.removeItem("editGoalFormTag");
+    //
+    dispatch(goalDetailModalAction.closeDetailModal());
   }
 
   return (
@@ -229,7 +264,7 @@ export default function GoalDetail() {
           <button
             className={classes.closeBtn}
             type="button"
-            onClick={() => dispatch(goalDetailModalAction.closeDetailModal())}
+            onClick={handleClose}
           >
             關閉
           </button>

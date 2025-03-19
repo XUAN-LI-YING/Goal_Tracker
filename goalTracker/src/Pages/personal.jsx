@@ -1,5 +1,5 @@
 import classes from "./Personal.module.css";
-import userSticker from "../assets/userSticker.png";
+import userSticker from "../assets/userSticker.webp";
 import AnimatedNumber from "../components/UI/AnimatedNumber";
 //react router
 import { useLoaderData } from "react-router-dom";

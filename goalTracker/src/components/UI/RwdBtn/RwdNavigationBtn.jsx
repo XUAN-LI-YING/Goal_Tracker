@@ -3,7 +3,7 @@ import classes from "../RwdBtn/RwdNavigationBtn.module.css";
 //Redux
 import { sideBarModalAction } from "../../../Store/SideBarModalSlice";
 import { rightPanelModalAction } from "../../../Store/RightPanelModalSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //Img
 import hambugerIcon from "../../../assets/hambuger_black.png";
 import calendarIcon from "../../../assets/calendar.png";
@@ -24,22 +24,26 @@ export default function RwdNavigationBtn() {
 
   //根據當前頁面決定哪些btn該顯示
   const location = useLocation();
+  //if log in
+  const accountNum = useSelector((state) => state.LoginReducer.accountNum);
 
   return (
     <div className={classes.btnSection}>
       <button className={classes.hambugerIcon} onClick={handleSideBar}>
         <img src={hambugerIcon} />
       </button>
-      <button
-        className={
-          location.pathname === "/"
-            ? classes.calendarIcon
-            : classes.calendarIconNone
-        }
-        onClick={handlerightPanel}
-      >
-        <img src={calendarIcon} />
-      </button>
+      {accountNum && (
+        <button
+          className={
+            location.pathname === "/"
+              ? classes.calendarIcon
+              : classes.calendarIconNone
+          }
+          onClick={handlerightPanel}
+        >
+          <img src={calendarIcon} />
+        </button>
+      )}
     </div>
   );
 }

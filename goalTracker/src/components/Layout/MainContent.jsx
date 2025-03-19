@@ -22,6 +22,7 @@ export default function MainContent() {
 
   //Get day to display
   const { year, month, day } = useSelector((state) => state.Date);
+
   const selectDay = new Date(year, month - 1, day);
   const displayDay = format(selectDay, "	yyyy年MM月dd日 ");
 

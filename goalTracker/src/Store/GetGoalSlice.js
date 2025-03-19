@@ -14,13 +14,14 @@ import {
   deleteDoc
 } from "firebase/firestore";
 
+const initialState = {
+  dailyGoals: [],
+  noTimeGoal: [],
+  sortGoalTime: []
+};
 const dailyGoalsSlice = createSlice({
   name: "dailyGoalsSlice",
-  initialState: {
-    dailyGoals: [],
-    noTimeGoal: [],
-    sortGoalTime: []
-  },
+  initialState,
   reducers: {
     setGoalForTheDay: (state, action) => {
       state.dailyGoals = action.payload;
@@ -58,6 +59,9 @@ const dailyGoalsSlice = createSlice({
     },
     setSortGoalTime: (state, action) => {
       state.sortGoalTime = action.payload;
+    },
+    initialState: (state) => {
+      return { ...initialState };
     }
   }
 });

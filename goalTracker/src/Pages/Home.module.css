@@ -8,10 +8,16 @@
   background-color: var(--primary-color);
   height: 10%;
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
 .homeBar img {
   height: 100%;
+}
+.homeBar p {
+  font-family: "Titan One", sans-serif;
+  font-size: 2.5rem;
+  color: var(--background-color);
+  padding-left: var(--spacing-lg);
 }
 .homeContent .homeImg {
   width: 100%;

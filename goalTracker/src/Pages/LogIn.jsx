@@ -3,8 +3,12 @@ import classes from "./LogIn.module.css";
 //Redux
 import { useDispatch } from "react-redux";
 import { createUserIfNotExistsThunk } from "../Store/LoginSlice";
+import { dateAction, setCalendarAction } from "../Store/DateSlice";
+import { dailyGoalsAction } from "../Store/GetGoalSlice";
+import { selectTagAction } from "../Store/SelectTagSlice";
 //Router
 import { useNavigate } from "react-router-dom";
+import { completionsAction } from "../Store/GetCompletionSlice";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -34,6 +38,16 @@ export default function Login() {
     // 通過驗證，存入 Redux
     dispatch(createUserIfNotExistsThunk(trimmedInput));
   };
+
+  useEffect(() => {
+    //登出後初始化state
+    console.log("ji3u.dkfjdlksfg");
+    dispatch(dateAction.initialState());
+    dispatch(setCalendarAction.initialState());
+    dispatch(completionsAction.initialState());
+    dispatch(dailyGoalsAction.initialState());
+    dispatch(selectTagAction.initialState());
+  }, []);
 
   return (
     <div className={classes.logInSectoin}>

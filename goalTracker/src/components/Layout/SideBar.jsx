@@ -37,9 +37,9 @@ export default function SideBar() {
   //lOG OUT
 
   function logOutHandle() {
-    document.cookie =
-      "accountNum=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     dispatch(loginAction.logOutAccount());
+    document.cookie = `accountNum=; path=/;`;
+    // alert("👻登出成功！👻");
   }
   return (
     <div className={classes.leftSidebar} onClick={(e) => e.stopPropagation()}>
@@ -64,7 +64,7 @@ export default function SideBar() {
         <img src={goalIcon} alt="Go to manage target page" />
         目標管理
       </NavLink>
-      {location.pathname === "/" && (
+      {location.pathname === "/" && accountNum && (
         <SelectDisplayTag displayTag={displayTag} />
       )}
 

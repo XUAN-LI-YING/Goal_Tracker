@@ -11,6 +11,7 @@ import Login from "./Pages/LogIn";
 //Redux store
 import { Provider } from "react-redux";
 import { store } from "./Store/store";
+
 // import loader function
 import { getCompletionStats } from "./Store/GetCompletionSlice";
 

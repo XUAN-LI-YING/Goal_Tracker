@@ -6,14 +6,20 @@ import classes from "./GoalDetailModalUI.module.css";
 import { motion } from "framer-motion";
 
 export default function GoalDetailModalUI({ children }) {
-  // openGoalModalState
-
+  // close GoalModalState
   const dispatch = useDispatch();
+  function handleCloseModal() {
+    //session
+    sessionStorage.removeItem("editGoalForm");
+    sessionStorage.removeItem("editGoalFormTag");
+    //
+    dispatch(goalDetailModalAction.initialAllState());
+  }
 
   return (
     <motion.div
       className={classes.modalOverlay}
-      onClick={() => dispatch(goalDetailModalAction.initialAllState())}
+      onClick={handleCloseModal}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -27,10 +33,7 @@ export default function GoalDetailModalUI({ children }) {
         exit={{ opacity: 0, x: 20 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <button
-          className={classes.closeButton}
-          onClick={() => dispatch(goalDetailModalAction.initialAllState())}
-        >
+        <button className={classes.closeButton} onClick={handleCloseModal}>
           &times;
         </button>
 
