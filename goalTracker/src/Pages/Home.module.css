@@ -1,14 +1,16 @@
 .homeContent {
   width: 100%;
-
+  background-color: #c8b08f;
+  overflow-x: hidden;
   overflow-y: auto;
   height: 100vh;
 }
 .homeBar {
   background-color: var(--primary-color);
-  height: 10%;
+  height: 12%;
   display: flex;
   align-items: center;
+  width: 100vw;
 }
 .homeBar img {
   height: 100%;
@@ -22,10 +24,15 @@
 .homeContent .homeImg {
   width: 100%;
 }
+
+.coverImgStraight {
+  display: none;
+}
 .startBtn {
   width: 100vw;
   height: 5rem;
-  background-color: #c8b08f;
+  margin-top: 5rem;
+
   display: flex;
   justify-content: center;
 }
@@ -48,10 +55,109 @@
   /* color: #fff; */
   /* background-color: var(--highlight-color); */
 }
+.introSection p {
+  color: #fff;
+  font-size: var(--font-size-md-lg);
+  text-wrap: balance;
+}
+
+.slogon {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2%;
+}
+
+.introduction1 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 12% 8%;
+  align-items: center;
+}
+.introduction1 img {
+  width: 84%;
+}
+.introduction1 p {
+}
+
+.introduction1 div {
+  bottom: 1%;
+  right: 9%;
+  position: absolute;
+  width: 23%;
+  height: 30%;
+  text-align: center;
+  display: flex;
+}
+
+.introduction2 {
+  display: flex;
+  flex-direction: column;
+  margin: 12% 8% 0 8%;
+  align-items: center;
+}
+.introduction2 img,
+.introduction3 img {
+  width: 70%;
+}
+.introduction2 div {
+  display: flex;
+  height: 10rem;
+  width: 70%;
+  margin-top: 6%;
+}
+
+.introduction2 p {
+  width: 25%;
+}
+.introduction2 div > p:nth-of-type(2) {
+  align-self: end;
+}
+.introduction3 {
+  display: flex;
+  flex-direction: column;
+  margin: 0 8% 0 8%;
+  align-items: end;
+}
+
+.introduction3 div {
+  width: 80%;
+}
+.introduction3 p {
+  width: 25%;
+  margin-top: 6%;
+}
+
+.flootSlogon {
+  margin: 12% 0 10% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Footer {
+  background-color: #7b6c54;
+  width: 100vw;
+  height: 10rem;
+}
+/* 滾動條的滑塊 */
+.homeContent::-webkit-scrollbar-thumb {
+  background-color: #554a3b;
+  border-radius: 4px;
+}
+.homeContent::-webkit-scrollbar {
+  width: 6px;
+}
+/* 滑鼠懸停時的滾動條 */
+.homeContent::-webkit-scrollbar-thumb:hover {
+  background-color: #635645;
+}
+
 @media (max-width: 900px) and (min-width: 769px) {
   .startBtn button {
     font-size: var(--font-size-md);
-    padding: var(--spacing-sm) var(--spacing-sm-md);
+    padding: var(--spacing-md) var(--spacing-sm-md);
   }
 }
 
@@ -61,8 +167,32 @@
   } */
   .startBtn button {
     font-size: var(--font-size-sm);
-    padding: var(--spacing-sm) var(--spacing-sm-md);
+    padding: var(--spacing-md) var(--spacing-sm-md);
     left: 27%;
+  }
+
+  .coverImgStraight {
+    display: flex;
+  }
+  .coverImg {
+    display: none;
+  }
+  .startBtn {
+    margin-top: 5rem;
+  }
+  .slogon {
+    margin-top: 0;
+  }
+  .introSection p {
+    color: #fff;
+    font-size: var(--font-size-md);
+  }
+
+  .introduction2 p {
+    width: 30%;
+  }
+  .introduction2 div > p:nth-of-type(2) {
+    align-self: center;
   }
 }
 @media (max-width: 576px) and (min-width: 400px), (max-width: 400px) {
@@ -71,6 +201,30 @@
   } */
   .startBtn button {
     font-size: var(--font-size-sm);
-    padding: var(--spacing-sm) var(--spacing-sm-md);
+    padding: var(--spacing-md) var(--spacing-sm-md);
+  }
+  .coverImgStraight {
+    display: flex;
+  }
+  .coverImg {
+    display: none;
+  }
+  .startBtn {
+    margin-top: 5rem;
+  }
+
+  .slogon {
+    margin-top: 0;
+    text-align: center;
+  }
+  .introSection p {
+    color: #fff;
+    font-size: var(--font-size-md);
+  }
+  .introduction2 p {
+    width: 42%;
+  }
+  .introduction2 div > p:nth-of-type(2) {
+    align-self: center;
   }
 }
