@@ -12,9 +12,7 @@
   align-items: center;
   width: 100vw;
 }
-.homeBar img {
-  height: 100%;
-}
+
 .homeBar p {
   font-family: "Titan One", sans-serif;
   font-size: 2.5rem;
@@ -110,7 +108,7 @@
 }
 
 .introduction2 p {
-  width: 25%;
+  width: 30%;
 }
 .introduction2 div > p:nth-of-type(2) {
   align-self: end;
@@ -126,7 +124,7 @@
   width: 80%;
 }
 .introduction3 p {
-  width: 25%;
+  width: 30%;
   margin-top: 6%;
 }
 
@@ -159,12 +157,21 @@
     font-size: var(--font-size-md);
     padding: var(--spacing-md) var(--spacing-sm-md);
   }
+  .introduction2 p {
+    width: 40%;
+  }
+  .introduction3 p {
+    width: 50%;
+  }
 }
 
 @media (max-width: 768px) and (min-width: 577px) {
   /* .homeContent {
     width: 75%;
   } */
+  .homeBar {
+    justify-content: center;
+  }
   .startBtn button {
     font-size: var(--font-size-sm);
     padding: var(--spacing-md) var(--spacing-sm-md);
@@ -189,7 +196,10 @@
   }
 
   .introduction2 p {
-    width: 30%;
+    width: 40%;
+  }
+  .introduction3 p {
+    width: 40%;
   }
   .introduction2 div > p:nth-of-type(2) {
     align-self: center;
@@ -199,6 +209,9 @@
   /* .homeContent {
     width: 100%;
   } */
+  .homeBar {
+    justify-content: center;
+  }
   .startBtn button {
     font-size: var(--font-size-sm);
     padding: var(--spacing-md) var(--spacing-sm-md);
@@ -221,10 +234,26 @@
     color: #fff;
     font-size: var(--font-size-md);
   }
+  .introduction1 div {
+    position: static;
+    width: 70%;
+    margin-top: 6%;
+    justify-content: center;
+  }
+
   .introduction2 p {
-    width: 42%;
+    width: 60%;
+  }
+  .introduction3 p {
+    width: 70%;
   }
   .introduction2 div > p:nth-of-type(2) {
     align-self: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .introduction2 div {
+    width: 90%;
   }
 }
