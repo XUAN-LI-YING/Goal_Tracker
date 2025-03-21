@@ -10,9 +10,13 @@ const getAccounCookie = () => {
   );
 };
 
+const getAccounLocalStorage = () => {
+  return localStorage.getItem("accountNum");
+};
+
 export const getDocRefHelper = (...pathSegments) => {
   // 讀取 sessionStorage
-  const accountNum = getAccounCookie();
+  const accountNum = getAccounLocalStorage();
   if (!accountNum) {
     throw new Error("未登入");
   }
@@ -22,7 +26,7 @@ export const getDocRefHelper = (...pathSegments) => {
 
 export const getCollectionRefHelper = (...pathSegments) => {
   // 讀取 sessionStorage
-  const accountNum = getAccounCookie();
+  const accountNum = getAccounLocalStorage();
   if (!accountNum) {
     throw new Error("未登入");
   }

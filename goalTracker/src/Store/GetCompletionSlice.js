@@ -61,16 +61,20 @@ export const getDailyCompletionsThunk = createAsyncThunk(
 
 //Get  year, month, day Completions
 export async function getCompletionStats(year, month, day) {
-  const accountNum =
-    document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("accountNum="))
-      ?.split("=")[1] || "";
+  //因為 react router loader的關係所以需要這行
+  // const accountNum =
+  //   document.cookie
+  //     .split("; ")
+  //     .find((row) => row.startsWith("accountNum="))
+  //     ?.split("=")[1] || "";
+
+  const accountNum = localStorage.getItem("accountNum");
 
   if (!accountNum) {
     // 未登入時直接導向登入頁
     return null;
   }
+  //
   const yearRef = getDocRefHelper("completionStats", `${year}`);
   const monthRef = getDocRefHelper(
     "completionStats",

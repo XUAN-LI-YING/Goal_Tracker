@@ -54,7 +54,6 @@ export default function Root() {
     dispatch(rwdStateSliceAction.currentScreen(screenSize));
   };
 
-  // handleResize();
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -69,6 +68,24 @@ export default function Root() {
     if (screenState !== RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_576)
       dispatch(sideBarModalAction.initialModal());
   }, [screenState]);
+
+  //
+  //因應不同瀏覽器視窗可能會有工具列擋住網站，因此將扣除工具列得到實際高度
+  useEffect(() => {
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    // 初始執行一次
+    setVH();
+
+    // 每當視窗大小改變時執行
+    window.addEventListener("resize", setVH);
+
+    // 清理事件監聽，避免記憶體洩漏
+    return () => window.removeEventListener("resize", setVH);
+  }, []);
 
   return (
     <div className={classes.container}>

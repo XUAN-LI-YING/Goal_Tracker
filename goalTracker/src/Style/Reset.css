@@ -31,6 +31,7 @@ body {
   background-color: var(--background-color);
   /* 讓 Mac 裝置上的字體更平滑，避免鋸齒感。*/
   -webkit-font-smoothing: antialiased;
+  height: 100%;
 }
 
 /* 清除標題 h1-h6 預設 margin，讓間距統一 */

@@ -1,7 +1,8 @@
 .container {
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh) * 100);
+
   max-width: 1700px;
   margin: 0 auto;
 }
@@ -11,7 +12,8 @@
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(var(--vh) * 100);
+
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     z-index: 10;

@@ -68,6 +68,9 @@
 .goalText input {
   width: 100%;
 }
+.goalText p {
+  color: var(--highlight-color);
+}
 
 .goalDetail {
   display: flex;

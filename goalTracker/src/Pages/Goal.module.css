@@ -17,7 +17,8 @@
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(var(--vh) * 100);
+
     background: rgb(235 235 235 / 41%);
     display: flex;
     z-index: 1000;

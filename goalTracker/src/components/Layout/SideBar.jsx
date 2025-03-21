@@ -38,7 +38,8 @@ export default function SideBar() {
 
   function logOutHandle() {
     dispatch(loginAction.logOutAccount());
-    document.cookie = `accountNum=; path=/;`;
+    localStorage.removeItem("accountNum");
+    // document.cookie = `accountNum=; path=/;`;
     // alert("👻登出成功！👻");
   }
   return (
