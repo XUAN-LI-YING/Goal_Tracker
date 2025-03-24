@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useGoalFormHook } from "../../Hooks/useGoalFormHook";
 import classes from "./GoalDetail.module.css";
+import TimePickerComponent from "../AddGoal/TimePickerComponent";
 //Redux
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -60,14 +61,12 @@ export default function GoalDetail() {
         sessionStorage.getItem("editGoalForm")
       );
       const goalTags = JSON.parse(sessionStorage.getItem("editGoalFormTag"));
-      console.log("有東西!😑");
+
       return {
         goalTextAndTime,
         goalTags
       };
     } else {
-      console.log("沒東西!😑");
-
       return {
         goalTextAndTime: goal,
         goalTags: goal.selectedTags
@@ -77,6 +76,9 @@ export default function GoalDetail() {
 
   //Update new goal ,after edit goal
   function handleUpdateGoal(e) {
+    console.log("goalTime", goalTime);
+    console.log("goalText", goalText);
+
     e.preventDefault();
     const newGoal = {
       ...goal,
@@ -114,7 +116,7 @@ export default function GoalDetail() {
   }
 
   return (
-    <form>
+    <form onSubmit={handleUpdateGoal}>
       <fieldset disabled={disableEditGoal} className={classes.goalForm}>
         <p>{`${year}年${month}月${day}日`}</p>
 
@@ -150,14 +152,21 @@ export default function GoalDetail() {
             isSetTime === "yes" ? undefined : classes.disabled
           }`}
         >
-          目標完成時間
-          <input
+          <span>目標完成時間</span>
+          {/* <input
             type="time"
             name="goalTime"
             value={goalTime}
             required
             onChange={handleChange}
             disabled={isSetTime === "no" ? true : false}
+          /> */}
+          <TimePickerComponent
+            name="goalTime"
+            value={goalTime}
+            required={true}
+            onChange={handleChange}
+            disabled={isSetTime === "yes" ? false : true}
           />
         </label>
         <label className={classes.goalText}>
@@ -177,7 +186,6 @@ export default function GoalDetail() {
           目標詳情
           <textarea
             value={goalDetail}
-            required
             onChange={handleChange}
             placeholder="有關該目標的詳細內容或注意事項(可不填)"
             name="goalDetail"
@@ -238,7 +246,7 @@ export default function GoalDetail() {
             <button
               className={classes.submitBtn}
               type="submit"
-              onClick={handleUpdateGoal}
+              // onClick={handleUpdateGoal}
             >
               確定
             </button>

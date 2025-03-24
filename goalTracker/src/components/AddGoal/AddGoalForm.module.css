@@ -12,7 +12,7 @@
   text-align: center;
 }
 
-.addGoalForm input,
+.goalText input,
 .addGoalForm textarea {
   border: 0.1rem solid var(--border-color);
   border-radius: var(--radius-sm);
@@ -21,7 +21,7 @@
   color: var(--primary-text);
 }
 
-.addGoalForm input:focus,
+.goalText input:focus,
 .addGoalForm textarea:focus {
   border: 0.16rem solid var(--border-color);
 }
@@ -33,14 +33,22 @@
 .goalTime {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin-top: var(--spacing-sm);
 }
 .goalTime > div:first-of-type {
   display: flex;
+  width: 50%;
 }
-.goalTime input {
-  margin-left: var(--spacing-sm);
+.goalTime > div:nth-of-type(2) {
+  display: flex;
+  width: 50%;
+}
+.goalTime > div:nth-of-type(2) > label {
+  width: 100%;
+  justify-content: end;
+  display: flex;
+  align-items: center;
 }
 
 .disabled {
@@ -48,6 +56,11 @@
 }
 .disabled input {
   color: var(--border-color);
+}
+
+.goalTime > div:nth-of-type(2) span {
+  /* width: 56%; */
+  margin-right: var(--spacing-sm);
 }
 
 .radio {
@@ -201,8 +214,11 @@
 }
 
 .radio input {
-  width: 1px;
-  height: 1px;
+  opacity: 0;
+  position: absolute;
+  /* width: 0.1px; */
+  /* height: 0;  */
+  /* display: none; */
 }
 
 .checked {
@@ -218,7 +234,7 @@
 .radio input:checked + .checked::before {
   position: absolute;
   content: "●";
-  font-size: 0.8m;
+  font-size: 0.8rem;
   color: var(--border-color);
   width: 100%;
   height: 100%;
@@ -254,5 +270,21 @@
     display: flex;
     flex-direction: column;
     align-items: start;
+  }
+
+  .goalTime > div:first-of-type {
+    width: 100%;
+  }
+  .goalTime > div:nth-of-type(2) {
+    width: 100%;
+  }
+  .goalTime > div:nth-of-type(2) > label {
+    justify-content: start;
+    margin-top: var(--spacing-sm);
+  }
+
+  .goalTime input[type="time"] {
+    /* width: 6.5rem; */
+    /* margin-left: var(--spacing-sm); */
   }
 }

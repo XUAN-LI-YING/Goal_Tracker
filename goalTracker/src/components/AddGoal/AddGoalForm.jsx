@@ -1,6 +1,7 @@
 import { useGoalFormHook } from "../../Hooks/useGoalFormHook";
 import classes from "./AddGoalForm.module.css";
 import { useEffect } from "react";
+import TimePickerComponent from "./TimePickerComponent";
 //REDUX
 import { modalAction, MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -64,6 +65,7 @@ export function AddGoalForm({ availableTags }) {
   //Confirm to add new goal
   async function addNewGoal(e) {
     e.preventDefault();
+
     //generate docID first in order to  store on redux state immediately
     const newGoal = {
       year,
@@ -127,12 +129,19 @@ export function AddGoalForm({ availableTags }) {
           <label
             className={`${isSetTime === "yes" ? undefined : classes.disabled}`}
           >
-            目標完成時間
-            <input
+            <span>目標完成時間</span>
+            {/* <input
               type="time"
               name="goalTime"
               value={goalTime}
               required
+              onChange={handleChange}
+              disabled={isSetTime === "yes" ? false : true}
+            /> */}
+            <TimePickerComponent
+              name="goalTime"
+              value={goalTime}
+              required={true}
               onChange={handleChange}
               disabled={isSetTime === "yes" ? false : true}
             />
