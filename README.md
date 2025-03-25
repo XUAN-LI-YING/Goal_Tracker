@@ -33,7 +33,7 @@ You can use the calendar to select a specific year, month, and day, then add you
 GoalTracker可以幫助您設定每日目標，您可以透過日曆，選擇您要的年月日，並在該日新增每日目標。<br>
 <br>
 
-![介紹網站圖片_工作區域 1](https://github.com/user-attachments/assets/2de24665-a042-4f21-bb16-24cb43d55b8c)
+![介紹網站圖片300_工作區域 1](https://github.com/user-attachments/assets/f0fea2ee-f009-4df6-bd5b-078a606cd510)
 
 <br>
 <br>
