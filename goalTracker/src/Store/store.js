@@ -11,6 +11,7 @@ import { sideBarModalReducer } from "./SideBarModalSlice";
 import { rwdStateSliceReducer } from "./RwdStateSlice";
 import { rightPanelModalReducer } from "./RightPanelModalSlice";
 import { loginReducer } from "./LoginSlice";
+import { firstTimeReducer } from "./FirstTimeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     SideBarModalReducer: sideBarModalReducer,
     RwdStateSliceReducer: rwdStateSliceReducer,
     RightPanelModalReducer: rightPanelModalReducer,
-    LoginReducer: loginReducer
+    LoginReducer: loginReducer,
+    FirstTimeReducer: firstTimeReducer
   }
 });

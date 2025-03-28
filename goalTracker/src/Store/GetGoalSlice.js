@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+//Redux
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { completionsAction } from "./GetCompletionSlice";
 //Firebase
@@ -88,7 +90,15 @@ export const postGoalThunk = createAsyncThunk(
     dispatch(dailyGoalsAction.addGoalForTheDay(newGoal));
     try {
       await setDoc(newDocRef, newGoal);
-      alert("新增成功");
+      Swal.fire({
+        title: "新增成功",
+        html: "目標已新增，我們已自動幫您將篩選區的標籤勾選<br>方便您馬上看到剛剛新增的目標</br>",
+        icon: "success",
+        confirmButtonText: "確定",
+        customClass: {
+          confirmButton: "swalConfirmBtn"
+        }
+      });
     } catch (error) {
       console.error("Firestore post錯誤:", error);
       dispatch(dailyGoalsAction.removeGoalForTheDay(newGoal));
@@ -145,7 +155,15 @@ export const editGoalThunk = createAsyncThunk(
     dispatch(dailyGoalsAction.editGoal(newGoal));
     try {
       await updateDoc(docRef, newGoal);
-      alert("更新成功");
+      Swal.fire({
+        title: "更新成功",
+        html: "目標已更新，我們已自動幫您將篩選區的標籤勾選<br>方便您馬上看到剛剛更新的目標</br>",
+        icon: "success",
+        confirmButtonText: "確定",
+        customClass: {
+          confirmButton: "swalConfirmBtn"
+        }
+      });
     } catch (error) {
       dispatch(dailyGoalsAction.editGoal(originalGoal));
       console.error("Firestore post錯誤:", error);
@@ -271,7 +289,14 @@ export const deleteGoalThunk = createAsyncThunk(
     try {
       //這裡即使沒有這了路徑他還是會刪除成功
       await deleteDoc(docRef);
-      alert("刪除成功");
+      Swal.fire({
+        title: "刪除成功",
+        icon: "success",
+        confirmButtonText: "確定",
+        customClass: {
+          confirmButton: "swalConfirmBtn"
+        }
+      });
     } catch (error) {
       console.error("Firestore post錯誤:", error);
       alert("無法刪除goals");

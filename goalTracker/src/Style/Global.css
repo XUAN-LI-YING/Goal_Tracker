@@ -103,6 +103,18 @@ button {
   background-color: var(--accent-hover);
 }
 
+/* 全站Swal彈出視窗 */
+.swalConfirmBtn {
+  background-color: var(--accent-color);
+}
+.swalConfirmBtn:hover {
+  background-color: var(--accent-hover);
+}
+
+.swalConfirmBtn:active {
+  background-color: var(--accent-hover);
+}
+
 /* 滾動條本體 */
 *::-webkit-scrollbar {
   width: 4px;

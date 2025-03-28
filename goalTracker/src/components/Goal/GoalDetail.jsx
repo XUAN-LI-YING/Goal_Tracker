@@ -10,6 +10,7 @@ import {
   goalDetailModalAction,
   Detail_MODAL_CONTENT_ELEMENT
 } from "../../Store/GoalDetailModalSlice";
+import { selectTagAction } from "../../Store/SelectTagSlice";
 
 export default function GoalDetail() {
   const dispatch = useDispatch();
@@ -90,6 +91,12 @@ export default function GoalDetail() {
     };
 
     dispatch(editGoalThunk({ year, month, day, newGoal, originalGoal: goal }));
+
+    //這是為了讓新增/編輯goal後讓他所有的標籤在標籤篩選區都是被勾選的狀態用來保證顯示這個被新增/編輯的goal
+    // 雖然在selectedTag.jsx中已經設定凡是新加入的標籤都一定是會被勾選得
+    // (也就是只需要讓之前已經存在但卻被取消勾選的tag再度被勾選
+    // 但沒關係這裡在加入一次，addSelectedGoalTags slice會篩選重複加入勾選區域的tag
+    dispatch(selectTagAction.addSelectedGoalTags(selectedTags));
 
     //以後可新增功能:當確定有正確新增到資料庫與redux時，才從修改頁面變為僅供觀看頁面
     dispatch(goalDetailModalAction.disableEditGoal(true));

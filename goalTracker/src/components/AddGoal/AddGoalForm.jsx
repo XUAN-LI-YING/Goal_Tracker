@@ -6,6 +6,7 @@ import TimePickerComponent from "./TimePickerComponent";
 import { modalAction, MODAL_CONTENT_ELEMENT } from "../../Store/ModalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { postGoalThunk } from "../../Store/GetGoalSlice";
+import { selectTagAction } from "../../Store/SelectTagSlice";
 
 export function AddGoalForm({ availableTags }) {
   //redux ,change modal element
@@ -80,6 +81,12 @@ export function AddGoalForm({ availableTags }) {
     };
 
     dispatch(postGoalThunk({ year, month, day, newGoal }));
+
+    //這是為了讓新增/編輯goal後讓他所有的標籤在標籤篩選區都是被勾選的狀態用來保證顯示這個被新增/編輯的goal
+    // 雖然在selectedTag.jsx中已經設定凡是新加入的標籤都一定是會被勾選得
+    // (也就是只需要讓之前已經存在但卻被取消勾選的tag再度被勾選
+    // 但沒關係這裡在加入一次，addSelectedGoalTags slice會篩選重複加入勾選區域的tag
+    dispatch(selectTagAction.addSelectedGoalTags(selectedTags));
 
     //以後可以根據post 資料庫狀態使用extraReducers來選擇是否要reset
     setFormValue({
@@ -206,6 +213,7 @@ export function AddGoalForm({ availableTags }) {
               <span>{tag}</span>
               {tag !== "無標籤" && (
                 <button
+                  type="button"
                   onClick={(e) => {
                     console.log("🚀 按下刪除按鈕:", tag);
                     handleRemoveTag(tag);

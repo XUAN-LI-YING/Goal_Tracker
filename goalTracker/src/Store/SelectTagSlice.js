@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { selectedGoalTag: [], originDisplayTag: [] };
+const initialState = {
+  selectedGoalTag: [],
+  originDisplayTag: []
+};
 const selectTagSlice = createSlice({
   name: "selectTagSlice",
   initialState,
@@ -19,11 +22,14 @@ const selectTagSlice = createSlice({
       );
     },
     addSelectedGoalTags: (state, action) => {
-      state.selectedGoalTag = [...state.selectedGoalTag, ...action.payload];
+      state.selectedGoalTag = [
+        ...new Set([...state.selectedGoalTag, ...action.payload])
+      ];
     },
     setOriginDisplayTag: (state, action) => {
       state.originDisplayTag = action.payload;
     },
+
     initialState: (state) => {
       return { ...initialState };
     }

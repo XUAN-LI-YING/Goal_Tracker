@@ -17,7 +17,6 @@ export default function CreateTag() {
 
   //emoji select
   const handleEmojiSelect = (emoji) => {
-    console.log(emoji);
     setSelectedEmoji(emoji.native);
     setIsPickerVisible(false);
   };
@@ -26,11 +25,6 @@ export default function CreateTag() {
 
   const isFormValid =
     selectedEmoji !== defaultSelectedEmoji && inputText.trim();
-
-  useEffect(() => {
-    console.log("isFormValid", isFormValid);
-    console.log("hasSubmitted", hasSubmitted);
-  }, [isFormValid, hasSubmitted]);
 
   //post tags to database and redux store
   const dispatch = useDispatch();

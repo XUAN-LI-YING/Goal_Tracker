@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import Swal from "sweetalert2";
 //Firebase
 import {
   collection,
@@ -25,9 +25,15 @@ const getTagsSlice = createSlice({
     },
     addTag: (state, action) => {
       if (state.tags.includes(action.payload)) {
-        alert(
-          `您已經有此標籤!\n您重複加入與${action.payload}一樣的標籤，請新增一個不一樣的標籤`
-        );
+        Swal.fire({
+          title: "您已經有此標籤",
+          html: `您重複加入與「${action.payload}」一樣的標籤<br>請新增一個不一樣的標籤</br>`,
+          icon: "warning",
+          confirmButtonText: "確定",
+          customClass: {
+            confirmButton: "swalConfirmBtn"
+          }
+        });
       } else {
         state.tags.push(action.payload);
       }
@@ -87,7 +93,14 @@ export const deleteTagThunk = createAsyncThunk(
       //注意這裡即使沒有這個路徑也會 alert("刪除成功!");
       await deleteDoc(getDocRefHelper("tags", deleteTag));
 
-      alert("刪除成功!");
+      Swal.fire({
+        title: "刪除成功",
+        icon: "success",
+        confirmButtonText: "確定",
+        customClass: {
+          confirmButton: "swalConfirmBtn"
+        }
+      });
     } catch (error) {
       console.error("Firestore delete錯誤", error);
       dispatch(getTagsAction.addTag(deleteTag));

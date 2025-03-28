@@ -1,8 +1,13 @@
+import Swal from "sweetalert2";
+//Redux
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { postTagThunk } from "./GetTagsSlice";
+import { firstTimeAction } from "./FirstTimeSlice";
+//Firebase
 import { getDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../FireBase/FireBaseConfig";
-import { postTagThunk } from "./GetTagsSlice";
+
 // 讀取 Cookie 的函式
 const getAccounCookie = () => {
   return (
@@ -68,14 +73,33 @@ export const createUserIfNotExistsThunk = createAsyncThunk(
 
         //為剛註冊的用戶建立預設tag
         await Promise.all(defaultTag.map((tag) => dispatch(postTagThunk(tag))));
+        //開啟初次使用提示
+        dispatch(firstTimeAction.showFilterAlert());
 
-        alert("您好，恭喜您註冊新的帳號，歡迎使用！😁✨🎉🎈🎊❤️");
+        Swal.fire({
+          title: "註冊成功",
+          html: "😎您好，恭喜您註冊新的帳號，歡迎使用！😁✨🎉🎈",
+          icon: "success",
+          confirmButtonText: "確定",
+          customClass: {
+            confirmButton: "swalConfirmBtn"
+          }
+        });
       } else {
         dispatch(loginAction.setAccountNum(accountNum));
         localStorage.setItem("accountNum", `${accountNum}`);
 
         // document.cookie = `accountNum=${accountNum}; path=/;`;
-        alert("您好，歡迎回來！😎😁🤓😍");
+
+        Swal.fire({
+          title: "登入成功",
+          html: "😎您好，歡迎回來！😁🤓😍🎉",
+          icon: "success",
+          confirmButtonText: "確定",
+          customClass: {
+            confirmButton: "swalConfirmBtn"
+          }
+        });
       }
     } catch (error) {
       return rejectWithValue(error.message);
