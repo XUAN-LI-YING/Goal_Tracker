@@ -25,6 +25,7 @@ export function SelectDisplayTag({ displayTag }) {
   console.log("selectedTags", selectedTags);
 
   //當goal改變時造成tag新增或刪除，並且保留留下來的tag的狀態
+  //讓他即使更換日期時他還可以保持一樣的勾選狀態
   useEffect(() => {
     // 取得原本的tag中沒有的tag,也就是新加入的tag
     const newTags = displayTag.filter(
