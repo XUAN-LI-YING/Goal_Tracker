@@ -33,10 +33,9 @@ export default function Root() {
 
   const handleResize = () => {
     let screenSize;
-    console.log(" window.innerWidth", window.innerWidth);
 
     const screenWidth = document.documentElement.clientWidth;
-    console.log(" screenWidth", screenWidth);
+
     switch (true) {
       case screenWidth <= 576:
         screenSize = RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_576;
@@ -77,13 +76,10 @@ export default function Root() {
       document.documentElement.style.setProperty("--vh", `${vh}px`);
     };
 
-    // 初始執行一次
     setVH();
 
-    // 每當視窗大小改變時執行
     window.addEventListener("resize", setVH);
 
-    // 清理事件監聽，避免記憶體洩漏
     return () => window.removeEventListener("resize", setVH);
   }, []);
 

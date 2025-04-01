@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 
-// 📌 **AnimatedNumber 組件（共用動畫）**
+// **AnimatedNumber 組件（共用動畫）**
 export default function AnimatedNumber({ targetNumber }) {
   const controls = useAnimation();
   const [number, setNumber] = useState(1);

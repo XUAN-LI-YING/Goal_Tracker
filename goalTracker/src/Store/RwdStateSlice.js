@@ -7,6 +7,8 @@ export const RWD_STATE_ELEMENT = {
   SCREEN_BIG_THAN_1200: "1200Screen"
 };
 
+//設定初始直讓他一開始就偵測到寬度，避免藉由useEffect呼叫設定初始直而出現DOM閃爍
+
 function initialState() {
   if (typeof window !== "undefined") {
     if (window.innerWidth <= 576)
