@@ -1,6 +1,6 @@
 import classes from "./Personal.module.css";
 import userSticker from "../assets/userSticker.webp";
-import AnimatedNumber from "../components/UI/AnimatedNumber";
+import PersonNumberMotion from "../components/UI/PersonNumberMotion";
 //react router
 import { useLoaderData } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -21,21 +21,21 @@ export default function Personal() {
         <label>
           今日已達成
           <div>
-            <AnimatedNumber targetNumber={dayCompleteNum} />
+            <PersonNumberMotion targetNumber={dayCompleteNum} />
             個目標
           </div>
         </label>
         <label>
           這個月已達成
           <div>
-            <AnimatedNumber targetNumber={monthCompleteNum} />
+            <PersonNumberMotion targetNumber={monthCompleteNum} />
             個目標
           </div>
         </label>
         <label>
           今年已達成
           <div>
-            <AnimatedNumber targetNumber={yearCompleteNum} />
+            <PersonNumberMotion targetNumber={yearCompleteNum} />
             個目標
           </div>
         </label>
