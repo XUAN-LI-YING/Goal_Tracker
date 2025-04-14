@@ -30,8 +30,21 @@ export default function EditTagForm({ availableTags, prev }) {
     const deleteTag = e.target.value;
     dispatch(getTagsAction.removeTag(deleteTag));
     dispatch(deleteTagThunk(deleteTag));
-  }
 
+    //使用者暫存在session的tag狀態
+    const sessionKeys = ["addGoalFormTag", "editGoalFormTag"];
+
+    sessionKeys.forEach((key) => {
+      const sessionTags = sessionStorage.getItem(key);
+      if (!sessionTags) return;
+
+      const tags = JSON.parse(sessionTags);
+      if (!tags.includes(deleteTag)) return;
+
+      const updated = tags.filter((tag) => tag !== deleteTag);
+      sessionStorage.setItem(key, JSON.stringify(updated));
+    });
+  }
   //Go previous page(addGoalPage)
   function goPrePage() {
     if (prev === "addGoal") {

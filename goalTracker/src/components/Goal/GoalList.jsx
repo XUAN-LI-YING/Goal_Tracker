@@ -4,6 +4,8 @@ import GoalItem from "./GoalItem";
 //Redux
 import { dailyGoalsAction, getGoalThunk } from "../../Store/GetGoalSlice";
 import { useDispatch, useSelector } from "react-redux";
+//Motion
+import { motion } from "framer-motion";
 
 export default function GoalList({ date: { year, month, day } }) {
   const dispatch = useDispatch();
@@ -13,6 +15,10 @@ export default function GoalList({ date: { year, month, day } }) {
   }, [year, month, day]);
 
   const allGoals = useSelector((state) => state.DailyGoalsReducer.dailyGoals);
+
+  const isLoadingGoals = useSelector(
+    (state) => state.DailyGoalsReducer.isLoadingGoals
+  );
 
   const { noTimeGoal, sortGoalTime } = useMemo(() => {
     const noTimeGoal = allGoals.filter((goal) => goal.isSetTime === "no");
@@ -64,8 +70,15 @@ export default function GoalList({ date: { year, month, day } }) {
     <div className={classes.allGoals}>
       <div className={classes.line}></div>
       <p>今日行程</p>
-      {displaySortGoalTime.length === 0 ? (
-        <p className={classes.noTask}>目前沒有排任何行程</p>
+      {displaySortGoalTime.length === 0 && !isLoadingGoals ? (
+        <motion.p
+          className={classes.noTask}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          目前沒有排任何行程
+        </motion.p>
       ) : (
         ""
       )}
@@ -78,8 +91,15 @@ export default function GoalList({ date: { year, month, day } }) {
 
       <div className={classes.line}></div>
       <p>其他代辦事項</p>
-      {displayNoTimeGoal.length === 0 ? (
-        <p className={classes.noTask}>目前無其他代辦事項</p>
+      {displayNoTimeGoal.length === 0 && !isLoadingGoals ? (
+        <motion.p
+          className={classes.noTask}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          目前無其他代辦事項
+        </motion.p>
       ) : (
         ""
       )}

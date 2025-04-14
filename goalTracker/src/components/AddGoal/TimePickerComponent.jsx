@@ -1,12 +1,12 @@
 import React from "react";
+
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-
-dayjs.extend(customParseFormat);
+import parse from "date-fns/parse";
+import isValid from "date-fns/isValid";
+import format from "date-fns/format";
 
 export default function TimePickerComponent({
   name,
@@ -15,24 +15,22 @@ export default function TimePickerComponent({
   required,
   disabled
 }) {
-  // 加上 plugin 後就能解析 "18:00" 這種僅有時間的字串
-  const parsedValue = value ? dayjs(value, "HH:mm", true) : null;
-
-  console.log("parsedValue", parsedValue);
+  ///使用 date-fns 的 parse 將 "HH:mm" 字串轉成 Date 物件
+  const parsedValue = value ? parse(value, "HH:mm", new Date()) : null;
 
   const handleTimeChange = (newValue) => {
-    if (!newValue || !newValue.isValid()) return;
+    if (!newValue || !isValid(newValue)) return;
     const fakeEvent = {
       target: {
         name,
-        value: newValue.format("HH:mm")
+        value: format(newValue, "HH:mm")
       }
     };
     onChange(fakeEvent);
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <TimePicker
         ampm={false}
         value={parsedValue}

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import Picker from "@emoji-mart/react";
+import { useState, lazy, Suspense } from "react";
 import classes from "./CreateTag.module.css";
 
 //Redux
@@ -7,6 +6,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getTagsAction } from "../../Store/GetTagsSlice";
 import { postTagThunk } from "../../Store/GetTagsSlice";
+
+const LazyPicker = lazy(() => import("@emoji-mart/react"));
 
 export default function CreateTag() {
   const [inputText, setInputText] = useState("");
@@ -71,13 +72,14 @@ export default function CreateTag() {
 
         {isPickerVisible && (
           <div className={classes.picker}>
-            <Picker
-              set="facebook"
-              emoji="department_store"
-              onEmojiSelect={handleEmojiSelect}
-              icons="outline"
-              previewPosition="none"
-            />
+            <Suspense fallback={<p>載入中...</p>}>
+              <LazyPicker
+                emoji="department_store"
+                onEmojiSelect={handleEmojiSelect}
+                icons="outline"
+                previewPosition="none"
+              />
+            </Suspense>
           </div>
         )}
         {hasSubmitted && !isFormValid && (

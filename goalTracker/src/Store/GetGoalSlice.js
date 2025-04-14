@@ -17,7 +17,8 @@ import {
 } from "firebase/firestore";
 
 const initialState = {
-  dailyGoals: []
+  dailyGoals: [],
+  isLoadingGoals: false
 };
 const dailyGoalsSlice = createSlice({
   name: "dailyGoalsSlice",
@@ -54,7 +55,12 @@ const dailyGoalsSlice = createSlice({
         alert("找不到該目標，因此無法修改該目標");
       }
     },
-
+    setGoalLoadingTrue(state) {
+      state.isLoadingGoals = true;
+    },
+    setGoalLoadingFalse(state) {
+      state.isLoadingGoals = false;
+    },
     initialState: (state) => {
       return { ...initialState };
     }
@@ -106,6 +112,9 @@ export const postGoalThunk = createAsyncThunk(
 export const getGoalThunk = createAsyncThunk(
   "dailyGoalsSlice/getGoalThunk",
   async ({ year, month, day }, { dispatch, rejectWithValue }) => {
+    //先清空原本的goal狀態，並讓使用者知道在LOADING
+    dispatch(dailyGoalsAction.initialState());
+    dispatch(dailyGoalsAction.setGoalLoadingTrue());
     const collectionRef = getCollectionRefHelper(
       "goals",
       "dailyDay",
@@ -119,6 +128,7 @@ export const getGoalThunk = createAsyncThunk(
       const allGoalsArray = querySnapshot.docs.map((goal) => goal.data());
       console.log("allGoalsArray", allGoalsArray);
       dispatch(dailyGoalsAction.setGoalForTheDay(allGoalsArray));
+      dispatch(dailyGoalsAction.setGoalLoadingFalse());
     } catch (error) {
       console.error("Firestore post錯誤:", error);
 
