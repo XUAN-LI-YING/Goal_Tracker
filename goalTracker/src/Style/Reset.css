@@ -17,6 +17,8 @@ html {
   -ms-text-size-adjust: 100%;
   /* 讓滾動動畫更流暢 */
   scroll-behavior: smooth;
+  /* 避免橫向滾動 */
+  overflow-x: hidden;
 }
 
 /*  設定全站 body 的字體、行高，讓基礎排版統一 */

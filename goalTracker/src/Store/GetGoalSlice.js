@@ -17,9 +17,7 @@ import {
 } from "firebase/firestore";
 
 const initialState = {
-  dailyGoals: [],
-  noTimeGoal: [],
-  sortGoalTime: []
+  dailyGoals: []
 };
 const dailyGoalsSlice = createSlice({
   name: "dailyGoalsSlice",
@@ -56,12 +54,7 @@ const dailyGoalsSlice = createSlice({
         alert("找不到該目標，因此無法修改該目標");
       }
     },
-    setNoTimeGoal: (state, action) => {
-      state.noTimeGoal = action.payload;
-    },
-    setSortGoalTime: (state, action) => {
-      state.sortGoalTime = action.payload;
-    },
+
     initialState: (state) => {
       return { ...initialState };
     }

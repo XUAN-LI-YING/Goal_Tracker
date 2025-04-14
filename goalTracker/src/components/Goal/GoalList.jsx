@@ -26,10 +26,6 @@ export default function GoalList({ date: { year, month, day } }) {
     return { noTimeGoal, sortGoalTime };
   }, [allGoals]);
 
-  useEffect(() => {
-    dispatch(dailyGoalsAction.setNoTimeGoal(noTimeGoal));
-    dispatch(dailyGoalsAction.setSortGoalTime(sortGoalTime));
-  }, [allGoals, dispatch]);
   console.log("noTimeGoal", noTimeGoal);
   console.log("sortGoalTime", sortGoalTime);
   //Display goal ,according to left tag which you have selected

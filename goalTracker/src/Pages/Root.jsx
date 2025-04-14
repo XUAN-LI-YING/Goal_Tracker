@@ -71,16 +71,30 @@ export default function Root() {
   //
   //因應不同瀏覽器視窗可能會有工具列擋住網站，因此將扣除工具列得到實際高度
   useEffect(() => {
-    const setVH = () => {
+    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+
+    const setRealVH = () => {
+      //在某些 Android 瀏覽器，視窗高度可能是浮動的（尤其打開鍵盤後）
       const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+      // 在手機上使用自訂計算的 vh
+      if (isMobile) {
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+      } else {
+        // 桌機上回退為標準 vh（避免多出 scrollbar）
+        document.documentElement.style.setProperty("--vh", `1vh`);
+      }
     };
 
-    setVH();
+    setRealVH();
+    window.addEventListener("resize", setRealVH);
+    // 轉向橫向仍然可以監聽到高度變化
+    window.addEventListener("orientationchange", setRealVH);
 
-    window.addEventListener("resize", setVH);
-
-    return () => window.removeEventListener("resize", setVH);
+    return () => {
+      window.removeEventListener("resize", setRealVH);
+      window.removeEventListener("orientationchange", setRealVH);
+    };
   }, []);
 
   return (
