@@ -148,7 +148,7 @@
 }
 
 @media (max-width: 576px) and (min-width: 450px) {
-  .line + p {
+  .categoryName {
     color: var(--highlight-color);
   }
 
@@ -229,7 +229,7 @@
   }
 }
 @media (max-width: 450px) {
-  .line + p {
+  .categoryName {
     color: var(--highlight-color);
   }
 }
