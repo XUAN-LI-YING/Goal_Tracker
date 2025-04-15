@@ -50,6 +50,15 @@
   align-items: center;
 }
 
+.line {
+  height: 1px;
+  width: 90%;
+  background-color: var(--border-color);
+  display: flex;
+  margin: 0 var(--spacing-sm);
+  justify-self: center;
+}
+
 .addGoalBtn {
   padding: var(--spacing-sm);
   background-color: var(--accent-color);

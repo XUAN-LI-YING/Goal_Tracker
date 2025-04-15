@@ -39,6 +39,13 @@
   top: 2rem;
 }
 
+.loading {
+  border-radius: var(--radius-md);
+  background-color: #fff;
+  padding: var(--spacing-sm);
+  width: fit-content;
+}
+
 .prompt {
   font-size: var(--font-size-sm);
   margin-top: var(--spacing-sm);

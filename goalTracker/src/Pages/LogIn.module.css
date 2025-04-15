@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  margin: 5rem 5rem 0 5rem;
+  padding: 5rem 5rem 0 5rem;
+  overflow-y: auto;
 }
 
 .logInSectoin > div {

@@ -79,6 +79,7 @@ export default function MainContent() {
           <img src={nextIcon} alt="Go to next day." />
         </button>
       </div>
+      <div className={classes.line}></div>
       <AnimatePresence mode="wait">
         <motion.div
           className={classes.goalItem}

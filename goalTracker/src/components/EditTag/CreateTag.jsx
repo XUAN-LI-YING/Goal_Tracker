@@ -68,12 +68,13 @@ export default function CreateTag() {
             <button type="submit">新增</button>
           </div>
         </div>
-        {inputText.length >= 10 && <p>已達字數上限(最多只能輸入10個字)</p>}
 
+        {inputText.length >= 10 && <p>已達字數上限(最多只能輸入10個字)</p>}
         {isPickerVisible && (
           <div className={classes.picker}>
-            <Suspense fallback={<p>載入中...</p>}>
+            <Suspense fallback={<p className={classes.loading}>載入中...</p>}>
               <LazyPicker
+                theme="light"
                 emoji="department_store"
                 onEmojiSelect={handleEmojiSelect}
                 icons="outline"

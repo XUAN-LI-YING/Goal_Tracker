@@ -1,6 +1,6 @@
 import classes from "./SideBar.module.css";
 import { useEffect, useMemo } from "react";
-import { SelectDisplayTag } from "../SelectdisplayTag/SelectdisplayTag";
+import { SelectDisplayTag } from "../SelectDisplayTag/SelectDisplayTag";
 
 //img
 import homeIcon from "../../assets/home.png";

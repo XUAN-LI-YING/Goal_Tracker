@@ -112,8 +112,8 @@ export const postGoalThunk = createAsyncThunk(
 export const getGoalThunk = createAsyncThunk(
   "dailyGoalsSlice/getGoalThunk",
   async ({ year, month, day }, { dispatch, rejectWithValue }) => {
-    //先清空原本的goal狀態，並讓使用者知道在LOADING
-    dispatch(dailyGoalsAction.initialState());
+    //讓使用者知道在LOADING
+
     dispatch(dailyGoalsAction.setGoalLoadingTrue());
     const collectionRef = getCollectionRefHelper(
       "goals",

@@ -16,6 +16,11 @@ export function SelectDisplayTag({ displayTag }) {
     (state) => state.SelectTagReducer.originDisplayTag
   );
 
+  //goal是否在loading是的話displayTag則暫時是loading狀態已配合goal區域畫面的狀態達到視覺同步
+  const isLoadingGoals = useSelector(
+    (state) => state.DailyGoalsReducer.isLoadingGoals
+  );
+
   //獲得哪些TAG被勾選的狀態
   const selectedTags = useSelector(
     (state) => state.SelectTagReducer.selectedGoalTag
@@ -75,30 +80,32 @@ export function SelectDisplayTag({ displayTag }) {
 
   return (
     <div className={classes.tagSection}>
-      <AnimatePresence mode="wait">
-        <motion.ul
-          key={displayTag.join(",")}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
-          exit={{ opacity: 0 }}
-        >
-          {displayTag.map((tag) => (
-            <li key={tag}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={selectedTags.includes(tag)}
-                  onChange={handleTagChange}
-                  value={tag}
-                />
-                <span className={classes.checkbox}></span>
-                <span>{tag}</span>
-              </label>
-            </li>
-          ))}
-        </motion.ul>
-      </AnimatePresence>
+      {!isLoadingGoals && (
+        <AnimatePresence mode="wait">
+          <motion.ul
+            key={displayTag.join(",")}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0 }}
+          >
+            {displayTag.map((tag) => (
+              <li key={tag}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={selectedTags.includes(tag)}
+                    onChange={handleTagChange}
+                    value={tag}
+                  />
+                  <span className={classes.checkbox}></span>
+                  <span>{tag}</span>
+                </label>
+              </li>
+            ))}
+          </motion.ul>
+        </AnimatePresence>
+      )}
     </div>
   );
 }

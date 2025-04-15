@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, Fragment } from "react";
 import classes from "./GoalItem.module.css";
 import GoalItem from "./GoalItem";
 //Redux
@@ -67,47 +67,54 @@ export default function GoalList({ date: { year, month, day } }) {
   console.log("displaySortGoalTime ", displaySortGoalTime);
 
   return (
-    <div className={classes.allGoals}>
-      <div className={classes.line}></div>
-      <p>今日行程</p>
-      {displaySortGoalTime.length === 0 && !isLoadingGoals ? (
-        <motion.p
-          className={classes.noTask}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-        >
-          目前沒有排任何行程
-        </motion.p>
-      ) : (
-        ""
-      )}
+    <Fragment>
+      {!isLoadingGoals ? (
+        <div className={classes.allGoals}>
+          <p className={classes.categoryName}>今日行程</p>
+          {displaySortGoalTime.length === 0 ? (
+            <motion.p
+              className={classes.noTask}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              目前沒有排任何行程
+            </motion.p>
+          ) : (
+            ""
+          )}
 
-      <div className={classes.goalLists}>
-        {displaySortGoalTime.map((goal) => (
-          <GoalItem goal={goal} key={goal.id} />
-        ))}
-      </div>
+          <div className={classes.goalLists}>
+            {displaySortGoalTime.map((goal) => (
+              <GoalItem goal={goal} key={goal.id} />
+            ))}
+          </div>
 
-      <div className={classes.line}></div>
-      <p>其他代辦事項</p>
-      {displayNoTimeGoal.length === 0 && !isLoadingGoals ? (
-        <motion.p
-          className={classes.noTask}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-        >
-          目前無其他代辦事項
-        </motion.p>
+          <div className={classes.line}></div>
+          <p className={classes.categoryName}>其他代辦事項</p>
+          {displayNoTimeGoal.length === 0 ? (
+            <motion.p
+              className={classes.noTask}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              目前無其他代辦事項
+            </motion.p>
+          ) : (
+            ""
+          )}
+
+          <div className={classes.goalLists}>
+            {displayNoTimeGoal.map((goal) => (
+              <GoalItem goal={goal} key={goal.id} />
+            ))}
+          </div>
+        </div>
       ) : (
-        ""
+        // <></>
+        <p className={classes.categoryName}>正在載入...</p>
       )}
-      <div className={classes.goalLists}>
-        {displayNoTimeGoal.map((goal) => (
-          <GoalItem goal={goal} key={goal.id} />
-        ))}
-      </div>
-    </div>
+    </Fragment>
   );
 }
