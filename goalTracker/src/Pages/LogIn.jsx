@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import classes from "./LogIn.module.css";
+import Swal from "sweetalert2";
+
 //Redux
 import { useDispatch } from "react-redux";
 import { createUserIfNotExistsThunk } from "../Store/LoginSlice";
@@ -19,7 +21,15 @@ export default function Login() {
     const trimmedInput = input.replace(/\s+/g, "");
 
     if (trimmedInput.length !== 4) {
-      alert("請輸入 2 個英文字母 + 2 個中文字，順序不限，例如：a好B你");
+      Swal.fire({
+        title: "登入提示",
+        html: "請輸入 2 個英文字母 + 2 個中文字，順序不限，例如：a好B你",
+        icon: "info",
+        confirmButtonText: "了解",
+        customClass: {
+          confirmButton: "swalConfirmBtn"
+        }
+      });
       return;
     }
 
@@ -29,9 +39,15 @@ export default function Login() {
 
     // 確保字元類型符合需求
     if (englishLetters.length !== 2 || chineseChars.length !== 2) {
-      alert(
-        "輸入格式錯誤！請輸入 2 個英文字母 + 2 個中文字，順序不限，例如 a好B你"
-      );
+      Swal.fire({
+        title: "登入提示",
+        html: "請輸入 2 個英文字母 + 2 個中文字，順序不限，例如：a好B你",
+        icon: "info",
+        confirmButtonText: "了解",
+        customClass: {
+          confirmButton: "swalConfirmBtn"
+        }
+      });
       return;
     }
     navigate("/");
