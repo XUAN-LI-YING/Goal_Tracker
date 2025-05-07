@@ -62,7 +62,7 @@ export default function Root() {
     dispatch(sideBarModalAction.controlModal());
   }
 
-  //當rwd到小螢幕被渲染時，讓他一開始是關閉狀態
+  //當rwd到2大螢幕的時候就關閉漢堡icon點開的sideBar modal
   useEffect(() => {
     if (screenState !== RWD_STATE_ELEMENT.SCREEN_SMALL_THAN_576)
       dispatch(sideBarModalAction.initialModal());
